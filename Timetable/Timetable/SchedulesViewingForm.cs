@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace Timetable
 {
-	public partial class Form1 : Form
+	public partial class SchedulesViewingForm : Form
 	{
-		public Form1()
+		public static event EventDelegate closeFormEvent;
+
+		public SchedulesViewingForm()
 		{
 			InitializeComponent();
+		}
+
+		private void buttonOk_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
 		}
 	}
 }
