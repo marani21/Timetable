@@ -21,6 +21,7 @@ namespace Timetable
 
 		private void buttonOk_Click(object sender, EventArgs e)
 		{
+            MessageBox.Show("Zamykam...");
 			this.Hide();
 			if(closeFormEvent!=null)
 			{
