@@ -36,7 +36,7 @@ namespace Timetable
 		{
 			this.Show();
 		}
-
+        
 		private void SubjectsAssigningForm_closeFormEvent()
 		{
 			this.Show();
