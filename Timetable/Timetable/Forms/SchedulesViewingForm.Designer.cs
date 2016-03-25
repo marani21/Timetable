@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.scheduleForComboBox = new System.Windows.Forms.ComboBox();
 			this.scheduleForConcreteComboBox = new System.Windows.Forms.ComboBox();
 			this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
@@ -47,8 +48,16 @@
 			this.itemMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemCreateSchedule = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemAssignSubjects = new System.Windows.Forms.ToolStripMenuItem();
+			this.dataSet = new Timetable.DataSet();
+			this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.classesTableAdapter = new Timetable.DataSetTableAdapters.classesTableAdapter();
+			this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.studentsTableAdapter = new Timetable.DataSetTableAdapters.studentsTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).BeginInit();
 			this.menuStrip.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// scheduleForComboBox
@@ -61,11 +70,14 @@
 			// 
 			// scheduleForConcreteComboBox
 			// 
+			this.scheduleForConcreteComboBox.DataSource = this.studentsBindingSource;
+			this.scheduleForConcreteComboBox.DisplayMember = "name";
 			this.scheduleForConcreteComboBox.FormattingEnabled = true;
 			this.scheduleForConcreteComboBox.Location = new System.Drawing.Point(202, 52);
 			this.scheduleForConcreteComboBox.Name = "scheduleForConcreteComboBox";
 			this.scheduleForConcreteComboBox.Size = new System.Drawing.Size(180, 21);
 			this.scheduleForConcreteComboBox.TabIndex = 1;
+			this.scheduleForConcreteComboBox.ValueMember = "pesel";
 			// 
 			// dataGridViewSchedule
 			// 
@@ -230,6 +242,29 @@
 			this.itemAssignSubjects.Size = new System.Drawing.Size(197, 30);
 			this.itemAssignSubjects.Text = "Przydziel przedmioty";
 			// 
+			// dataSet
+			// 
+			this.dataSet.DataSetName = "DataSet";
+			this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// classesBindingSource
+			// 
+			this.classesBindingSource.DataMember = "classes";
+			this.classesBindingSource.DataSource = this.dataSet;
+			// 
+			// classesTableAdapter
+			// 
+			this.classesTableAdapter.ClearBeforeFill = true;
+			// 
+			// studentsBindingSource
+			// 
+			this.studentsBindingSource.DataMember = "students";
+			this.studentsBindingSource.DataSource = this.dataSet;
+			// 
+			// studentsTableAdapter
+			// 
+			this.studentsTableAdapter.ClearBeforeFill = true;
+			// 
 			// SchedulesViewingForm
 			// 
 			this.AcceptButton = this.buttonOk;
@@ -248,9 +283,13 @@
 			this.Name = "SchedulesViewingForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Przeglądaj plan";
+			this.Load += new System.EventHandler(this.SchedulesViewingForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).EndInit();
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -277,5 +316,10 @@
 		private System.Windows.Forms.ToolStripMenuItem itemMenu;
 		private System.Windows.Forms.ToolStripMenuItem itemCreateSchedule;
 		private System.Windows.Forms.ToolStripMenuItem itemAssignSubjects;
+		private DataSet dataSet;
+		private System.Windows.Forms.BindingSource classesBindingSource;
+		private DataSetTableAdapters.classesTableAdapter classesTableAdapter;
+		private System.Windows.Forms.BindingSource studentsBindingSource;
+		private DataSetTableAdapters.studentsTableAdapter studentsTableAdapter;
 	}
 }

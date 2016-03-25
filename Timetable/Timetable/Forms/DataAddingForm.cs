@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Timetable
 {
-	public partial class SchedulesViewingForm : Form
+	public partial class SubjectsAssigningForm : Form
 	{
 		public static event EventDelegate closeFormEvent;
 
-		public SchedulesViewingForm()
+		public SubjectsAssigningForm()
 		{
 			InitializeComponent();
 		}
@@ -27,5 +27,12 @@ namespace Timetable
 				closeFormEvent();
 			}
 		}
+
+		private void itemAssignSubjects_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		
 	}
 }
