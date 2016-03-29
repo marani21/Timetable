@@ -62,7 +62,7 @@
 			this.buttonAssignSubjects.Name = "buttonAssignSubjects";
 			this.buttonAssignSubjects.Size = new System.Drawing.Size(260, 64);
 			this.buttonAssignSubjects.TabIndex = 2;
-			this.buttonAssignSubjects.Text = "Przydziel przedmioty";
+			this.buttonAssignSubjects.Text = "Dodaj dane do bazy";
 			this.buttonAssignSubjects.UseVisualStyleBackColor = true;
 			this.buttonAssignSubjects.Click += new System.EventHandler(this.buttonAssignSubjects_Click);
 			// 
