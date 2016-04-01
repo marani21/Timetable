@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxClasses = new System.Windows.Forms.ComboBox();
-            this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet = new Timetable.DataSet();
+            this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
             this.columnNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +44,7 @@
             this.columnFriday = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxTeacher = new System.Windows.Forms.ComboBox();
+            this.classroomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonOk = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.labelTeacher = new System.Windows.Forms.Label();
@@ -51,13 +53,14 @@
             this.itemViewSchedules = new System.Windows.Forms.ToolStripMenuItem();
             this.itemAssignSubjects = new System.Windows.Forms.ToolStripMenuItem();
             this.classesTableAdapter = new Timetable.DataSetTableAdapters.classesTableAdapter();
-            this.classroomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.classroomsTableAdapter = new Timetable.DataSetTableAdapters.classroomsTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
+            this.subjectsTableAdapter = new Timetable.DataSetTableAdapters.subjectsTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).BeginInit();
-            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,15 +85,20 @@
             this.comboBoxClasses.TabIndex = 5;
             this.comboBoxClasses.ValueMember = "label";
             // 
-            // classesBindingSource
+            // subjectsBindingSource
             // 
-            this.classesBindingSource.DataMember = "classes";
-            this.classesBindingSource.DataSource = this.dataSet;
+            this.subjectsBindingSource.DataMember = "subjects";
+            this.subjectsBindingSource.DataSource = this.dataSet;
             // 
             // dataSet
             // 
             this.dataSet.DataSetName = "DataSet";
             this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // classesBindingSource
+            // 
+            this.classesBindingSource.DataMember = "classes";
+            this.classesBindingSource.DataSource = this.dataSet;
             // 
             // dataGridViewSchedule
             // 
@@ -127,42 +135,57 @@
             // 
             // columnMonday
             // 
+            this.columnMonday.DataSource = this.subjectsBindingSource;
+            this.columnMonday.DisplayMember = "name";
             this.columnMonday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.columnMonday.HeaderText = "Poniedziałek";
             this.columnMonday.Name = "columnMonday";
             this.columnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columnMonday.ValueMember = "id";
             this.columnMonday.Width = 120;
             // 
             // columnTuesday
             // 
+            this.columnTuesday.DataSource = this.subjectsBindingSource;
+            this.columnTuesday.DisplayMember = "name";
             this.columnTuesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.columnTuesday.HeaderText = "Wtorek";
             this.columnTuesday.Name = "columnTuesday";
             this.columnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columnTuesday.ValueMember = "id";
             this.columnTuesday.Width = 120;
             // 
             // columnWednesday
             // 
+            this.columnWednesday.DataSource = this.subjectsBindingSource;
+            this.columnWednesday.DisplayMember = "name";
             this.columnWednesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.columnWednesday.HeaderText = "Środa";
             this.columnWednesday.Name = "columnWednesday";
             this.columnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columnWednesday.ValueMember = "id";
             this.columnWednesday.Width = 120;
             // 
             // columnThursday
             // 
+            this.columnThursday.DataSource = this.subjectsBindingSource;
+            this.columnThursday.DisplayMember = "name";
             this.columnThursday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.columnThursday.HeaderText = "Czwartek";
             this.columnThursday.Name = "columnThursday";
             this.columnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columnThursday.ValueMember = "id";
             this.columnThursday.Width = 120;
             // 
             // columnFriday
             // 
+            this.columnFriday.DataSource = this.subjectsBindingSource;
+            this.columnFriday.DisplayMember = "name";
             this.columnFriday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.columnFriday.HeaderText = "Piątek";
             this.columnFriday.Name = "columnFriday";
             this.columnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columnFriday.ValueMember = "id";
             this.columnFriday.Width = 120;
             // 
             // label2
@@ -188,6 +211,11 @@
             this.comboBoxTeacher.Size = new System.Drawing.Size(160, 28);
             this.comboBoxTeacher.TabIndex = 8;
             this.comboBoxTeacher.ValueMember = "number";
+            // 
+            // classroomsBindingSource
+            // 
+            this.classroomsBindingSource.DataMember = "classrooms";
+            this.classroomsBindingSource.DataSource = this.dataSet;
             // 
             // buttonOk
             // 
@@ -265,14 +293,13 @@
             // 
             this.classesTableAdapter.ClearBeforeFill = true;
             // 
-            // classroomsBindingSource
-            // 
-            this.classroomsBindingSource.DataMember = "classrooms";
-            this.classroomsBindingSource.DataSource = this.dataSet;
-            // 
             // classroomsTableAdapter
             // 
             this.classroomsTableAdapter.ClearBeforeFill = true;
+            // 
+            // subjectsTableAdapter
+            // 
+            this.subjectsTableAdapter.ClearBeforeFill = true;
             // 
             // ScheduleCreationForm
             // 
@@ -295,12 +322,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ułóż plan";
             this.Load += new System.EventHandler(this.ScheduleCreationForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +359,7 @@
         private DataSetTableAdapters.classesTableAdapter classesTableAdapter;
         private System.Windows.Forms.BindingSource classroomsBindingSource;
         private DataSetTableAdapters.classroomsTableAdapter classroomsTableAdapter;
+        private System.Windows.Forms.BindingSource subjectsBindingSource;
+        private DataSetTableAdapters.subjectsTableAdapter subjectsTableAdapter;
 	}
 }

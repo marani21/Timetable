@@ -34,10 +34,12 @@ namespace Timetable
 
         private void ScheduleCreationForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dataSet.classrooms' table. You can move, or remove it, as needed.
-            this.classroomsTableAdapter.Fill(this.dataSet.classrooms);
             // TODO: This line of code loads data into the 'dataSet.classes' table. You can move, or remove it, as needed.
             this.classesTableAdapter.Fill(this.dataSet.classes);
+            // TODO: This line of code loads data into the 'dataSet.classrooms' table. You can move, or remove it, as needed.
+            this.classroomsTableAdapter.Fill(this.dataSet.classrooms);
+            // TODO: This line of code loads data into the 'dataSet.subjects' table. You can move, or remove it, as needed.
+            this.subjectsTableAdapter.Fill(this.dataSet.subjects);
 
         }
     }
