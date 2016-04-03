@@ -146,7 +146,7 @@
 			this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
 			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemMenu});
+			this.itemMenu});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -157,8 +157,8 @@
 			// itemMenu
 			// 
 			this.itemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemCreateSchedule,
-            this.itemViewSchedules});
+			this.itemCreateSchedule,
+			this.itemViewSchedules});
 			this.itemMenu.Name = "itemMenu";
 			this.itemMenu.Padding = new System.Windows.Forms.Padding(30, 3, 30, 3);
 			this.itemMenu.Size = new System.Drawing.Size(105, 27);
