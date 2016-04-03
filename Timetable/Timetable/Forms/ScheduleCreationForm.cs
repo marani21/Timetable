@@ -14,9 +14,28 @@ namespace Timetable
     {
         public static event EventDelegate closeFormEvent;
 
+        private List<KeyValuePair<int, string>> classSubjects;
+
         public ScheduleCreationForm()
         {
             InitializeComponent();
+
+            classSubjects = new List<KeyValuePair<int, string>>();
+            columnMonday.DataSource = classSubjects;
+            columnMonday.DisplayMember = "Value";
+            columnMonday.ValueMember = "Key";
+            columnTuesday.DataSource = classSubjects;
+            columnTuesday.DisplayMember = "Value";
+            columnTuesday.ValueMember = "Key";
+            columnWednesday.DataSource = classSubjects;
+            columnWednesday.DisplayMember = "Value";
+            columnWednesday.ValueMember = "Key";
+            columnThursday.DataSource = classSubjects;
+            columnThursday.DisplayMember = "Value";
+            columnThursday.ValueMember = "Key";
+            columnFriday.DataSource = classSubjects;
+            columnFriday.DisplayMember = "Value";
+            columnFriday.ValueMember = "Key";
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
@@ -59,43 +78,23 @@ namespace Timetable
 
         private void FillSubjects()
         {
-            AddToWeekdayColumns();
+            classSubjects.Clear();
             foreach (DataRow teachingDataRow in dataSet.teaching.Rows)
             {
                 if (teachingDataRow["class"].ToString() == comboBoxClasses.SelectedValue.ToString())
                 {
                     int amount = Int32.Parse(teachingDataRow["amount"].ToString());
-                    string id = teachingDataRow["subject"].ToString();
+                    int id = Int32.Parse(teachingDataRow["subject"].ToString());
                     for (int i = 0; i < amount; i++)
                     {
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
                         foreach (DataRow subjectsDataRow in subjectsRows)
                         {
-                            AddToWeekdayColumns(false, subjectsDataRow["name"].ToString());
+                            string value = subjectsDataRow["name"].ToString();
+                            classSubjects.Add(new KeyValuePair<int, string>(id, value));
                         }
                     }
                 }
-            }
-        }
-
-        private void AddToWeekdayColumns(bool clear = true, string value = "")
-        {
-            List<string> list = new List<string>();
-            if (clear == true)
-            {
-                columnMonday.Items.Clear();
-                columnTuesday.Items.Clear();
-                columnWednesday.Items.Clear();
-                columnThursday.Items.Clear();
-                columnFriday.Items.Clear();
-            }
-            else
-            {
-                columnMonday.Items.Add(value);
-                columnTuesday.Items.Add(value);
-                columnWednesday.Items.Add(value);
-                columnThursday.Items.Add(value);
-                columnFriday.Items.Add(value);
             }
         }
     }
