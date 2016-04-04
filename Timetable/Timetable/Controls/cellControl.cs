@@ -16,6 +16,11 @@ namespace Timetable.Controls
 	{
 		static public event MyDelegate CellClickEvent;
 
+        public string Subject { get { return this.labelSubject.Text; } set { this.labelSubject.Text = value; } }
+        public string Teacher { get { return this.labelTeacher.Text; } set { this.labelTeacher.Text = value; } }
+        public string Classroom { get { return this.labelClassroom.Text; } set { this.labelClassroom.Text = value; } }
+
+
 		public CellControl()
 		{
 			InitializeComponent();
@@ -23,22 +28,26 @@ namespace Timetable.Controls
 
 		private void CellControl_Click(object sender, EventArgs e)
 		{
-			CellClickEvent(this.Name);
+			if(CellClickEvent != null)
+                CellClickEvent(this.Name);
 		}
 
 		private void labelSubject_Click(object sender, EventArgs e)
 		{
-			CellClickEvent(this.Name);
+            if (CellClickEvent != null)
+                CellClickEvent(this.Name);
 		}
 
 		private void labelTeacher_Click(object sender, EventArgs e)
 		{
-			CellClickEvent(this.Name);
+            if (CellClickEvent != null)
+                CellClickEvent(this.Name);
 		}
 
 		private void labelClassroom_Click(object sender, EventArgs e)
 		{
-			CellClickEvent(this.Name);
+            if (CellClickEvent != null)
+                CellClickEvent(this.Name);
 		}
 	}
 }

@@ -16,6 +16,8 @@ namespace Timetable
 
         enum ObjectsToView { CLASS, TEACHERS, CLASSROOMS}
 
+        private ObjectsToView objectToView;
+
 		public SchedulesViewingForm()
 		{
 			InitializeComponent();
@@ -43,14 +45,15 @@ namespace Timetable
             this.classroomsTableAdapter.Fill(this.dataSet1.classrooms);
 
            
-            this.dataGridViewSchedule.DataSource = typeof(List<>);
+           // this.dataGridViewSchedule.DataSource = typeof(List<>);
            // this.dataGridViewSchedule.DataSource = patients.ToList();
 		}
 
-        private void ChangeGroupToView_Click(ObjectsToView objectToView)
+        private void ChangeGroupToView_Click()
         {
             comboBox_objectsToView.Text = "";
             comboBox_objectsToView.Items.Clear();
+
 
             switch(objectToView)
             {
@@ -92,20 +95,34 @@ namespace Timetable
 
         private void button_setClassesView_Click(object sender, EventArgs e)
         {
-            ChangeGroupToView_Click(ObjectsToView.CLASS);
+            objectToView = ObjectsToView.CLASS;
+            ChangeGroupToView_Click();
         }
 
         private void button_setTeacherView_Click(object sender, EventArgs e)
         {
-            ChangeGroupToView_Click(ObjectsToView.TEACHERS);
+            objectToView = ObjectsToView.TEACHERS;
+            ChangeGroupToView_Click();
         }
 
         private void button_setClassromsView_Click(object sender, EventArgs e)
         {
-            ChangeGroupToView_Click(ObjectsToView.CLASSROOMS);
+            objectToView = ObjectsToView.CLASSROOMS;
+            ChangeGroupToView_Click();
         }
 
+        private void comboBox_objectsToView_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void setView()
+        {
+            string obj = this.comboBox_objectsToView.SelectedItem.ToString();
+
+
+
+        }
 
 
 	}
