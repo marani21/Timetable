@@ -49,5 +49,50 @@ namespace Timetable.Controls
             if (CellClickEvent != null)
                 CellClickEvent(this.Name);
 		}
+
+        // kontrolka ustawia swoj styl na odblokowany 
+        public void Enabled()
+        {
+           this.BackColor = SystemColors.ControlLight;
+           this.labelSubject.BackColor = SystemColors.ButtonHighlight;
+           this.labelTeacher.BackColor = SystemColors.ControlLight;
+           this.labelClassroom.BackColor = SystemColors.ControlLight;
+        }
+
+        // kontrolka ustawia swoj stylna aktywna (zaznaczona)
+        public void Activate()
+        {
+            this.BackColor = Color.Bisque;
+            this.labelSubject.BackColor = SystemColors.ButtonHighlight;
+            this.labelTeacher.BackColor = SystemColors.ControlLight;
+            this.labelClassroom.BackColor = SystemColors.ControlLight;
+        }
+
+        //kontrolka zmienia swoj styl na zablokowana
+        public void Disable()
+        {
+            this.BackColor = SystemColors.Control;
+            this.labelSubject.BackColor = SystemColors.Control;
+            this.labelTeacher.BackColor = SystemColors.Control;
+            this.labelClassroom.BackColor = SystemColors.Control;
+        }
+
+
+        //czysci pola kontrolki
+        public void Clear()
+        {
+            Teacher = "";
+            Subject = "";
+            Classroom = "";
+        }
+
+
+        //ustawia dane kolejno: przedmiot, nauczyciel, klasa
+        public void SetData(string subject, string teacher, string classroom)
+        {
+            Teacher = teacher;
+            Subject = subject;
+            Classroom = classroom;
+        }
 	}
 }

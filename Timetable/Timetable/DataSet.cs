@@ -6,7 +6,7 @@
 }
 
 namespace Timetable.DataSetTableAdapters {
-    partial class viewTableAdapter
+    partial class databaseViewTableAdapter
     {
     }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timetable.Controls;
 
 namespace Timetable
 {
@@ -17,6 +18,7 @@ namespace Timetable
         enum ObjectsToView { CLASS, TEACHERS, CLASSROOMS}
 
         private ObjectsToView objectToView;
+        
 
 		public SchedulesViewingForm()
 		{
@@ -44,16 +46,20 @@ namespace Timetable
             this.teachersTableAdapter.Fill(this.dataSet1.teachers);
             this.classroomsTableAdapter.Fill(this.dataSet1.classrooms);
 
-           
-           // this.dataGridViewSchedule.DataSource = typeof(List<>);
-           // this.dataGridViewSchedule.DataSource = patients.ToList();
+            this.databaseViewTableAdapter.Fill(this.dataSet1.databaseView);
+
+
 		}
 
         private void ChangeGroupToView_Click()
         {
             comboBox_objectsToView.Text = "";
             comboBox_objectsToView.Items.Clear();
-
+            //ClearAllCellControls();
+            cellControl_0_0.Enabled();
+            cellControl_0_1.Clear();
+            cellControl_0_1.Disable();
+            cellControl_0_2.Activate();
 
             switch(objectToView)
             {
@@ -116,14 +122,31 @@ namespace Timetable
 
         }
 
-        private void setView()
+        private void SetView()
         {
             string obj = this.comboBox_objectsToView.SelectedItem.ToString();
+            
+            for(int i=0; i < (int)DayOfWeek.Friday; i++)
+            {
+                for(int j=0; j<8; j++)
+                {
 
-
-
+                }
+            }
         }
 
+
+        private void ClearAllCellControls()
+        {
+            foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
+            {
+                if (c is CellControl)
+                {
+                    ((CellControl)c).Disable();
+                    ((CellControl)c).Clear();
+                }
+            }
+        }
 
 	}
 }

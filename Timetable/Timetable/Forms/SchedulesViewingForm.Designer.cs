@@ -51,27 +51,6 @@
             this.lessonsTableAdapter = new Timetable.DataSetTableAdapters.lessonsTableAdapter();
             this.classroomsTableAdapter = new Timetable.DataSetTableAdapters.classroomsTableAdapter();
             this.panelCells = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.cellControl_4_7 = new Timetable.Controls.CellControl();
             this.cellControl_3_7 = new Timetable.Controls.CellControl();
             this.cellControl_2_7 = new Timetable.Controls.CellControl();
@@ -82,6 +61,10 @@
             this.cellControl_2_6 = new Timetable.Controls.CellControl();
             this.cellControl_1_6 = new Timetable.Controls.CellControl();
             this.cellControl_0_6 = new Timetable.Controls.CellControl();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.cellControl_4_5 = new Timetable.Controls.CellControl();
             this.cellControl_3_5 = new Timetable.Controls.CellControl();
             this.cellControl_2_5 = new Timetable.Controls.CellControl();
@@ -92,6 +75,10 @@
             this.cellControl_2_4 = new Timetable.Controls.CellControl();
             this.cellControl_1_4 = new Timetable.Controls.CellControl();
             this.cellControl_0_4 = new Timetable.Controls.CellControl();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.cellControl_4_3 = new Timetable.Controls.CellControl();
             this.cellControl_3_3 = new Timetable.Controls.CellControl();
             this.cellControl_2_3 = new Timetable.Controls.CellControl();
@@ -102,6 +89,10 @@
             this.cellControl_2_2 = new Timetable.Controls.CellControl();
             this.cellControl_1_2 = new Timetable.Controls.CellControl();
             this.cellControl_0_2 = new Timetable.Controls.CellControl();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.cellControl_4_1 = new Timetable.Controls.CellControl();
             this.cellControl_3_1 = new Timetable.Controls.CellControl();
             this.cellControl_2_1 = new Timetable.Controls.CellControl();
@@ -112,6 +103,16 @@
             this.cellControl_2_0 = new Timetable.Controls.CellControl();
             this.cellControl_1_0 = new Timetable.Controls.CellControl();
             this.cellControl_0_0 = new Timetable.Controls.CellControl();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.databaseViewTableAdapter = new Timetable.DataSetTableAdapters.databaseViewTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -347,6 +348,126 @@
             this.panelCells.Size = new System.Drawing.Size(805, 503);
             this.panelCells.TabIndex = 43;
             // 
+            // cellControl_4_7
+            // 
+            this.cellControl_4_7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_7.Classroom = "101";
+            this.cellControl_4_7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_7.Location = new System.Drawing.Point(668, 444);
+            this.cellControl_4_7.Name = "cellControl_4_7";
+            this.cellControl_4_7.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_7.Subject = "Matematyka";
+            this.cellControl_4_7.TabIndex = 85;
+            this.cellControl_4_7.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_7
+            // 
+            this.cellControl_3_7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_7.Classroom = "101";
+            this.cellControl_3_7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_7.Location = new System.Drawing.Point(534, 444);
+            this.cellControl_3_7.Name = "cellControl_3_7";
+            this.cellControl_3_7.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_7.Subject = "Matematyka";
+            this.cellControl_3_7.TabIndex = 84;
+            this.cellControl_3_7.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_7
+            // 
+            this.cellControl_2_7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_7.Classroom = "101";
+            this.cellControl_2_7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_7.Location = new System.Drawing.Point(400, 444);
+            this.cellControl_2_7.Name = "cellControl_2_7";
+            this.cellControl_2_7.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_7.Subject = "Matematyka";
+            this.cellControl_2_7.TabIndex = 83;
+            this.cellControl_2_7.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_7
+            // 
+            this.cellControl_1_7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_7.Classroom = "101";
+            this.cellControl_1_7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_7.Location = new System.Drawing.Point(266, 444);
+            this.cellControl_1_7.Name = "cellControl_1_7";
+            this.cellControl_1_7.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_7.Subject = "Matematyka";
+            this.cellControl_1_7.TabIndex = 82;
+            this.cellControl_1_7.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_7
+            // 
+            this.cellControl_0_7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_7.Classroom = "101";
+            this.cellControl_0_7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_7.Location = new System.Drawing.Point(132, 444);
+            this.cellControl_0_7.Name = "cellControl_0_7";
+            this.cellControl_0_7.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_7.Subject = "Matematyka";
+            this.cellControl_0_7.TabIndex = 81;
+            this.cellControl_0_7.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_4_6
+            // 
+            this.cellControl_4_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_6.Classroom = "101";
+            this.cellControl_4_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_6.Location = new System.Drawing.Point(668, 381);
+            this.cellControl_4_6.Name = "cellControl_4_6";
+            this.cellControl_4_6.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_6.Subject = "Matematyka";
+            this.cellControl_4_6.TabIndex = 80;
+            this.cellControl_4_6.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_6
+            // 
+            this.cellControl_3_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_6.Classroom = "101";
+            this.cellControl_3_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_6.Location = new System.Drawing.Point(534, 381);
+            this.cellControl_3_6.Name = "cellControl_3_6";
+            this.cellControl_3_6.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_6.Subject = "Matematyka";
+            this.cellControl_3_6.TabIndex = 79;
+            this.cellControl_3_6.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_6
+            // 
+            this.cellControl_2_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_6.Classroom = "101";
+            this.cellControl_2_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_6.Location = new System.Drawing.Point(400, 381);
+            this.cellControl_2_6.Name = "cellControl_2_6";
+            this.cellControl_2_6.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_6.Subject = "Matematyka";
+            this.cellControl_2_6.TabIndex = 78;
+            this.cellControl_2_6.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_6
+            // 
+            this.cellControl_1_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_6.Classroom = "101";
+            this.cellControl_1_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_6.Location = new System.Drawing.Point(266, 381);
+            this.cellControl_1_6.Name = "cellControl_1_6";
+            this.cellControl_1_6.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_6.Subject = "Matematyka";
+            this.cellControl_1_6.TabIndex = 77;
+            this.cellControl_1_6.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_6
+            // 
+            this.cellControl_0_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_6.Classroom = "101";
+            this.cellControl_0_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_6.Location = new System.Drawing.Point(132, 381);
+            this.cellControl_0_6.Name = "cellControl_0_6";
+            this.cellControl_0_6.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_6.Subject = "Matematyka";
+            this.cellControl_0_6.TabIndex = 76;
+            this.cellControl_0_6.Teacher = "Adam Zielonka";
+            // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -386,6 +507,126 @@
             this.label17.TabIndex = 72;
             this.label17.Text = "6";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cellControl_4_5
+            // 
+            this.cellControl_4_5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_5.Classroom = "101";
+            this.cellControl_4_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_5.Location = new System.Drawing.Point(668, 318);
+            this.cellControl_4_5.Name = "cellControl_4_5";
+            this.cellControl_4_5.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_5.Subject = "Matematyka";
+            this.cellControl_4_5.TabIndex = 71;
+            this.cellControl_4_5.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_5
+            // 
+            this.cellControl_3_5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_5.Classroom = "101";
+            this.cellControl_3_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_5.Location = new System.Drawing.Point(534, 318);
+            this.cellControl_3_5.Name = "cellControl_3_5";
+            this.cellControl_3_5.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_5.Subject = "Matematyka";
+            this.cellControl_3_5.TabIndex = 70;
+            this.cellControl_3_5.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_5
+            // 
+            this.cellControl_2_5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_5.Classroom = "101";
+            this.cellControl_2_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_5.Location = new System.Drawing.Point(400, 318);
+            this.cellControl_2_5.Name = "cellControl_2_5";
+            this.cellControl_2_5.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_5.Subject = "Matematyka";
+            this.cellControl_2_5.TabIndex = 69;
+            this.cellControl_2_5.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_5
+            // 
+            this.cellControl_1_5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_5.Classroom = "101";
+            this.cellControl_1_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_5.Location = new System.Drawing.Point(266, 318);
+            this.cellControl_1_5.Name = "cellControl_1_5";
+            this.cellControl_1_5.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_5.Subject = "Matematyka";
+            this.cellControl_1_5.TabIndex = 68;
+            this.cellControl_1_5.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_5
+            // 
+            this.cellControl_0_5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_5.Classroom = "101";
+            this.cellControl_0_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_5.Location = new System.Drawing.Point(132, 318);
+            this.cellControl_0_5.Name = "cellControl_0_5";
+            this.cellControl_0_5.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_5.Subject = "Matematyka";
+            this.cellControl_0_5.TabIndex = 67;
+            this.cellControl_0_5.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_4_4
+            // 
+            this.cellControl_4_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_4.Classroom = "101";
+            this.cellControl_4_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_4.Location = new System.Drawing.Point(668, 255);
+            this.cellControl_4_4.Name = "cellControl_4_4";
+            this.cellControl_4_4.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_4.Subject = "Matematyka";
+            this.cellControl_4_4.TabIndex = 66;
+            this.cellControl_4_4.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_4
+            // 
+            this.cellControl_3_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_4.Classroom = "101";
+            this.cellControl_3_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_4.Location = new System.Drawing.Point(534, 255);
+            this.cellControl_3_4.Name = "cellControl_3_4";
+            this.cellControl_3_4.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_4.Subject = "Matematyka";
+            this.cellControl_3_4.TabIndex = 65;
+            this.cellControl_3_4.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_4
+            // 
+            this.cellControl_2_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_4.Classroom = "101";
+            this.cellControl_2_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_4.Location = new System.Drawing.Point(400, 255);
+            this.cellControl_2_4.Name = "cellControl_2_4";
+            this.cellControl_2_4.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_4.Subject = "Matematyka";
+            this.cellControl_2_4.TabIndex = 64;
+            this.cellControl_2_4.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_4
+            // 
+            this.cellControl_1_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_4.Classroom = "101";
+            this.cellControl_1_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_4.Location = new System.Drawing.Point(266, 255);
+            this.cellControl_1_4.Name = "cellControl_1_4";
+            this.cellControl_1_4.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_4.Subject = "Matematyka";
+            this.cellControl_1_4.TabIndex = 63;
+            this.cellControl_1_4.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_4
+            // 
+            this.cellControl_0_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_4.Classroom = "101";
+            this.cellControl_0_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_4.Location = new System.Drawing.Point(132, 255);
+            this.cellControl_0_4.Name = "cellControl_0_4";
+            this.cellControl_0_4.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_4.Subject = "Matematyka";
+            this.cellControl_0_4.TabIndex = 62;
+            this.cellControl_0_4.Teacher = "Adam Zielonka";
             // 
             // label18
             // 
@@ -427,6 +668,126 @@
             this.label21.Text = "4";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cellControl_4_3
+            // 
+            this.cellControl_4_3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_3.Classroom = "101";
+            this.cellControl_4_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_3.Location = new System.Drawing.Point(668, 192);
+            this.cellControl_4_3.Name = "cellControl_4_3";
+            this.cellControl_4_3.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_3.Subject = "Matematyka";
+            this.cellControl_4_3.TabIndex = 57;
+            this.cellControl_4_3.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_3
+            // 
+            this.cellControl_3_3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_3.Classroom = "101";
+            this.cellControl_3_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_3.Location = new System.Drawing.Point(534, 192);
+            this.cellControl_3_3.Name = "cellControl_3_3";
+            this.cellControl_3_3.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_3.Subject = "Matematyka";
+            this.cellControl_3_3.TabIndex = 56;
+            this.cellControl_3_3.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_3
+            // 
+            this.cellControl_2_3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_3.Classroom = "101";
+            this.cellControl_2_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_3.Location = new System.Drawing.Point(400, 192);
+            this.cellControl_2_3.Name = "cellControl_2_3";
+            this.cellControl_2_3.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_3.Subject = "Matematyka";
+            this.cellControl_2_3.TabIndex = 55;
+            this.cellControl_2_3.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_3
+            // 
+            this.cellControl_1_3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_3.Classroom = "101";
+            this.cellControl_1_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_3.Location = new System.Drawing.Point(266, 192);
+            this.cellControl_1_3.Name = "cellControl_1_3";
+            this.cellControl_1_3.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_3.Subject = "Matematyka";
+            this.cellControl_1_3.TabIndex = 54;
+            this.cellControl_1_3.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_3
+            // 
+            this.cellControl_0_3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_3.Classroom = "101";
+            this.cellControl_0_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_3.Location = new System.Drawing.Point(132, 192);
+            this.cellControl_0_3.Name = "cellControl_0_3";
+            this.cellControl_0_3.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_3.Subject = "Matematyka";
+            this.cellControl_0_3.TabIndex = 53;
+            this.cellControl_0_3.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_4_2
+            // 
+            this.cellControl_4_2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_2.Classroom = "101";
+            this.cellControl_4_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_2.Location = new System.Drawing.Point(668, 129);
+            this.cellControl_4_2.Name = "cellControl_4_2";
+            this.cellControl_4_2.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_2.Subject = "Matematyka";
+            this.cellControl_4_2.TabIndex = 52;
+            this.cellControl_4_2.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_2
+            // 
+            this.cellControl_3_2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_2.Classroom = "101";
+            this.cellControl_3_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_2.Location = new System.Drawing.Point(534, 129);
+            this.cellControl_3_2.Name = "cellControl_3_2";
+            this.cellControl_3_2.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_2.Subject = "Matematyka";
+            this.cellControl_3_2.TabIndex = 51;
+            this.cellControl_3_2.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_2
+            // 
+            this.cellControl_2_2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_2.Classroom = "101";
+            this.cellControl_2_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_2.Location = new System.Drawing.Point(400, 129);
+            this.cellControl_2_2.Name = "cellControl_2_2";
+            this.cellControl_2_2.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_2.Subject = "Matematyka";
+            this.cellControl_2_2.TabIndex = 50;
+            this.cellControl_2_2.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_2
+            // 
+            this.cellControl_1_2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_2.Classroom = "101";
+            this.cellControl_1_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_2.Location = new System.Drawing.Point(266, 129);
+            this.cellControl_1_2.Name = "cellControl_1_2";
+            this.cellControl_1_2.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_2.Subject = "Matematyka";
+            this.cellControl_1_2.TabIndex = 49;
+            this.cellControl_1_2.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_2
+            // 
+            this.cellControl_0_2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_2.Classroom = "101";
+            this.cellControl_0_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_2.Location = new System.Drawing.Point(132, 129);
+            this.cellControl_0_2.Name = "cellControl_0_2";
+            this.cellControl_0_2.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_2.Subject = "Matematyka";
+            this.cellControl_0_2.TabIndex = 48;
+            this.cellControl_0_2.Teacher = "Adam Zielonka";
+            // 
             // label10
             // 
             this.label10.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -466,6 +827,126 @@
             this.label13.TabIndex = 44;
             this.label13.Text = "2";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cellControl_4_1
+            // 
+            this.cellControl_4_1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_1.Classroom = "101";
+            this.cellControl_4_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_1.Location = new System.Drawing.Point(668, 66);
+            this.cellControl_4_1.Name = "cellControl_4_1";
+            this.cellControl_4_1.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_1.Subject = "Matematyka";
+            this.cellControl_4_1.TabIndex = 43;
+            this.cellControl_4_1.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_1
+            // 
+            this.cellControl_3_1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_1.Classroom = "101";
+            this.cellControl_3_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_1.Location = new System.Drawing.Point(534, 66);
+            this.cellControl_3_1.Name = "cellControl_3_1";
+            this.cellControl_3_1.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_1.Subject = "Matematyka";
+            this.cellControl_3_1.TabIndex = 42;
+            this.cellControl_3_1.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_1
+            // 
+            this.cellControl_2_1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_1.Classroom = "101";
+            this.cellControl_2_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_1.Location = new System.Drawing.Point(400, 66);
+            this.cellControl_2_1.Name = "cellControl_2_1";
+            this.cellControl_2_1.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_1.Subject = "Matematyka";
+            this.cellControl_2_1.TabIndex = 41;
+            this.cellControl_2_1.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_1
+            // 
+            this.cellControl_1_1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_1.Classroom = "101";
+            this.cellControl_1_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_1.Location = new System.Drawing.Point(266, 66);
+            this.cellControl_1_1.Name = "cellControl_1_1";
+            this.cellControl_1_1.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_1.Subject = "Matematyka";
+            this.cellControl_1_1.TabIndex = 40;
+            this.cellControl_1_1.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_1
+            // 
+            this.cellControl_0_1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_1.Classroom = "101";
+            this.cellControl_0_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_1.Location = new System.Drawing.Point(132, 66);
+            this.cellControl_0_1.Name = "cellControl_0_1";
+            this.cellControl_0_1.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_1.Subject = "Matematyka";
+            this.cellControl_0_1.TabIndex = 39;
+            this.cellControl_0_1.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_4_0
+            // 
+            this.cellControl_4_0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_4_0.Classroom = "101";
+            this.cellControl_4_0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_4_0.Location = new System.Drawing.Point(668, 3);
+            this.cellControl_4_0.Name = "cellControl_4_0";
+            this.cellControl_4_0.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_4_0.Subject = "Matematyka";
+            this.cellControl_4_0.TabIndex = 38;
+            this.cellControl_4_0.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_3_0
+            // 
+            this.cellControl_3_0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_3_0.Classroom = "101";
+            this.cellControl_3_0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_3_0.Location = new System.Drawing.Point(534, 3);
+            this.cellControl_3_0.Name = "cellControl_3_0";
+            this.cellControl_3_0.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_3_0.Subject = "Matematyka";
+            this.cellControl_3_0.TabIndex = 37;
+            this.cellControl_3_0.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_2_0
+            // 
+            this.cellControl_2_0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_2_0.Classroom = "101";
+            this.cellControl_2_0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_2_0.Location = new System.Drawing.Point(400, 3);
+            this.cellControl_2_0.Name = "cellControl_2_0";
+            this.cellControl_2_0.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_2_0.Subject = "Matematyka";
+            this.cellControl_2_0.TabIndex = 36;
+            this.cellControl_2_0.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_1_0
+            // 
+            this.cellControl_1_0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_1_0.Classroom = "101";
+            this.cellControl_1_0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_1_0.Location = new System.Drawing.Point(266, 3);
+            this.cellControl_1_0.Name = "cellControl_1_0";
+            this.cellControl_1_0.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_1_0.Subject = "Matematyka";
+            this.cellControl_1_0.TabIndex = 35;
+            this.cellControl_1_0.Teacher = "Adam Zielonka";
+            // 
+            // cellControl_0_0
+            // 
+            this.cellControl_0_0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cellControl_0_0.Classroom = "101";
+            this.cellControl_0_0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cellControl_0_0.Location = new System.Drawing.Point(132, 3);
+            this.cellControl_0_0.Name = "cellControl_0_0";
+            this.cellControl_0_0.Size = new System.Drawing.Size(128, 57);
+            this.cellControl_0_0.Subject = "Matematyka";
+            this.cellControl_0_0.TabIndex = 34;
+            this.cellControl_0_0.Teacher = "Adam Zielonka";
             // 
             // label8
             // 
@@ -552,365 +1033,9 @@
             this.label23.Text = "Poniedziałek";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cellControl_4_7
+            // databaseViewTableAdapter
             // 
-            this.cellControl_4_7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_7.Location = new System.Drawing.Point(668, 444);
-            this.cellControl_4_7.Name = "cellControl_4_7";
-            this.cellControl_4_7.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_7.TabIndex = 85;
-            // 
-            // cellControl_3_7
-            // 
-            this.cellControl_3_7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_7.Location = new System.Drawing.Point(534, 444);
-            this.cellControl_3_7.Name = "cellControl_3_7";
-            this.cellControl_3_7.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_7.TabIndex = 84;
-            // 
-            // cellControl_2_7
-            // 
-            this.cellControl_2_7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_7.Location = new System.Drawing.Point(400, 444);
-            this.cellControl_2_7.Name = "cellControl_2_7";
-            this.cellControl_2_7.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_7.TabIndex = 83;
-            // 
-            // cellControl_1_7
-            // 
-            this.cellControl_1_7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_7.Location = new System.Drawing.Point(266, 444);
-            this.cellControl_1_7.Name = "cellControl_1_7";
-            this.cellControl_1_7.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_7.TabIndex = 82;
-            // 
-            // cellControl_0_7
-            // 
-            this.cellControl_0_7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_7.Location = new System.Drawing.Point(132, 444);
-            this.cellControl_0_7.Name = "cellControl_0_7";
-            this.cellControl_0_7.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_7.TabIndex = 81;
-            // 
-            // cellControl_4_6
-            // 
-            this.cellControl_4_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_6.Location = new System.Drawing.Point(668, 381);
-            this.cellControl_4_6.Name = "cellControl_4_6";
-            this.cellControl_4_6.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_6.TabIndex = 80;
-            // 
-            // cellControl_3_6
-            // 
-            this.cellControl_3_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_6.Location = new System.Drawing.Point(534, 381);
-            this.cellControl_3_6.Name = "cellControl_3_6";
-            this.cellControl_3_6.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_6.TabIndex = 79;
-            // 
-            // cellControl_2_6
-            // 
-            this.cellControl_2_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_6.Location = new System.Drawing.Point(400, 381);
-            this.cellControl_2_6.Name = "cellControl_2_6";
-            this.cellControl_2_6.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_6.TabIndex = 78;
-            // 
-            // cellControl_1_6
-            // 
-            this.cellControl_1_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_6.Location = new System.Drawing.Point(266, 381);
-            this.cellControl_1_6.Name = "cellControl_1_6";
-            this.cellControl_1_6.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_6.TabIndex = 77;
-            // 
-            // cellControl_0_6
-            // 
-            this.cellControl_0_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_6.Location = new System.Drawing.Point(132, 381);
-            this.cellControl_0_6.Name = "cellControl_0_6";
-            this.cellControl_0_6.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_6.TabIndex = 76;
-            // 
-            // cellControl_4_5
-            // 
-            this.cellControl_4_5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_5.Location = new System.Drawing.Point(668, 318);
-            this.cellControl_4_5.Name = "cellControl_4_5";
-            this.cellControl_4_5.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_5.TabIndex = 71;
-            // 
-            // cellControl_3_5
-            // 
-            this.cellControl_3_5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_5.Location = new System.Drawing.Point(534, 318);
-            this.cellControl_3_5.Name = "cellControl_3_5";
-            this.cellControl_3_5.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_5.TabIndex = 70;
-            // 
-            // cellControl_2_5
-            // 
-            this.cellControl_2_5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_5.Location = new System.Drawing.Point(400, 318);
-            this.cellControl_2_5.Name = "cellControl_2_5";
-            this.cellControl_2_5.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_5.TabIndex = 69;
-            // 
-            // cellControl_1_5
-            // 
-            this.cellControl_1_5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_5.Location = new System.Drawing.Point(266, 318);
-            this.cellControl_1_5.Name = "cellControl_1_5";
-            this.cellControl_1_5.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_5.TabIndex = 68;
-            // 
-            // cellControl_0_5
-            // 
-            this.cellControl_0_5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_5.Location = new System.Drawing.Point(132, 318);
-            this.cellControl_0_5.Name = "cellControl_0_5";
-            this.cellControl_0_5.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_5.TabIndex = 67;
-            // 
-            // cellControl_4_4
-            // 
-            this.cellControl_4_4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_4.Location = new System.Drawing.Point(668, 255);
-            this.cellControl_4_4.Name = "cellControl_4_4";
-            this.cellControl_4_4.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_4.TabIndex = 66;
-            // 
-            // cellControl_3_4
-            // 
-            this.cellControl_3_4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_4.Location = new System.Drawing.Point(534, 255);
-            this.cellControl_3_4.Name = "cellControl_3_4";
-            this.cellControl_3_4.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_4.TabIndex = 65;
-            // 
-            // cellControl_2_4
-            // 
-            this.cellControl_2_4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_4.Location = new System.Drawing.Point(400, 255);
-            this.cellControl_2_4.Name = "cellControl_2_4";
-            this.cellControl_2_4.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_4.TabIndex = 64;
-            // 
-            // cellControl_1_4
-            // 
-            this.cellControl_1_4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_4.Location = new System.Drawing.Point(266, 255);
-            this.cellControl_1_4.Name = "cellControl_1_4";
-            this.cellControl_1_4.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_4.TabIndex = 63;
-            // 
-            // cellControl_0_4
-            // 
-            this.cellControl_0_4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_4.Location = new System.Drawing.Point(132, 255);
-            this.cellControl_0_4.Name = "cellControl_0_4";
-            this.cellControl_0_4.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_4.TabIndex = 62;
-            // 
-            // cellControl_4_3
-            // 
-            this.cellControl_4_3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_3.Location = new System.Drawing.Point(668, 192);
-            this.cellControl_4_3.Name = "cellControl_4_3";
-            this.cellControl_4_3.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_3.TabIndex = 57;
-            // 
-            // cellControl_3_3
-            // 
-            this.cellControl_3_3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_3.Location = new System.Drawing.Point(534, 192);
-            this.cellControl_3_3.Name = "cellControl_3_3";
-            this.cellControl_3_3.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_3.TabIndex = 56;
-            // 
-            // cellControl_2_3
-            // 
-            this.cellControl_2_3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_3.Location = new System.Drawing.Point(400, 192);
-            this.cellControl_2_3.Name = "cellControl_2_3";
-            this.cellControl_2_3.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_3.TabIndex = 55;
-            // 
-            // cellControl_1_3
-            // 
-            this.cellControl_1_3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_3.Location = new System.Drawing.Point(266, 192);
-            this.cellControl_1_3.Name = "cellControl_1_3";
-            this.cellControl_1_3.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_3.TabIndex = 54;
-            // 
-            // cellControl_0_3
-            // 
-            this.cellControl_0_3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_3.Location = new System.Drawing.Point(132, 192);
-            this.cellControl_0_3.Name = "cellControl_0_3";
-            this.cellControl_0_3.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_3.TabIndex = 53;
-            // 
-            // cellControl_4_2
-            // 
-            this.cellControl_4_2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_2.Location = new System.Drawing.Point(668, 129);
-            this.cellControl_4_2.Name = "cellControl_4_2";
-            this.cellControl_4_2.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_2.TabIndex = 52;
-            // 
-            // cellControl_3_2
-            // 
-            this.cellControl_3_2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_2.Location = new System.Drawing.Point(534, 129);
-            this.cellControl_3_2.Name = "cellControl_3_2";
-            this.cellControl_3_2.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_2.TabIndex = 51;
-            // 
-            // cellControl_2_2
-            // 
-            this.cellControl_2_2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_2.Location = new System.Drawing.Point(400, 129);
-            this.cellControl_2_2.Name = "cellControl_2_2";
-            this.cellControl_2_2.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_2.TabIndex = 50;
-            // 
-            // cellControl_1_2
-            // 
-            this.cellControl_1_2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_2.Location = new System.Drawing.Point(266, 129);
-            this.cellControl_1_2.Name = "cellControl_1_2";
-            this.cellControl_1_2.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_2.TabIndex = 49;
-            // 
-            // cellControl_0_2
-            // 
-            this.cellControl_0_2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_2.Location = new System.Drawing.Point(132, 129);
-            this.cellControl_0_2.Name = "cellControl_0_2";
-            this.cellControl_0_2.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_2.TabIndex = 48;
-            // 
-            // cellControl_4_1
-            // 
-            this.cellControl_4_1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_1.Location = new System.Drawing.Point(668, 66);
-            this.cellControl_4_1.Name = "cellControl_4_1";
-            this.cellControl_4_1.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_1.TabIndex = 43;
-            // 
-            // cellControl_3_1
-            // 
-            this.cellControl_3_1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_1.Location = new System.Drawing.Point(534, 66);
-            this.cellControl_3_1.Name = "cellControl_3_1";
-            this.cellControl_3_1.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_1.TabIndex = 42;
-            // 
-            // cellControl_2_1
-            // 
-            this.cellControl_2_1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_1.Location = new System.Drawing.Point(400, 66);
-            this.cellControl_2_1.Name = "cellControl_2_1";
-            this.cellControl_2_1.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_1.TabIndex = 41;
-            // 
-            // cellControl_1_1
-            // 
-            this.cellControl_1_1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_1.Location = new System.Drawing.Point(266, 66);
-            this.cellControl_1_1.Name = "cellControl_1_1";
-            this.cellControl_1_1.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_1.TabIndex = 40;
-            // 
-            // cellControl_0_1
-            // 
-            this.cellControl_0_1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_1.Location = new System.Drawing.Point(132, 66);
-            this.cellControl_0_1.Name = "cellControl_0_1";
-            this.cellControl_0_1.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_1.TabIndex = 39;
-            // 
-            // cellControl_4_0
-            // 
-            this.cellControl_4_0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_4_0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_4_0.Location = new System.Drawing.Point(668, 3);
-            this.cellControl_4_0.Name = "cellControl_4_0";
-            this.cellControl_4_0.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_4_0.TabIndex = 38;
-            // 
-            // cellControl_3_0
-            // 
-            this.cellControl_3_0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_3_0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_3_0.Location = new System.Drawing.Point(534, 3);
-            this.cellControl_3_0.Name = "cellControl_3_0";
-            this.cellControl_3_0.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_3_0.TabIndex = 37;
-            // 
-            // cellControl_2_0
-            // 
-            this.cellControl_2_0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_2_0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_2_0.Location = new System.Drawing.Point(400, 3);
-            this.cellControl_2_0.Name = "cellControl_2_0";
-            this.cellControl_2_0.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_2_0.TabIndex = 36;
-            // 
-            // cellControl_1_0
-            // 
-            this.cellControl_1_0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_1_0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_1_0.Location = new System.Drawing.Point(266, 3);
-            this.cellControl_1_0.Name = "cellControl_1_0";
-            this.cellControl_1_0.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_1_0.TabIndex = 35;
-            // 
-            // cellControl_0_0
-            // 
-            this.cellControl_0_0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cellControl_0_0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cellControl_0_0.Location = new System.Drawing.Point(132, 3);
-            this.cellControl_0_0.Name = "cellControl_0_0";
-            this.cellControl_0_0.Size = new System.Drawing.Size(128, 57);
-            this.cellControl_0_0.TabIndex = 34;
+            this.databaseViewTableAdapter.ClearBeforeFill = true;
             // 
             // SchedulesViewingForm
             // 
@@ -1034,5 +1159,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
+        private DataSetTableAdapters.databaseViewTableAdapter databaseViewTableAdapter;
 	}
 }
