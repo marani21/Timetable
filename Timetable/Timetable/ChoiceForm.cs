@@ -17,6 +17,9 @@ namespace Timetable
 		SchedulesViewingForm schedulesViewingForm;
 		ScheduleCreationForm scheduleCreationForm;
 		SubjectsAssigningForm subjectAssigningForm;
+		Forms.ScheduleCreationFormExt scheduleCreationFormExt;
+
+		
 
 		public ChoiceForm()
 		{
@@ -45,23 +48,19 @@ namespace Timetable
 		private void buttonViewSchedules_Click(object sender, EventArgs e)
 		{
 			schedulesViewingForm = new SchedulesViewingForm();
-			this.Hide();
-			schedulesViewingForm.Show();
-        
+			schedulesViewingForm.ShowDialog();
 		}
 
 		private void buttonCreateSchedules_Click(object sender, EventArgs e)
 		{
-			scheduleCreationForm = new ScheduleCreationForm();
-			this.Hide();
-			scheduleCreationForm.Show();
+			scheduleCreationFormExt = new Forms.ScheduleCreationFormExt();
+			scheduleCreationFormExt.ShowDialog();
 		}
 
 		private void buttonAssignSubjects_Click(object sender, EventArgs e)
 		{
 			subjectAssigningForm = new SubjectsAssigningForm();
-			this.Hide();
-			subjectAssigningForm.Show();
+			subjectAssigningForm.ShowDialog();
 		}
 	}
 }

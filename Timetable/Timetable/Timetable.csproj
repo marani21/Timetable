@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\cellControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\cellControl.Designer.cs">
+      <DependentUpon>cellControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="DataSet.cs">
       <DependentUpon>DataSet.xsd</DependentUpon>
@@ -68,6 +74,12 @@
     </Compile>
     <Compile Include="ChoiceForm.Designer.cs">
       <DependentUpon>ChoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScheduleCreationFormExt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScheduleCreationFormExt.Designer.cs">
+      <DependentUpon>ScheduleCreationFormExt.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,8 +122,14 @@
     <EmbeddedResource Include="ChoiceForm.resx">
       <DependentUpon>ChoiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\cellControl.resx">
+      <DependentUpon>cellControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\subjectAssigningControl.resx">
       <DependentUpon>subjectAssigningControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScheduleCreationFormExt.resx">
+      <DependentUpon>ScheduleCreationFormExt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
