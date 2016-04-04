@@ -47,6 +47,7 @@ namespace Timetable
 			schedulesViewingForm = new SchedulesViewingForm();
 			this.Hide();
 			schedulesViewingForm.Show();
+        
 		}
 
 		private void buttonCreateSchedules_Click(object sender, EventArgs e)
