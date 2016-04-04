@@ -73,7 +73,7 @@ namespace Timetable
 
         private void comboBoxTeacher_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Joł");
         }
 
         private void FillSubjects()
