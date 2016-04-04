@@ -31,18 +31,18 @@
 			this.dataSet = new Timetable.DataSet();
 			this.dataTabControl = new System.Windows.Forms.TabControl();
 			this.studentsTabPage = new System.Windows.Forms.TabPage();
-			this.studentsAddingControl = new Timetable.StudentsAddingControl();
 			this.teachersTabPage = new System.Windows.Forms.TabPage();
-			this.teachersAddingControl = new Timetable.TeachersAddingControl();
 			this.subjectsTabPage = new System.Windows.Forms.TabPage();
-			this.subjectsAddingControl = new Timetable.SubjectsAddingControl();
 			this.subjectsAssigningTabPage = new System.Windows.Forms.TabPage();
-			this.subjectAssigningControl = new Timetable.SubjectAssigningControl();
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.itemMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemCreateSchedule = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemViewSchedules = new System.Windows.Forms.ToolStripMenuItem();
 			this.buttonOK = new System.Windows.Forms.Button();
+            this.studentsAddingControl = new Timetable.StudentsAddingControl();
+            this.teachersAddingControl = new Timetable.TeachersAddingControl();
+            this.subjectsAddingControl = new Timetable.SubjectsAddingControl();
+            this.subjectAssigningControl = new Timetable.SubjectAssigningControl();
 			((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
 			this.dataTabControl.SuspendLayout();
 			this.studentsTabPage.SuspendLayout();
@@ -80,13 +80,6 @@
 			this.studentsTabPage.Text = "Uczniowie";
 			this.studentsTabPage.UseVisualStyleBackColor = true;
 			// 
-			// studentsAddingControl
-			// 
-			this.studentsAddingControl.Location = new System.Drawing.Point(21, 20);
-			this.studentsAddingControl.Name = "studentsAddingControl";
-			this.studentsAddingControl.Size = new System.Drawing.Size(506, 335);
-			this.studentsAddingControl.TabIndex = 0;
-			// 
 			// teachersTabPage
 			// 
 			this.teachersTabPage.Controls.Add(this.teachersAddingControl);
@@ -97,13 +90,6 @@
 			this.teachersTabPage.TabIndex = 1;
 			this.teachersTabPage.Text = "Nauczyciele";
 			this.teachersTabPage.UseVisualStyleBackColor = true;
-			// 
-			// teachersAddingControl
-			// 
-			this.teachersAddingControl.Location = new System.Drawing.Point(28, 23);
-			this.teachersAddingControl.Name = "teachersAddingControl";
-			this.teachersAddingControl.Size = new System.Drawing.Size(491, 341);
-			this.teachersAddingControl.TabIndex = 0;
 			// 
 			// subjectsTabPage
 			// 
@@ -116,13 +102,6 @@
 			this.subjectsTabPage.Text = "Przedmioty";
 			this.subjectsTabPage.UseVisualStyleBackColor = true;
 			// 
-			// subjectsAddingControl
-			// 
-			this.subjectsAddingControl.Location = new System.Drawing.Point(21, 18);
-			this.subjectsAddingControl.Name = "subjectsAddingControl";
-			this.subjectsAddingControl.Size = new System.Drawing.Size(502, 350);
-			this.subjectsAddingControl.TabIndex = 0;
-			// 
 			// subjectsAssigningTabPage
 			// 
 			this.subjectsAssigningTabPage.Controls.Add(this.subjectAssigningControl);
@@ -134,19 +113,12 @@
 			this.subjectsAssigningTabPage.Text = "Przydzielanie przedmiotów";
 			this.subjectsAssigningTabPage.UseVisualStyleBackColor = true;
 			// 
-			// subjectAssigningControl
-			// 
-			this.subjectAssigningControl.Location = new System.Drawing.Point(7, 6);
-			this.subjectAssigningControl.Name = "subjectAssigningControl";
-			this.subjectAssigningControl.Size = new System.Drawing.Size(532, 324);
-			this.subjectAssigningControl.TabIndex = 0;
-			// 
 			// menuStrip
 			// 
 			this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
 			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.itemMenu});
+            this.itemMenu});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -157,8 +129,8 @@
 			// itemMenu
 			// 
 			this.itemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.itemCreateSchedule,
-			this.itemViewSchedules});
+            this.itemCreateSchedule,
+            this.itemViewSchedules});
 			this.itemMenu.Name = "itemMenu";
 			this.itemMenu.Padding = new System.Windows.Forms.Padding(30, 3, 30, 3);
 			this.itemMenu.Size = new System.Drawing.Size(105, 27);
@@ -188,6 +160,34 @@
 			this.buttonOK.Text = "OK";
 			this.buttonOK.UseVisualStyleBackColor = true;
 			// 
+            // studentsAddingControl
+            // 
+            this.studentsAddingControl.Location = new System.Drawing.Point(21, 20);
+            this.studentsAddingControl.Name = "studentsAddingControl";
+            this.studentsAddingControl.Size = new System.Drawing.Size(506, 335);
+            this.studentsAddingControl.TabIndex = 0;
+            // 
+            // teachersAddingControl
+            // 
+            this.teachersAddingControl.Location = new System.Drawing.Point(28, 23);
+            this.teachersAddingControl.Name = "teachersAddingControl";
+            this.teachersAddingControl.Size = new System.Drawing.Size(491, 341);
+            this.teachersAddingControl.TabIndex = 0;
+            // 
+            // subjectsAddingControl
+            // 
+            this.subjectsAddingControl.Location = new System.Drawing.Point(21, 18);
+            this.subjectsAddingControl.Name = "subjectsAddingControl";
+            this.subjectsAddingControl.Size = new System.Drawing.Size(502, 350);
+            this.subjectsAddingControl.TabIndex = 0;
+            // 
+            // subjectAssigningControl
+            // 
+            this.subjectAssigningControl.Location = new System.Drawing.Point(7, 6);
+            this.subjectAssigningControl.Name = "subjectAssigningControl";
+            this.subjectAssigningControl.Size = new System.Drawing.Size(532, 324);
+            this.subjectAssigningControl.TabIndex = 0;
+            // 
 			// SubjectsAssigningForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
