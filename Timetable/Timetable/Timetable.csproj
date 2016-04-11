@@ -56,7 +56,6 @@
     <Compile Include="DataBase.cs" />
     <Compile Include="DataSet.cs">
       <DependentUpon>DataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -127,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\subjectAssigningControl.resx">
       <DependentUpon>subjectAssigningControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\subjectsAddingControl.resx">
+      <DependentUpon>subjectsAddingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleCreationFormExt.resx">
       <DependentUpon>ScheduleCreationFormExt.cs</DependentUpon>

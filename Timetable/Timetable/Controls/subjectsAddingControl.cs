@@ -12,6 +12,12 @@ namespace Timetable
 {
 	public partial class SubjectsAddingControl : UserControl
 	{
+        public ComboBox ComboBoxGet
+        {
+            get { return comboBoxViewSubjects; }
+            private set { }
+        }
+
 		public SubjectsAddingControl()
 		{
 			InitializeComponent();
