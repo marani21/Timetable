@@ -16,5 +16,10 @@ namespace Timetable
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void SubjectAssigningControl_Load(object sender, EventArgs e)
+        {
+            this.classesTableAdapter.Fill(this.dataSet.classes);
+        }
+    }
 }
