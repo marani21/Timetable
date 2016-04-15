@@ -124,6 +124,12 @@
     <EmbeddedResource Include="Controls\subjectAssigningControl.resx">
       <DependentUpon>subjectAssigningControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\subjectsAddingControl.resx">
+      <DependentUpon>subjectsAddingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\teachersAddingControl.resx">
+      <DependentUpon>teachersAddingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleCreationFormExt.resx">
       <DependentUpon>ScheduleCreationFormExt.cs</DependentUpon>
     </EmbeddedResource>

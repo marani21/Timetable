@@ -33,6 +33,14 @@ namespace Timetable
 
 		}
 
-		
-	}
+        private void subjectsAddingControl_Load(object sender, EventArgs e)
+        {
+            subjectsTableAdapter1.Fill(dataSet.subjects);
+
+            foreach (DataRow dataRow in dataSet.subjects)
+            {
+                this.subjectsAddingControl.ComboBoxGet.Items.Add(dataRow.ItemArray[1].ToString());
+            }
+        }
+    }
 }
