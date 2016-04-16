@@ -12,10 +12,14 @@ namespace Timetable
 {
     public partial class SubjectsAddingControl : UserControl
     {
-        public ComboBox ComboBoxGet
+
+
+        public DataSet setDataSet
         {
-            get { return comboBoxViewSubjects; }
-            private set { }
+            set { this.dataSet = value;
+                  LoadData();
+            }
+            get { return this.dataSet; }
         }
 
         public SubjectsAddingControl()
@@ -23,66 +27,63 @@ namespace Timetable
             InitializeComponent();
         }
 
+        private void LoadData()
+        {
+            this.subjectsDataGridView.DataSource = this.dataSet;                   
+            this.subjectsBindingSource.DataSource = this.dataSet.subjects;
+            this.subjectsDataGridView.DataSource = this.subjectsBindingSource;
+        }
+
         private void SubjectsAddingControl_Load(object sender, EventArgs e)
         {
-            this.subjectsTableAdapter.Fill(this.dataSet.subjects);
-            this.teachingTableAdapter.Fill(this.dataSet.teaching);
-            this.lessonsTableAdapter.Fill(this.dataSet.lessons);
+            //this.subjectsTableAdapter.Fill(this.dataSet.subjects);
+            //this.teachingTableAdapter.Fill(this.dataSet.teaching);
+            //this.lessonsTableAdapter.Fill(this.dataSet.lessons);
         }
-
-        private void buttonAddSubject_Click(object sender, EventArgs e)
-        {
-            DataSet.subjectsRow newSubjectRow = dataSet.subjects.NewsubjectsRow();
-            //pobieranie najwyzszego indexu 
-            DataRowView item = comboBoxViewSubjects.Items[comboBoxViewSubjects.Items.Count - 1] as DataRowView;
-
-            newSubjectRow.name = textBoxSubject.Text.ToString();
-            newSubjectRow.id = int.Parse(item.Row["id"].ToString()) + 1;
-
-            this.dataSet.subjects.Rows.Add(newSubjectRow);
-            this.subjectsTableAdapter.Update(dataSet.subjects);
-
-        }
-
-        private void buttonEditSubject_Click(object sender, EventArgs e)
-        {
-            DataRowView item = comboBoxViewSubjects.Items[comboBoxViewSubjects.SelectedIndex] as DataRowView;
-            item.Row["name"] = textBoxSubject.Text.ToString();
-            this.subjectsTableAdapter.Update(dataSet.subjects);
-
-
-        }
-
+       
         private void buttonDeleteSubject_Click(object sender, EventArgs e)
         {
-            DataRowView item = comboBoxViewSubjects.Items[comboBoxViewSubjects.SelectedIndex] as DataRowView;
-            int subjectID = int.Parse(item.Row["id"].ToString());
-            bool teachingRelation = checkIfTeachingRelationExists(subjectID.ToString(), 2);
-            bool lessonsRelation = checkIfLessonsRelationExists(subjectID.ToString(), 3);
-                        
-            if (teachingRelation || lessonsRelation)
+            if (subjectsDataGridView.SelectedRows.Count == 0)
+                return;
+
+            if (MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone rekordy?", "Ostrzeżenie",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
+                return;
+            int subjesctID = int.Parse(dataSet.subjects.Rows[0]["id"].ToString());
+            int subjescstID = int.Parse(dataSet.subjects.Rows[0]["id"].ToString());
+
+
+            foreach (DataGridViewRow row in subjectsDataGridView.SelectedRows)
             {
-                if (MessageBox.Show("Przedmiot zawiera powiązania w innych tabelach jesteś pewny, że chcesz go usunąć?", "Ostrzeżenie",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                int subjectID = int.Parse(dataSet.subjects.Rows[row.Index]["id"].ToString());
+                bool teachingRelation = checkIfTeachingRelationExists(subjectID.ToString(), 2);
+                bool lessonsRelation = checkIfLessonsRelationExists(subjectID.ToString(), 3);
+
+                BindingSource bs = subjectsDataGridView.DataSource as BindingSource;
+                if (teachingRelation || lessonsRelation)
                 {
-                    if (teachingRelation)
+                    if (MessageBox.Show("Jeden z rekordów zawiera powiązania, usunąc powiązania i przedmiot?", "Ostrzeżenie",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
-                        deleteTeachingRelations(subjectID.ToString(), 2);
+                        if (teachingRelation)
+                        {
+                            deleteTeachingRelations(subjectID.ToString(), 2);
+                        }
+                        if (lessonsRelation)
+                        {
+                            deleteLessonsRelations(subjectID.ToString(), 2);
+                        }
+                        bs.RemoveAt(row.Index);
                     }
-                    if (lessonsRelation)
-                    {
-                        deleteLessonsRelations(subjectID.ToString(), 2);
-                    }
-                    item.Delete();
-                    subjectsTableAdapter.Update(this.dataSet.subjects);
+                }
+                else
+                {
+                    bs.RemoveAt(row.Index);
                 }
             }
-            else
-            {
-                item.Delete();
-                subjectsTableAdapter.Update(this.dataSet.subjects);
-            }
-
+            
+            //subjectsDataGridView.Update();
+            this.dataSet.AcceptChanges();
 
         }
 
@@ -126,9 +127,8 @@ namespace Timetable
                     {
                         MessageBox.Show(ex.ToString());
                     }
-                }               
+                }
             }
-            this.teachingTableAdapter.Update(dataSet.teaching);
         }
 
         private void deleteLessonsRelations(string pattern, int column)
@@ -155,15 +155,7 @@ namespace Timetable
                 }
 
             }
-            this.lessonsTableAdapter.Update(this.dataSet.lessons);
         }
 
-        public void updateTableAdapters()
-        {
-            //this.lessonsTableAdapter.Update(this.dataSet.lessons);
-            //this.teachingTableAdapter.Update(this.dataSet.teaching);
-            //this.subjectsTableAdapter.Update(this.dataSet.subjects);
-
-        }
     }
 }
