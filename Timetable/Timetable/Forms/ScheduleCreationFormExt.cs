@@ -13,7 +13,9 @@ namespace Timetable.Forms
 {
 	public partial class ScheduleCreationFormExt : Form
 	{
-        public ScheduleCreationFormExt()
+		public static event EventDelegate closeFormEvent;
+
+		public ScheduleCreationFormExt()
 		{
 			InitializeComponent();
 			CellControl.CellClickEvent += CellControl_CellClickEvent;
@@ -85,5 +87,39 @@ namespace Timetable.Forms
             comboBox1.DisplayMember = "Value";
             comboBox1.ValueMember = "Key";
         }
+
+		private void buttonOK_Click(object sender, EventArgs e)
+		{
+			// wywołanie TableAdapter.Update() 
+
+			this.DialogResult = DialogResult.OK;
+			this.Close();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
+		}
+
+		private void buttonCancel_Click(object sender, EventArgs e)
+		{
+			this.DialogResult = DialogResult.Cancel;
+			this.Close();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
+		}
+
+		private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
+			if (this.DialogResult == DialogResult.Cancel)
+			{
+				//MessageBox.Show("X lub Anuluj");
+
+				// przywróć DataSet sprzed zmian (np. utwórz nowy) - brak jakiegokolwiek połączenia z bazą, bo wszystkie zmiany, 
+				//których właśnie dokonaliśmy w DataSecie chcemy cofnąć
+			}
+		}
 	}
 }
