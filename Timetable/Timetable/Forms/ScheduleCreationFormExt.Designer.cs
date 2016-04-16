@@ -1157,7 +1157,7 @@
 			this.Controls.Add(this.menuStrip);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.buttonCancel);
-			this.Controls.Add(this.label22);
+			//this.Controls.Add(this.label22);
             this.ClientSize = new System.Drawing.Size(1323, 684);
             this.Controls.Add(this.labelClass);
             this.Controls.Add(this.comboBoxClass);
