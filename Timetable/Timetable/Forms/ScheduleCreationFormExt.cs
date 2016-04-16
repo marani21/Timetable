@@ -28,10 +28,14 @@ namespace Timetable.Forms
 			foreach(Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
 			{
                 if (c is CellControl)
+                {
                     ((CellControl)c).Enabled();
+                    ((CellControl)c).IsActive = false;
+                }
 			}
 
             cell.Activate();
+            cell.IsActive = true;
 		}
 
         private void ScheduleCreationFormExt_Load(object sender, EventArgs e)
