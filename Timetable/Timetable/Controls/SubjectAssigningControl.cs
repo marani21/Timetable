@@ -12,58 +12,51 @@ namespace Timetable
 {
 	public partial class SubjectAssigningControl : UserControl
 	{
-		public SubjectAssigningControl()
+        
+        public SubjectAssigningControl()
 		{
 			InitializeComponent();
-		}
-
-        public void updateTableAdapters()
-        {
-            this.classesTableAdapter.Update(this.dataSet.classes);
-            this.subjectsTableAdapter.Update(this.dataSet.subjects);
-            this.teachersTableAdapter.Update(this.dataSet.teachers);
-            this.teachingTableAdapter.Update(this.dataSet.teaching);
 
         }
-        private void SubjectAssigningControl_Load(object sender, EventArgs e)
-        {
-            this.amountDataGridViewTextBoxColumn.ValueType = typeof(int);
-            this.classesTableAdapter.Fill(this.dataSet.classes);
-            this.subjectsTableAdapter.Fill(this.dataSet.subjects);
-            this.teachersTableAdapter.Fill(this.dataSet.teachers);
-            if(this.dataSet.subjects.Count != 0)
-               teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
 
-            // teacherDataGridViewTextBoxColumn.ValueType = typeof(teacherDataGridViewTextBoxColumn.ValueMember);
-            this.teachingTableAdapter.Fill(this.dataSet.teaching);
+        public DataSet setDataSet
+        {
+            set
+            {
+                this.dataSet = value;
+                LoadData();
+                
+            }
+            get { return this.dataSet; }
+            
+        }
+
+        private void LoadData()
+        {
+            this.dataGridViewAssigning.DataSource = this.dataSet;
+            
+            this.classesBindingSource.DataSource = this.dataSet.classes;
+            this.teachingBindingSource.DataSource = this.dataSet.teaching;
+            this.subjectsBindingSource.DataSource = this.dataSet.subjects;
+            this.teachersBindingSource.DataSource = this.dataSet.teachers;
+            this.dataGridViewAssigning.DataSource = this.teachingBindingSource;
+            this.comboBoxClasses.DataSource = this.classesBindingSource;                      
+           
         }
 
         private void comboBoxClasses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
-            this.teachingTableAdapter.Fill(this.dataSet.teaching);
-
+            this.teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
+           
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void SubjectAssigningControl_Load(object sender, EventArgs e)
         {
-            try
-            {
-                DataSet changes = dataSet.GetChanges() as DataSet;
-                if(changes != null)
-                {
-                    this.teachingTableAdapter.Update(this.dataSet.teaching);
-                    this.teachingTableAdapter.Fill(this.dataSet.teaching);
-                    this.dataSet.AcceptChanges();
+            //teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
+            //this.teachingTableAdapter.Fill(this.dataSet.teaching);
 
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
         }
+
 
         private void dataGridViewDefaultValues(object sender, DataGridViewRowEventArgs e)
         {
@@ -83,7 +76,36 @@ namespace Timetable
                 BindingSource mBindingSource = dataGridViewAssigning.DataSource as BindingSource;
                 mBindingSource.RemoveAt(row.Index);
             }
-            this.teachingTableAdapter.Update(this.dataSet.teaching);
+            this.dataSet.AcceptChanges();
+            
+
         }
+
+        private void dataGridViewAssigning_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(amount_KeyPressed);
+            if(dataGridViewAssigning.CurrentCell.ColumnIndex == 2)
+            {
+                TextBox tb = e.Control as TextBox;
+                if(tb!=null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(amount_KeyPressed);
+                }
+            }
+        }
+        private void amount_KeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void clearFilter()
+        {
+            teachingBindingSource.RemoveFilter();
+            LoadData();           
+        }
+
     }
 }

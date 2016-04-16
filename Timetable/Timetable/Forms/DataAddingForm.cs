@@ -12,7 +12,7 @@ namespace Timetable
 {
 	public partial class SubjectsAssigningForm : Form
 	{
-		public static event EventDelegate closeFormEvent;
+        public static event EventDelegate closeFormEvent;
 
 		public SubjectsAssigningForm()
 		{
@@ -27,24 +27,33 @@ namespace Timetable
 
         private void subjectsAddingControl_Load(object sender, EventArgs e)
         {
-            //subjectsTableAdapter1.Fill(dataSet.subjects);
-
-            //foreach (DataRow dataRow in dataSet.subjects)
-            //{
-            //    this.subjectsAddingControl.ComboBoxGet.Items.Add(dataRow.ItemArray[1].ToString());
-            //}
+            subjectsAddingControl.setDataSet = this.dataSet;
         }
-        private void updateTableAdapters(object sender, EventArgs e)
+
+
+        private void buttonOK_Click(object sender, EventArgs e)
         {
-            subjectAssigningControl.updateTableAdapters();
-            subjectsAddingControl.updateTableAdapters();
+            if (MessageBox.Show("Czy na pewno chcesz zapisać wszystkie dokonane zmiany w bazie?", "Ostrzeżenie",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
+                return;
+            try
+            {
+                DataSet changes = this.dataSet.GetChanges() as DataSet;
+                if (changes != null)
+                {
+                    this.subjectsTableAdapter1.Update(this.dataSet.subjects);
+                    this.studentsTableAdapter1.Update(this.dataSet.students);
+                    this.teachersTableAdapter1.Update(this.dataSet.teachers);
+                    this.teachingTableAdapter1.Update(this.dataSet.teaching);
+                    this.classesTableAdapter1.Update(this.dataSet.classes);
+                }
 
-        }
-
-		private void buttonOK_Click(object sender, EventArgs e)
-		{
-			// wywołanie TableAdapter.Update() a właściwie kilku TableAdapterów (students, teachers, subjects, teaching)
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        
 			this.DialogResult = DialogResult.OK;
 			this.Close();
 			if (closeFormEvent != null)
@@ -75,6 +84,29 @@ namespace Timetable
 			}
 		}
 
-	
-	}
+        private void subjectAssigningControl_Load(object sender, EventArgs e)
+        {
+            subjectAssigningControl.setDataSet = this.dataSet;
+        }
+
+        private void SubjectsAssigningForm_Load(object sender, EventArgs e)
+        {
+            this.subjectsTableAdapter1.Fill(this.dataSet.subjects);
+            this.studentsTableAdapter1.Fill(this.dataSet.students);
+            this.teachersTableAdapter1.Fill(this.dataSet.teachers);
+            this.teachingTableAdapter1.Fill(this.dataSet.teaching);
+            this.classesTableAdapter1.Fill(this.dataSet.classes);
+        }
+
+        private void updateData(object sender, EventArgs e)
+        {
+            //TabPage mPage = dataTabControl.SelectedTab;
+            //if (mPage != subjectsAssigningTabPage)
+            //{
+            //    this.dataSet = subjectAssigningControl.setDataSet;
+            //}
+            //else subjectAssigningControl.setFilter();
+            subjectAssigningControl.clearFilter();
+        }
+    }
 }
