@@ -50,6 +50,7 @@ namespace Timetable.Forms
             this.teachingTableAdapter.Fill(this.dataSet.teaching);
             // TODO: This line of code loads data into the 'dataSet.database_view' table. You can move, or remove it, as needed.
             this.database_viewTableAdapter.Fill(this.dataSet.database_view);
+            this.teachersTableAdapter.Fill(this.dataSet.teachers);
 
             ClearCellControls();
             FillSchedule();
@@ -69,6 +70,33 @@ namespace Timetable.Forms
             // Wstawienie danych (przedmiot, sala, nauczyciel) do wybranego cellControl,
             // zadbać o to, aby zostało obsłużone zdarzenie gdy żaden cellControl nie jest zaznaczony
             // Nauczyciela należy wyszukać z bazy danych na podstawie klasy oraz przedmiotu
+            bool isAnyChosen = false;
+            foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
+            {
+                if (c is CellControl && ((CellControl)c).IsActive==true)
+                {
+                    isAnyChosen = true;
+                    string subject = comboBoxSubject.Text;
+                    string classroom = comboBoxClassroom.Text;
+                    string className = comboBoxClass.Text;
+                    try
+                    {
+                        DataRow[] subjectIdRows = dataSet.subjects.Select("name='" + subject + "'");
+                        string subjectId = subjectIdRows[0]["id"].ToString();
+                        DataRow[] teacherIdRows = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
+                        string teacherId = teacherIdRows[0]["teacher"].ToString();
+                        DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
+                        string teacher = teacherRows[0]["name"].ToString().Trim() + " " + teacherRows[0]["surname"].ToString().Trim();
+                        ((CellControl)c).SetData(subject, teacher, classroom);
+                    }
+                    catch(Exception exc)
+                    {
+                        MessageBox.Show(exc.Message);
+                    }
+                }
+            }
+            if (!isAnyChosen)
+                MessageBox.Show("Nie wybrano rzadnej komórki");
 
 
         }
@@ -112,7 +140,11 @@ namespace Timetable.Forms
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
                 if (c is CellControl)
+                {
                     ((CellControl)c).Clear();
+                    ((CellControl)c).Enabled();
+                    ((CellControl)c).IsActive = false;
+                }
             }
         }
 
