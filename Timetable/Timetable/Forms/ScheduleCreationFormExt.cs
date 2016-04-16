@@ -59,6 +59,50 @@ namespace Timetable.Forms
             FillSubjects();
         }
 
+        private void buttonSet_Click(object sender, EventArgs e)
+        {
+            // TODO: Asia
+            // Wstawienie danych (przedmiot, sala, nauczyciel) do wybranego cellControl,
+            // zadbać o to, aby zostało obsłużone zdarzenie gdy żaden cellControl nie jest zaznaczony
+            // Nauczyciela należy wyszukać z bazy danych na podstawie klasy oraz przedmiotu
+
+
+        }
+
+		private void buttonOK_Click(object sender, EventArgs e)
+		{
+			// wywołanie TableAdapter.Update() 
+
+			this.DialogResult = DialogResult.OK;
+			this.Close();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
+		}
+
+		private void buttonCancel_Click(object sender, EventArgs e)
+		{
+			this.DialogResult = DialogResult.Cancel;
+			this.Close();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
+		}
+
+		private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
+			if (this.DialogResult == DialogResult.Cancel)
+			{
+				//MessageBox.Show("X lub Anuluj");
+
+				// przywróć DataSet sprzed zmian (np. utwórz nowy) - brak jakiegokolwiek połączenia z bazą, bo wszystkie zmiany, 
+				//których właśnie dokonaliśmy w DataSecie chcemy cofnąć
+			}
+        }
+
         private void ClearCellControls()
         {
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
@@ -113,39 +157,5 @@ namespace Timetable.Forms
             comboBoxSubject.DisplayMember = "Value";
             comboBoxSubject.ValueMember = "Key";
         }
-
-		private void buttonOK_Click(object sender, EventArgs e)
-		{
-			// wywołanie TableAdapter.Update() 
-
-			this.DialogResult = DialogResult.OK;
-			this.Close();
-			if (closeFormEvent != null)
-			{
-				closeFormEvent();
-			}
-		}
-
-		private void buttonCancel_Click(object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close();
-			if (closeFormEvent != null)
-			{
-				closeFormEvent();
-			}
-		}
-
-		private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
-			if (this.DialogResult == DialogResult.Cancel)
-			{
-				//MessageBox.Show("X lub Anuluj");
-
-				// przywróć DataSet sprzed zmian (np. utwórz nowy) - brak jakiegokolwiek połączenia z bazą, bo wszystkie zmiany, 
-				//których właśnie dokonaliśmy w DataSecie chcemy cofnąć
-			}
-		}
 	}
 }
