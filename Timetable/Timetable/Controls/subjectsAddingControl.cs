@@ -128,7 +128,7 @@ namespace Timetable
                     }
                 }               
             }
-            teachingTableAdapter.Update(dataSet.teaching);
+            this.teachingTableAdapter.Update(dataSet.teaching);
         }
 
         private void deleteLessonsRelations(string pattern, int column)
@@ -158,6 +158,12 @@ namespace Timetable
             this.lessonsTableAdapter.Update(this.dataSet.lessons);
         }
 
+        public void updateTableAdapters()
+        {
+            //this.lessonsTableAdapter.Update(this.dataSet.lessons);
+            //this.teachingTableAdapter.Update(this.dataSet.teaching);
+            //this.subjectsTableAdapter.Update(this.dataSet.subjects);
 
+        }
     }
 }

@@ -42,5 +42,11 @@ namespace Timetable
             //    this.subjectsAddingControl.ComboBoxGet.Items.Add(dataRow.ItemArray[1].ToString());
             //}
         }
+        private void updateTableAdapters(object sender, EventArgs e)
+        {
+            subjectAssigningControl.updateTableAdapters();
+            subjectsAddingControl.updateTableAdapters();
+
+        }
     }
 }

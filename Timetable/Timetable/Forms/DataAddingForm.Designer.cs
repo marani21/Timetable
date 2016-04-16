@@ -69,6 +69,7 @@
             this.dataTabControl.SelectedIndex = 0;
             this.dataTabControl.Size = new System.Drawing.Size(558, 364);
             this.dataTabControl.TabIndex = 0;
+            this.dataTabControl.SelectedIndexChanged += new System.EventHandler(this.updateTableAdapters);
             // 
             // studentsTabPage
             // 
