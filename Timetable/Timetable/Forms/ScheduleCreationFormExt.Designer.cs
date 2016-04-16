@@ -109,6 +109,12 @@
             this.subjectsTableAdapter = new Timetable.DataSetTableAdapters.subjectsTableAdapter();
             this.classroomsTableAdapter = new Timetable.DataSetTableAdapters.classroomsTableAdapter();
             this.classesTableAdapter = new Timetable.DataSetTableAdapters.classesTableAdapter();
+			this.buttonCancel = new System.Windows.Forms.Button();
+			this.buttonOK = new System.Windows.Forms.Button();
+			this.menuStrip = new System.Windows.Forms.MenuStrip();
+			this.itemMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.itemCreateSchedule = new System.Windows.Forms.ToolStripMenuItem();
+			this.itemViewSchedules = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database_viewTableAdapter = new Timetable.DataSetTableAdapters.database_viewTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).BeginInit();
@@ -119,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.teachingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseviewBindingSource)).BeginInit();
+			this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMonday
@@ -267,20 +274,18 @@
             // 
             // buttonCleanClassroom
             // 
-            this.buttonCleanClassroom.Location = new System.Drawing.Point(169, 98);
-            this.buttonCleanClassroom.Margin = new System.Windows.Forms.Padding(4);
+			this.buttonCleanClassroom.Location = new System.Drawing.Point(127, 80);
             this.buttonCleanClassroom.Name = "buttonCleanClassroom";
-            this.buttonCleanClassroom.Size = new System.Drawing.Size(47, 28);
+			this.buttonCleanClassroom.Size = new System.Drawing.Size(35, 23);
             this.buttonCleanClassroom.TabIndex = 39;
             this.buttonCleanClassroom.Text = "X";
             this.buttonCleanClassroom.UseVisualStyleBackColor = true;
             // 
             // buttonCleanSubject
             // 
-            this.buttonCleanSubject.Location = new System.Drawing.Point(169, 38);
-            this.buttonCleanSubject.Margin = new System.Windows.Forms.Padding(4);
+			this.buttonCleanSubject.Location = new System.Drawing.Point(127, 31);
             this.buttonCleanSubject.Name = "buttonCleanSubject";
-            this.buttonCleanSubject.Size = new System.Drawing.Size(47, 28);
+			this.buttonCleanSubject.Size = new System.Drawing.Size(35, 23);
             this.buttonCleanSubject.TabIndex = 38;
             this.buttonCleanSubject.Text = "X";
             this.buttonCleanSubject.UseVisualStyleBackColor = true;
@@ -367,7 +372,7 @@
             this.panelCells.Location = new System.Drawing.Point(11, 50);
             this.panelCells.Margin = new System.Windows.Forms.Padding(4);
             this.panelCells.Name = "panelCells";
-            this.panelCells.Size = new System.Drawing.Size(1073, 619);
+			this.panelCells.Size = new System.Drawing.Size(805, 503);
             this.panelCells.TabIndex = 37;
             // 
             // cellControl5_7
@@ -1029,10 +1034,9 @@
             this.comboBoxClass.DisplayMember = "label";
             this.comboBoxClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Location = new System.Drawing.Point(1093, 78);
-            this.comboBoxClass.Margin = new System.Windows.Forms.Padding(4);
+			this.comboBoxClass.Location = new System.Drawing.Point(820, 63);
             this.comboBoxClass.Name = "comboBoxClass";
-            this.comboBoxClass.Size = new System.Drawing.Size(221, 24);
+			this.comboBoxClass.Size = new System.Drawing.Size(167, 21);
             this.comboBoxClass.TabIndex = 38;
             this.comboBoxClass.ValueMember = "label";
             this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
@@ -1079,6 +1083,63 @@
             // 
             this.classesTableAdapter.ClearBeforeFill = true;
             // 
+			// buttonCancel
+			// 
+			this.buttonCancel.Location = new System.Drawing.Point(771, 575);
+			this.buttonCancel.Name = "buttonCancel";
+			this.buttonCancel.Size = new System.Drawing.Size(105, 33);
+			this.buttonCancel.TabIndex = 40;
+			this.buttonCancel.Text = "Anuluj";
+			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+			// 
+			// buttonOK
+			// 
+			this.buttonOK.Location = new System.Drawing.Point(882, 575);
+			this.buttonOK.Name = "buttonOK";
+			this.buttonOK.Size = new System.Drawing.Size(105, 33);
+			this.buttonOK.TabIndex = 41;
+			this.buttonOK.Text = "OK";
+			this.buttonOK.UseVisualStyleBackColor = true;
+			this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+			// 
+			// menuStrip
+			// 
+			this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
+			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemMenu});
+			this.menuStrip.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip.Name = "menuStrip";
+			this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+			this.menuStrip.Size = new System.Drawing.Size(992, 31);
+			this.menuStrip.TabIndex = 42;
+			this.menuStrip.Text = "menuStrip1";
+			// 
+			// itemMenu
+			// 
+			this.itemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemCreateSchedule,
+            this.itemViewSchedules});
+			this.itemMenu.Name = "itemMenu";
+			this.itemMenu.Padding = new System.Windows.Forms.Padding(30, 3, 30, 3);
+			this.itemMenu.Size = new System.Drawing.Size(105, 27);
+			this.itemMenu.Text = "Menu";
+			// 
+			// itemCreateSchedule
+			// 
+			this.itemCreateSchedule.Name = "itemCreateSchedule";
+			this.itemCreateSchedule.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+			this.itemCreateSchedule.Size = new System.Drawing.Size(195, 30);
+			this.itemCreateSchedule.Text = "Dodaj dane do bazy";
+			// 
+			// itemViewSchedules
+			// 
+			this.itemViewSchedules.Name = "itemViewSchedules";
+			this.itemViewSchedules.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+			this.itemViewSchedules.Size = new System.Drawing.Size(195, 30);
+			this.itemViewSchedules.Text = "Przegladaj plany";
+			// 
             // databaseviewBindingSource
             // 
             this.databaseviewBindingSource.DataMember = "database_view";
@@ -1090,8 +1151,13 @@
             // 
             // ScheduleCreationFormExt
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(992, 620);
+			this.Controls.Add(this.menuStrip);
+			this.Controls.Add(this.buttonOK);
+			this.Controls.Add(this.buttonCancel);
+			this.Controls.Add(this.label22);
             this.ClientSize = new System.Drawing.Size(1323, 684);
             this.Controls.Add(this.labelClass);
             this.Controls.Add(this.comboBoxClass);
@@ -1107,6 +1173,7 @@
             this.Name = "ScheduleCreationFormExt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ułóż plan dla klasy";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScheduleCreationFormExt_FormClosing);
             this.Load += new System.EventHandler(this.ScheduleCreationFormExt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
@@ -1117,6 +1184,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teachingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseviewBindingSource)).EndInit();
+			this.menuStrip.ResumeLayout(false);
+			this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1207,5 +1276,11 @@
         private DataSetTableAdapters.classesTableAdapter classesTableAdapter;
         private System.Windows.Forms.BindingSource databaseviewBindingSource;
         private DataSetTableAdapters.database_viewTableAdapter database_viewTableAdapter;
+		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.Button buttonOK;
+		private System.Windows.Forms.MenuStrip menuStrip;
+		private System.Windows.Forms.ToolStripMenuItem itemMenu;
+		private System.Windows.Forms.ToolStripMenuItem itemCreateSchedule;
+		private System.Windows.Forms.ToolStripMenuItem itemViewSchedules;
 	}
 }
