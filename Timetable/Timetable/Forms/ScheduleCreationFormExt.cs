@@ -25,11 +25,11 @@ namespace Timetable.Forms
 			
 			foreach(Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
 			{
-				if(c is CellControl)
-					c.BackColor = SystemColors.ControlLight;
+                if (c is CellControl)
+                    ((CellControl)c).Enabled();
 			}
 
-			cell.BackColor = Color.Bisque;
+            cell.Activate();
 		}
 
         private void ScheduleCreationFormExt_Load(object sender, EventArgs e)
@@ -42,23 +42,49 @@ namespace Timetable.Forms
             this.subjectsTableAdapter.Fill(this.dataSet.subjects);
             // TODO: This line of code loads data into the 'dataSet.teaching' table. You can move, or remove it, as needed.
             this.teachingTableAdapter.Fill(this.dataSet.teaching);
+            // TODO: This line of code loads data into the 'dataSet.database_view' table. You can move, or remove it, as needed.
+            this.database_viewTableAdapter.Fill(this.dataSet.database_view);
 
+            ClearCellControls();
+            FillSchedule();
             FillSubjects();
         }
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClearCellControls();
+            FillSchedule();
             FillSubjects();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ClearCellControls()
         {
-
+            foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
+            {
+                if (c is CellControl)
+                    ((CellControl)c).Clear();
+            }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void FillSchedule()
         {
-            MessageBox.Show("Da bum tssss");
+            foreach (DataRow dataRow in dataSet.database_view)
+            {
+                if (dataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
+                {
+                    string name = "cellControl";
+                    name += dataRow["weekday"];
+                    name += "_";
+                    name += dataRow["lesson_number"];
+
+                    string subject = dataRow["subject_name"].ToString().Trim();
+                    string teacher = dataRow["teacher_name"].ToString().Trim() + " " + dataRow["teacher_surname"].ToString().Trim();
+                    string classroom = dataRow["classroom"].ToString().Trim();
+
+                    CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
+                    cellControl.SetData(subject, teacher, classroom);
+                }
+            }
         }
 
         private void FillSubjects()
@@ -75,15 +101,15 @@ namespace Timetable.Forms
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
                         foreach (DataRow subjectsDataRow in subjectsRows)
                         {
-                            string value = subjectsDataRow["name"].ToString();
+                            string value = subjectsDataRow["name"].ToString().Trim();
                             classSubjects.Add(new KeyValuePair<int, string>(id, value));
                         }
                     }
                 }
             }
-            comboBox1.DataSource = classSubjects;
-            comboBox1.DisplayMember = "Value";
-            comboBox1.ValueMember = "Key";
+            comboBoxSubject.DataSource = classSubjects;
+            comboBoxSubject.DisplayMember = "Value";
+            comboBoxSubject.ValueMember = "Key";
         }
 	}
 }
