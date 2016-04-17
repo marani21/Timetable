@@ -102,5 +102,10 @@ namespace Timetable
         {
             subjectAssigningControl.clearFilter();
         }
-    }
+
+		private void studentsAddingControl_Load(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
