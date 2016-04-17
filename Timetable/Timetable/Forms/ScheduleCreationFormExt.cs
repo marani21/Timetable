@@ -96,11 +96,13 @@ namespace Timetable.Forms
                         if (((CellControl)c).Teacher != "" && ((CellControl)c).Classroom != "" && ((CellControl)c).Subject != "")
                         {
                            // MessageBox.Show("Nie puste");
+                            deleteLessonInDataset(className, subjectId, classroom, lessonPeriod, weekday);
+                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
 
                         }
                         else
                         {
-
+                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
                         }
                         ((CellControl)c).SetData(subject, teacher, classroom);
                         FillSubjects();
@@ -115,6 +117,41 @@ namespace Timetable.Forms
                 MessageBox.Show("Nie wybrano rzadnej komórki");
 
 
+        }
+
+        //metoda dodaje do tabeli lessons nowy wpis
+        private void addLessonToDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
+        {
+            //TODO: sprawdzić, czy nauczyciel, sala są już zajęci
+            try
+            {
+                DataRow newLessonsRow = dataSet.lessons.NewRow();
+                newLessonsRow["lesson_number"] = lessonNumber;
+                newLessonsRow["class"] = className;
+                newLessonsRow["subject"] = subjectId;
+                newLessonsRow["weekday"] = weekday;
+                newLessonsRow["classroom"] = classroom;
+
+                dataSet.lessons.Rows.Add(newLessonsRow);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        //metoda usuwa dany wpis
+        private void deleteLessonInDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
+        {
+            //sprawdzić czy nauczyciel/sala są już zajęci
+            try
+            {
+                dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         //metoda, która sprawdza ile jeszcze dostępnych jest przedniotów dla danej klasy
