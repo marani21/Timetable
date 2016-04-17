@@ -96,13 +96,11 @@ namespace Timetable.Forms
                         if (((CellControl)c).Teacher != "" && ((CellControl)c).Classroom != "" && ((CellControl)c).Subject != "")
                         {
                            // MessageBox.Show("Nie puste");
-                            deleteLessonInDataset(className, subjectId, classroom, lessonPeriod, weekday);
-                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
 
                         }
                         else
                         {
-                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
+
                         }
                         ((CellControl)c).SetData(subject, teacher, classroom);
                         FillSubjects();
@@ -117,41 +115,6 @@ namespace Timetable.Forms
                 MessageBox.Show("Nie wybrano rzadnej komórki");
 
 
-        }
-
-        //metoda dodaje do tabeli lessons nowy wpis
-        private void addLessonToDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
-        {
-            //TODO: sprawdzić, czy nauczyciel, sala są już zajęci
-            try
-            {
-                DataRow newLessonsRow = dataSet.lessons.NewRow();
-                newLessonsRow["lesson_number"] = lessonNumber;
-                newLessonsRow["class"] = className;
-                newLessonsRow["subject"] = subjectId;
-                newLessonsRow["weekday"] = weekday;
-                newLessonsRow["classroom"] = classroom;
-
-                dataSet.lessons.Rows.Add(newLessonsRow);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-        //metoda usuwa dany wpis
-        private void deleteLessonInDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
-        {
-            //sprawdzić czy nauczyciel/sala są już zajęci
-            try
-            {
-                dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
         }
 
         //metoda, która sprawdza ile jeszcze dostępnych jest przedniotów dla danej klasy
@@ -221,24 +184,7 @@ namespace Timetable.Forms
 
         private void FillSchedule()
         {
-            //foreach (DataRow dataRow in dataSet.database_view)
-            //{
-            //    if (dataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
-            //    {
-            //        string name = "cellControl";
-            //        name += dataRow["weekday"];
-            //        name += "_";
-            //        name += dataRow["lesson_number"];
-
-            //        string subject = dataRow["subject_name"].ToString().Trim();
-            //        string teacher = dataRow["teacher_name"].ToString().Trim() + " " + dataRow["teacher_surname"].ToString().Trim();
-            //        string classroom = dataRow["classroom"].ToString().Trim();
-
-            //        CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
-            //        cellControl.SetData(subject, teacher, classroom);
-            //    }
-            //}
-            foreach (DataRow dataRow in dataSet.lessons)
+            foreach (DataRow dataRow in dataSet.database_view)
             {
                 if (dataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
                 {
@@ -247,17 +193,9 @@ namespace Timetable.Forms
                     name += "_";
                     name += dataRow["lesson_number"];
 
-                    string subjectId = dataRow["subject"].ToString().Trim();
-                    DataRow[] subjectRow = dataSet.subjects.Select("id=" + subjectId);
-                    string subject = subjectRow[0]["name"].ToString().Trim();
-
-
+                    string subject = dataRow["subject_name"].ToString().Trim();
+                    string teacher = dataRow["teacher_name"].ToString().Trim() + " " + dataRow["teacher_surname"].ToString().Trim();
                     string classroom = dataRow["classroom"].ToString().Trim();
-
-                    DataRow[] teacherIdRows = dataSet.teaching.Select("class = '" + dataRow["class"].ToString().Trim() + "' and subject=" + subjectId);
-                    string teacherId = teacherIdRows[0]["teacher"].ToString();
-                    DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
-                    string teacher = teacherRows[0]["name"].ToString().Trim() + " " + teacherRows[0]["surname"].ToString().Trim();
 
                     CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
                     cellControl.SetData(subject, teacher, classroom);
