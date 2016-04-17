@@ -30,13 +30,9 @@
 		{
             this.components = new System.ComponentModel.Container();
             this.dataGridViewAssigning = new System.Windows.Forms.DataGridView();
-            this.teacherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet = new Timetable.DataSet();
-            this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teachingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxClasses = new System.Windows.Forms.ComboBox();
@@ -46,6 +42,10 @@
             this.subjectsTableAdapter = new Timetable.DataSetTableAdapters.subjectsTableAdapter();
             this.teachersTableAdapter = new Timetable.DataSetTableAdapters.teachersTableAdapter();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.teacherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAssigning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
@@ -72,18 +72,6 @@
             this.dataGridViewAssigning.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewDefaultValues);
             this.dataGridViewAssigning.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewAssigning_EditingControlShowing);
             // 
-            // teacherDataGridViewTextBoxColumn
-            // 
-            this.teacherDataGridViewTextBoxColumn.DataPropertyName = "teacher";
-            this.teacherDataGridViewTextBoxColumn.DataSource = this.teachersBindingSource;
-            this.teacherDataGridViewTextBoxColumn.DisplayMember = "surname";
-            this.teacherDataGridViewTextBoxColumn.HeaderText = "Nauczyciel";
-            this.teacherDataGridViewTextBoxColumn.Name = "teacherDataGridViewTextBoxColumn";
-            this.teacherDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.teacherDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.teacherDataGridViewTextBoxColumn.ValueMember = "pesel";
-            this.teacherDataGridViewTextBoxColumn.Width = 170;
-            // 
             // teachersBindingSource
             // 
             this.teachersBindingSource.DataMember = "teachers";
@@ -94,36 +82,10 @@
             this.dataSet.DataSetName = "DataSet";
             this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // subjectDataGridViewTextBoxColumn
-            // 
-            this.subjectDataGridViewTextBoxColumn.DataPropertyName = "subject";
-            this.subjectDataGridViewTextBoxColumn.DataSource = this.subjectsBindingSource;
-            this.subjectDataGridViewTextBoxColumn.DisplayMember = "name";
-            this.subjectDataGridViewTextBoxColumn.HeaderText = "Przedmiot";
-            this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
-            this.subjectDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.subjectDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.subjectDataGridViewTextBoxColumn.ValueMember = "id";
-            this.subjectDataGridViewTextBoxColumn.Width = 160;
-            // 
             // subjectsBindingSource
             // 
             this.subjectsBindingSource.DataMember = "subjects";
             this.subjectsBindingSource.DataSource = this.dataSet;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Liczba godzin";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "class";
-            this.dataGridViewTextBoxColumn1.HeaderText = "class";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // teachingBindingSource
             // 
@@ -183,6 +145,44 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // teacherDataGridViewTextBoxColumn
+            // 
+            this.teacherDataGridViewTextBoxColumn.DataPropertyName = "teacher";
+            this.teacherDataGridViewTextBoxColumn.DataSource = this.teachersBindingSource;
+            this.teacherDataGridViewTextBoxColumn.DisplayMember = "surname";
+            this.teacherDataGridViewTextBoxColumn.HeaderText = "Nauczyciel";
+            this.teacherDataGridViewTextBoxColumn.Name = "teacherDataGridViewTextBoxColumn";
+            this.teacherDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.teacherDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.teacherDataGridViewTextBoxColumn.ValueMember = "pesel";
+            this.teacherDataGridViewTextBoxColumn.Width = 220;
+            // 
+            // subjectDataGridViewTextBoxColumn
+            // 
+            this.subjectDataGridViewTextBoxColumn.DataPropertyName = "subject";
+            this.subjectDataGridViewTextBoxColumn.DataSource = this.subjectsBindingSource;
+            this.subjectDataGridViewTextBoxColumn.DisplayMember = "name";
+            this.subjectDataGridViewTextBoxColumn.HeaderText = "Przedmiot";
+            this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
+            this.subjectDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.subjectDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.subjectDataGridViewTextBoxColumn.ValueMember = "id";
+            this.subjectDataGridViewTextBoxColumn.Width = 160;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Liczba godzin";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "class";
+            this.dataGridViewTextBoxColumn1.HeaderText = "class";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
             // SubjectAssigningControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,7 +193,6 @@
             this.Controls.Add(this.comboBoxClasses);
             this.Name = "SubjectAssigningControl";
             this.Size = new System.Drawing.Size(532, 331);
-            this.Load += new System.EventHandler(this.SubjectAssigningControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAssigning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();

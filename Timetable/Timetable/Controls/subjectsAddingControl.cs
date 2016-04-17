@@ -12,14 +12,11 @@ namespace Timetable
 {
     public partial class SubjectsAddingControl : UserControl
     {
-
-
         public DataSet setDataSet
         {
             set { this.dataSet = value;
                   LoadData();
             }
-            get { return this.dataSet; }
         }
 
         public SubjectsAddingControl()
@@ -34,13 +31,7 @@ namespace Timetable
             this.subjectsDataGridView.DataSource = this.subjectsBindingSource;
         }
 
-        private void SubjectsAddingControl_Load(object sender, EventArgs e)
-        {
-            //this.subjectsTableAdapter.Fill(this.dataSet.subjects);
-            //this.teachingTableAdapter.Fill(this.dataSet.teaching);
-            //this.lessonsTableAdapter.Fill(this.dataSet.lessons);
-        }
-       
+          
         private void buttonDeleteSubject_Click(object sender, EventArgs e)
         {
             if (subjectsDataGridView.SelectedRows.Count == 0)
@@ -49,13 +40,11 @@ namespace Timetable
             if (MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone rekordy?", "Ostrzeżenie",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
                 return;
-            int subjesctID = int.Parse(dataSet.subjects.Rows[0]["id"].ToString());
-            int subjescstID = int.Parse(dataSet.subjects.Rows[0]["id"].ToString());
-
+        
 
             foreach (DataGridViewRow row in subjectsDataGridView.SelectedRows)
             {
-                int subjectID = int.Parse(dataSet.subjects.Rows[row.Index]["id"].ToString());
+                int subjectID = int.Parse(row.Cells[0].Value.ToString());
                 bool teachingRelation = checkIfTeachingRelationExists(subjectID.ToString(), 2);
                 bool lessonsRelation = checkIfLessonsRelationExists(subjectID.ToString(), 3);
 
@@ -81,9 +70,6 @@ namespace Timetable
                     bs.RemoveAt(row.Index);
                 }
             }
-            
-            //subjectsDataGridView.Update();
-            this.dataSet.AcceptChanges();
 
         }
 
@@ -91,8 +77,12 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.teaching.Rows.Count; i++)
             {
-                if (dataSet.teaching.Rows[i][column].ToString() == pattern)
-                    return true;
+                if (dataSet.teaching.Rows[i].RowState != DataRowState.Deleted)
+                { 
+                    if (dataSet.teaching.Rows[i][column].ToString() == pattern)
+                        return true;
+                }
+               
             }
             return false;
         }
@@ -101,8 +91,11 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.lessons.Rows.Count; i++)
             {
-                if (dataSet.lessons.Rows[i][column].ToString() == pattern)
-                    return true;
+                if (dataSet.lessons.Rows[i].RowState != DataRowState.Deleted)
+                {
+                    if (dataSet.lessons.Rows[i][column].ToString() == pattern)
+                        return true;
+                }
             }
             return false;
         }
@@ -111,21 +104,24 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.teaching.Rows.Count; i++)
             {
-                if (dataSet.teaching.Rows[i][column].ToString() == pattern)
+                if (dataSet.teaching.Rows[i].RowState != DataRowState.Deleted)
                 {
-                    try
+                    if (dataSet.teaching.Rows[i][column].ToString() == pattern)
                     {
-                        //pobieramy klucze dla wiersza ktory pasuje
-                        string mClass = dataSet.teaching.Rows[i][0].ToString();
-                        int mSubject = int.Parse(dataSet.teaching.Rows[i][2].ToString());
-                        //pobieramy wiersz do usuniecia
-                        DataSet.teachingRow deleteRow = dataSet.teaching.FindBy_classsubject(mClass, mSubject);
-                        //usuwamy wiersz
-                        deleteRow.Delete();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
+                        try
+                        {
+                            //pobieramy klucze dla wiersza ktory pasuje
+                            string mClass = dataSet.teaching.Rows[i][0].ToString();
+                            int mSubject = int.Parse(dataSet.teaching.Rows[i][2].ToString());
+                            //pobieramy wiersz do usuniecia
+                            DataSet.teachingRow deleteRow = this.dataSet.teaching.FindBy_classsubject(mClass, mSubject);
+                            //usuwamy wiersz
+                            deleteRow.Delete();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
                     }
                 }
             }
@@ -135,27 +131,39 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.lessons.Rows.Count; i++)
             {
-                if (dataSet.lessons.Rows[i][column].ToString() == pattern)
+                if (dataSet.lessons.Rows[i].RowState != DataRowState.Deleted)
                 {
-                    try
+                    if (dataSet.lessons.Rows[i][column].ToString() == pattern)
                     {
-                        //pobieramy klucze dla wiersza ktory pasuje
-                        int mLessonNumber = int.Parse(dataSet.lessons.Rows[i][0].ToString());
-                        string mClass = dataSet.lessons.Rows[i][1].ToString();
-                        int mWeekday = int.Parse(dataSet.lessons.Rows[i][3].ToString());
-                        //pobieramy wiersz do usuniecia
-                        DataSet.lessonsRow deleteRow = dataSet.lessons.FindBylesson_number_classweekday(mLessonNumber, mClass, mWeekday);
-                        //usuwamy wiersz
-                        deleteRow.Delete();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
+                        try
+                        {
+                            //pobieramy klucze dla wiersza ktory pasuje
+                            int mLessonNumber = int.Parse(dataSet.lessons.Rows[i][0].ToString());
+                            string mClass = dataSet.lessons.Rows[i][1].ToString();
+                            int mWeekday = int.Parse(dataSet.lessons.Rows[i][3].ToString());
+                            //pobieramy wiersz do usuniecia
+                            DataSet.lessonsRow deleteRow = this.dataSet.lessons.FindBylesson_number_classweekday(mLessonNumber, mClass, mWeekday);
+                            //usuwamy wiersz
+                            deleteRow.Delete();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
                     }
                 }
 
             }
         }
 
+        private void subjectsDataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells["idDataGridViewTextBoxColumn"].Value = getMaxId()+1;
+        }
+
+        private int getMaxId()
+        {
+            return subjectsDataGridView.Rows.Cast<DataGridViewRow>().Max(r => Convert.ToInt32(r.Cells["idDataGridViewTextBoxColumn"].Value));
+        }
     }
 }

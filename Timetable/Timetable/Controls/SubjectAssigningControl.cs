@@ -27,8 +27,7 @@ namespace Timetable
                 LoadData();
                 
             }
-            get { return this.dataSet; }
-            
+                       
         }
 
         private void LoadData()
@@ -50,13 +49,6 @@ namespace Timetable
            
         }
 
-        private void SubjectAssigningControl_Load(object sender, EventArgs e)
-        {
-            //teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
-            //this.teachingTableAdapter.Fill(this.dataSet.teaching);
-
-        }
-
 
         private void dataGridViewDefaultValues(object sender, DataGridViewRowEventArgs e)
         {
@@ -76,7 +68,7 @@ namespace Timetable
                 BindingSource mBindingSource = dataGridViewAssigning.DataSource as BindingSource;
                 mBindingSource.RemoveAt(row.Index);
             }
-            this.dataSet.AcceptChanges();
+            
             
 
         }

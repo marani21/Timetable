@@ -129,9 +129,9 @@
             // 
             // subjectsAddingControl
             // 
-            this.subjectsAddingControl.Location = new System.Drawing.Point(21, 18);
+            this.subjectsAddingControl.Location = new System.Drawing.Point(45, 26);
             this.subjectsAddingControl.Name = "subjectsAddingControl";
-            this.subjectsAddingControl.Size = new System.Drawing.Size(502, 350);
+            this.subjectsAddingControl.Size = new System.Drawing.Size(502, 309);
             this.subjectsAddingControl.TabIndex = 0;
             this.subjectsAddingControl.Load += new System.EventHandler(this.subjectsAddingControl_Load);
             // 

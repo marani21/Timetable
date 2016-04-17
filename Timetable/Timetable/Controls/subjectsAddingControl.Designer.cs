@@ -81,9 +81,9 @@
             // 
             // buttonDeleteSubject
             // 
-            this.buttonDeleteSubject.Location = new System.Drawing.Point(167, 275);
+            this.buttonDeleteSubject.Location = new System.Drawing.Point(377, 273);
             this.buttonDeleteSubject.Name = "buttonDeleteSubject";
-            this.buttonDeleteSubject.Size = new System.Drawing.Size(99, 23);
+            this.buttonDeleteSubject.Size = new System.Drawing.Size(118, 29);
             this.buttonDeleteSubject.TabIndex = 2;
             this.buttonDeleteSubject.Text = "Usuń";
             this.buttonDeleteSubject.UseVisualStyleBackColor = true;
@@ -99,20 +99,23 @@
             this.subjectsDataGridView.DataSource = this.subjectsBindingSource;
             this.subjectsDataGridView.Location = new System.Drawing.Point(4, 4);
             this.subjectsDataGridView.Name = "subjectsDataGridView";
-            this.subjectsDataGridView.Size = new System.Drawing.Size(259, 265);
+            this.subjectsDataGridView.Size = new System.Drawing.Size(244, 265);
             this.subjectsDataGridView.TabIndex = 3;
+            this.subjectsDataGridView.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.subjectsDataGridView_DefaultValuesNeeded);
             // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
             this.idDataGridViewTextBoxColumn.HeaderText = "id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Nazwa przedmiotu";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // SubjectsAddingControl
             // 
@@ -121,8 +124,7 @@
             this.Controls.Add(this.subjectsDataGridView);
             this.Controls.Add(this.buttonDeleteSubject);
             this.Name = "SubjectsAddingControl";
-            this.Size = new System.Drawing.Size(268, 303);
-            this.Load += new System.EventHandler(this.SubjectsAddingControl_Load);
+            this.Size = new System.Drawing.Size(498, 305);
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lessonsBindingSource)).EndInit();

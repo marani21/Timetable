@@ -41,12 +41,12 @@ namespace Timetable
                 DataSet changes = this.dataSet.GetChanges() as DataSet;
                 if (changes != null)
                 {
+                    this.teachingTableAdapter1.Update(this.dataSet.teaching);
+                    this.classesTableAdapter1.Update(this.dataSet.classes);
                     this.subjectsTableAdapter1.Update(this.dataSet.subjects);
                     this.studentsTableAdapter1.Update(this.dataSet.students);
                     this.teachersTableAdapter1.Update(this.dataSet.teachers);
-                    this.teachingTableAdapter1.Update(this.dataSet.teaching);
-                    this.classesTableAdapter1.Update(this.dataSet.classes);
-                }
+                }             
 
             }
             catch (Exception ex)
@@ -100,12 +100,6 @@ namespace Timetable
 
         private void updateData(object sender, EventArgs e)
         {
-            //TabPage mPage = dataTabControl.SelectedTab;
-            //if (mPage != subjectsAssigningTabPage)
-            //{
-            //    this.dataSet = subjectAssigningControl.setDataSet;
-            //}
-            //else subjectAssigningControl.setFilter();
             subjectAssigningControl.clearFilter();
         }
     }
