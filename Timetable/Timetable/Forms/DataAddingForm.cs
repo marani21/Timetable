@@ -20,10 +20,6 @@ namespace Timetable
 		}
 
 
-		private void itemAssignSubjects_Click(object sender, EventArgs e)
-		{
-
-		}
 
         private void subjectsAddingControl_Load(object sender, EventArgs e)
         {
@@ -36,23 +32,8 @@ namespace Timetable
             if (MessageBox.Show("Czy na pewno chcesz zapisać wszystkie dokonane zmiany w bazie?", "Ostrzeżenie",
                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
                 return;
-            try
-            {
-                DataSet changes = this.dataSet.GetChanges() as DataSet;
-                if (changes != null)
-                {
-                    this.teachingTableAdapter1.Update(this.dataSet.teaching);
-                    this.classesTableAdapter1.Update(this.dataSet.classes);
-                    this.subjectsTableAdapter1.Update(this.dataSet.subjects);
-                    this.studentsTableAdapter1.Update(this.dataSet.students);
-                    this.teachersTableAdapter1.Update(this.dataSet.teachers);
-                }             
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+			upadateDataToDataBase();
         
 			this.DialogResult = DialogResult.OK;
 			this.Close();
@@ -104,6 +85,63 @@ namespace Timetable
         }
 
 		private void studentsAddingControl_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void itemAssignSubjects_Click(object sender, EventArgs e)
+		{
+			switchToAnotherForm();
+		}
+
+		private void itemCreateSchedule_Click(object sender, EventArgs e)
+		{
+			switchToAnotherForm();
+		}
+
+		private void upadateDataToDataBase()
+		{
+			try
+			{
+				DataSet changes = this.dataSet.GetChanges() as DataSet;
+				if (changes != null)
+				{
+					this.teachingTableAdapter1.Update(this.dataSet.teaching);
+					this.classesTableAdapter1.Update(this.dataSet.classes);
+					this.subjectsTableAdapter1.Update(this.dataSet.subjects);
+					this.studentsTableAdapter1.Update(this.dataSet.students);
+					this.teachersTableAdapter1.Update(this.dataSet.teachers);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+
+		private void switchToAnotherForm()
+		{
+			if (MessageBox.Show("Czy chcesz zapisać wszystkie dokonane zmiany w bazie?", "Ostrzeżenie",
+			MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
+			{
+				this.DialogResult = DialogResult.Cancel;
+			}
+			else
+			{
+				upadateDataToDataBase();
+
+				this.DialogResult = DialogResult.OK;
+			}
+
+			this.Close();
+			if (closeFormEvent != null)
+			{
+				closeFormEvent();
+			}
+		}
+
+		private void itemMenu_Click(object sender, EventArgs e)
 		{
 
 		}
