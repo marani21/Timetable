@@ -119,6 +119,7 @@
             this.databaseviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database_viewTableAdapter = new Timetable.DataSetTableAdapters.database_viewTableAdapter();
             this.teachersTableAdapter = new Timetable.DataSetTableAdapters.teachersTableAdapter();
+            this.lessonsTableAdapter = new Timetable.DataSetTableAdapters.lessonsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             this.panelSet.SuspendLayout();
@@ -230,7 +231,7 @@
             this.comboBoxSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSubject.FormattingEnabled = true;
             this.comboBoxSubject.Location = new System.Drawing.Point(12, 41);
-            this.comboBoxSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxSubject.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxSubject.Name = "comboBoxSubject";
             this.comboBoxSubject.Size = new System.Drawing.Size(152, 21);
             this.comboBoxSubject.TabIndex = 34;
@@ -243,7 +244,7 @@
             this.comboBoxClassroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClassroom.FormattingEnabled = true;
             this.comboBoxClassroom.Location = new System.Drawing.Point(12, 101);
-            this.comboBoxClassroom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxClassroom.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxClassroom.Name = "comboBoxClassroom";
             this.comboBoxClassroom.Size = new System.Drawing.Size(152, 21);
             this.comboBoxClassroom.TabIndex = 35;
@@ -270,7 +271,7 @@
             this.panelSet.Controls.Add(this.comboBoxSubject);
             this.panelSet.Controls.Add(this.comboBoxClassroom);
             this.panelSet.Location = new System.Drawing.Point(826, 88);
-            this.panelSet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSet.Margin = new System.Windows.Forms.Padding(4);
             this.panelSet.Name = "panelSet";
             this.panelSet.Size = new System.Drawing.Size(224, 181);
             this.panelSet.TabIndex = 36;
@@ -278,7 +279,7 @@
             // buttonSet
             // 
             this.buttonSet.Location = new System.Drawing.Point(12, 139);
-            this.buttonSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSet.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSet.Name = "buttonSet";
             this.buttonSet.Size = new System.Drawing.Size(56, 23);
             this.buttonSet.TabIndex = 40;
@@ -384,7 +385,7 @@
             this.panelCells.Controls.Add(this.labelZeroLesson);
             this.panelCells.Controls.Add(this.label0);
             this.panelCells.Location = new System.Drawing.Point(11, 57);
-            this.panelCells.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCells.Margin = new System.Windows.Forms.Padding(4);
             this.panelCells.Name = "panelCells";
             this.panelCells.Size = new System.Drawing.Size(810, 477);
             this.panelCells.TabIndex = 37;
@@ -396,7 +397,7 @@
             this.cellControl5_7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_7.IsActive = false;
             this.cellControl5_7.Location = new System.Drawing.Point(675, 418);
-            this.cellControl5_7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_7.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_7.Name = "cellControl5_7";
             this.cellControl5_7.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_7.Subject = "Matematyka";
@@ -410,7 +411,7 @@
             this.cellControl4_7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_7.IsActive = false;
             this.cellControl4_7.Location = new System.Drawing.Point(542, 417);
-            this.cellControl4_7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_7.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_7.Name = "cellControl4_7";
             this.cellControl4_7.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_7.Subject = "Matematyka";
@@ -424,7 +425,7 @@
             this.cellControl3_7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_7.IsActive = false;
             this.cellControl3_7.Location = new System.Drawing.Point(408, 417);
-            this.cellControl3_7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_7.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_7.Name = "cellControl3_7";
             this.cellControl3_7.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_7.Subject = "Matematyka";
@@ -438,7 +439,7 @@
             this.cellControl2_7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_7.IsActive = false;
             this.cellControl2_7.Location = new System.Drawing.Point(274, 417);
-            this.cellControl2_7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_7.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_7.Name = "cellControl2_7";
             this.cellControl2_7.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_7.Subject = "Matematyka";
@@ -452,7 +453,7 @@
             this.cellControl1_7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_7.IsActive = false;
             this.cellControl1_7.Location = new System.Drawing.Point(140, 417);
-            this.cellControl1_7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_7.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_7.Name = "cellControl1_7";
             this.cellControl1_7.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_7.Subject = "Matematyka";
@@ -466,7 +467,7 @@
             this.cellControl5_6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_6.IsActive = false;
             this.cellControl5_6.Location = new System.Drawing.Point(675, 359);
-            this.cellControl5_6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_6.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_6.Name = "cellControl5_6";
             this.cellControl5_6.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_6.Subject = "Matematyka";
@@ -480,7 +481,7 @@
             this.cellControl4_6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_6.IsActive = false;
             this.cellControl4_6.Location = new System.Drawing.Point(542, 358);
-            this.cellControl4_6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_6.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_6.Name = "cellControl4_6";
             this.cellControl4_6.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_6.Subject = "Matematyka";
@@ -494,7 +495,7 @@
             this.cellControl3_6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_6.IsActive = false;
             this.cellControl3_6.Location = new System.Drawing.Point(408, 358);
-            this.cellControl3_6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_6.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_6.Name = "cellControl3_6";
             this.cellControl3_6.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_6.Subject = "Matematyka";
@@ -508,7 +509,7 @@
             this.cellControl2_6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_6.IsActive = false;
             this.cellControl2_6.Location = new System.Drawing.Point(274, 358);
-            this.cellControl2_6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_6.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_6.Name = "cellControl2_6";
             this.cellControl2_6.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_6.Subject = "Matematyka";
@@ -522,7 +523,7 @@
             this.cellControl1_6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_6.IsActive = false;
             this.cellControl1_6.Location = new System.Drawing.Point(140, 358);
-            this.cellControl1_6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_6.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_6.Name = "cellControl1_6";
             this.cellControl1_6.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_6.Subject = "Matematyka";
@@ -580,7 +581,7 @@
             this.cellControl5_5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_5.IsActive = false;
             this.cellControl5_5.Location = new System.Drawing.Point(675, 300);
-            this.cellControl5_5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_5.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_5.Name = "cellControl5_5";
             this.cellControl5_5.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_5.Subject = "Matematyka";
@@ -594,7 +595,7 @@
             this.cellControl4_5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_5.IsActive = false;
             this.cellControl4_5.Location = new System.Drawing.Point(542, 299);
-            this.cellControl4_5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_5.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_5.Name = "cellControl4_5";
             this.cellControl4_5.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_5.Subject = "Matematyka";
@@ -608,7 +609,7 @@
             this.cellControl3_5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_5.IsActive = false;
             this.cellControl3_5.Location = new System.Drawing.Point(408, 299);
-            this.cellControl3_5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_5.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_5.Name = "cellControl3_5";
             this.cellControl3_5.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_5.Subject = "Matematyka";
@@ -622,7 +623,7 @@
             this.cellControl2_5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_5.IsActive = false;
             this.cellControl2_5.Location = new System.Drawing.Point(274, 299);
-            this.cellControl2_5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_5.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_5.Name = "cellControl2_5";
             this.cellControl2_5.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_5.Subject = "Matematyka";
@@ -636,7 +637,7 @@
             this.cellControl1_5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_5.IsActive = false;
             this.cellControl1_5.Location = new System.Drawing.Point(140, 299);
-            this.cellControl1_5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_5.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_5.Name = "cellControl1_5";
             this.cellControl1_5.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_5.Subject = "Matematyka";
@@ -650,7 +651,7 @@
             this.cellControl5_4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_4.IsActive = false;
             this.cellControl5_4.Location = new System.Drawing.Point(675, 241);
-            this.cellControl5_4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_4.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_4.Name = "cellControl5_4";
             this.cellControl5_4.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_4.Subject = "Matematyka";
@@ -664,7 +665,7 @@
             this.cellControl4_4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_4.IsActive = false;
             this.cellControl4_4.Location = new System.Drawing.Point(542, 240);
-            this.cellControl4_4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_4.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_4.Name = "cellControl4_4";
             this.cellControl4_4.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_4.Subject = "Matematyka";
@@ -678,7 +679,7 @@
             this.cellControl3_4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_4.IsActive = false;
             this.cellControl3_4.Location = new System.Drawing.Point(408, 240);
-            this.cellControl3_4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_4.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_4.Name = "cellControl3_4";
             this.cellControl3_4.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_4.Subject = "Matematyka";
@@ -692,7 +693,7 @@
             this.cellControl2_4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_4.IsActive = false;
             this.cellControl2_4.Location = new System.Drawing.Point(274, 240);
-            this.cellControl2_4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_4.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_4.Name = "cellControl2_4";
             this.cellControl2_4.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_4.Subject = "Matematyka";
@@ -706,7 +707,7 @@
             this.cellControl1_4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_4.IsActive = false;
             this.cellControl1_4.Location = new System.Drawing.Point(140, 240);
-            this.cellControl1_4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_4.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_4.Name = "cellControl1_4";
             this.cellControl1_4.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_4.Subject = "Matematyka";
@@ -764,7 +765,7 @@
             this.cellControl5_3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_3.IsActive = false;
             this.cellControl5_3.Location = new System.Drawing.Point(675, 182);
-            this.cellControl5_3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_3.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_3.Name = "cellControl5_3";
             this.cellControl5_3.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_3.Subject = "Matematyka";
@@ -778,7 +779,7 @@
             this.cellControl4_3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_3.IsActive = false;
             this.cellControl4_3.Location = new System.Drawing.Point(542, 181);
-            this.cellControl4_3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_3.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_3.Name = "cellControl4_3";
             this.cellControl4_3.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_3.Subject = "Matematyka";
@@ -792,7 +793,7 @@
             this.cellControl3_3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_3.IsActive = false;
             this.cellControl3_3.Location = new System.Drawing.Point(408, 181);
-            this.cellControl3_3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_3.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_3.Name = "cellControl3_3";
             this.cellControl3_3.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_3.Subject = "Matematyka";
@@ -806,7 +807,7 @@
             this.cellControl2_3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_3.IsActive = false;
             this.cellControl2_3.Location = new System.Drawing.Point(274, 181);
-            this.cellControl2_3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_3.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_3.Name = "cellControl2_3";
             this.cellControl2_3.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_3.Subject = "Matematyka";
@@ -820,7 +821,7 @@
             this.cellControl1_3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_3.IsActive = false;
             this.cellControl1_3.Location = new System.Drawing.Point(140, 181);
-            this.cellControl1_3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_3.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_3.Name = "cellControl1_3";
             this.cellControl1_3.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_3.Subject = "Matematyka";
@@ -834,7 +835,7 @@
             this.cellControl5_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_2.IsActive = false;
             this.cellControl5_2.Location = new System.Drawing.Point(675, 123);
-            this.cellControl5_2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_2.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_2.Name = "cellControl5_2";
             this.cellControl5_2.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_2.Subject = "Matematyka";
@@ -848,7 +849,7 @@
             this.cellControl4_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_2.IsActive = false;
             this.cellControl4_2.Location = new System.Drawing.Point(542, 122);
-            this.cellControl4_2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_2.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_2.Name = "cellControl4_2";
             this.cellControl4_2.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_2.Subject = "Matematyka";
@@ -862,7 +863,7 @@
             this.cellControl3_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_2.IsActive = false;
             this.cellControl3_2.Location = new System.Drawing.Point(408, 122);
-            this.cellControl3_2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_2.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_2.Name = "cellControl3_2";
             this.cellControl3_2.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_2.Subject = "Matematyka";
@@ -876,7 +877,7 @@
             this.cellControl2_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_2.IsActive = false;
             this.cellControl2_2.Location = new System.Drawing.Point(274, 122);
-            this.cellControl2_2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_2.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_2.Name = "cellControl2_2";
             this.cellControl2_2.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_2.Subject = "Matematyka";
@@ -890,7 +891,7 @@
             this.cellControl1_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_2.IsActive = false;
             this.cellControl1_2.Location = new System.Drawing.Point(140, 122);
-            this.cellControl1_2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_2.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_2.Name = "cellControl1_2";
             this.cellControl1_2.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_2.Subject = "Matematyka";
@@ -948,7 +949,7 @@
             this.cellControl5_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_1.IsActive = false;
             this.cellControl5_1.Location = new System.Drawing.Point(675, 64);
-            this.cellControl5_1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_1.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_1.Name = "cellControl5_1";
             this.cellControl5_1.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_1.Subject = "Matematyka";
@@ -962,7 +963,7 @@
             this.cellControl4_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_1.IsActive = false;
             this.cellControl4_1.Location = new System.Drawing.Point(542, 63);
-            this.cellControl4_1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_1.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_1.Name = "cellControl4_1";
             this.cellControl4_1.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_1.Subject = "Matematyka";
@@ -976,7 +977,7 @@
             this.cellControl3_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_1.IsActive = false;
             this.cellControl3_1.Location = new System.Drawing.Point(408, 63);
-            this.cellControl3_1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_1.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_1.Name = "cellControl3_1";
             this.cellControl3_1.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_1.Subject = "Matematyka";
@@ -990,7 +991,7 @@
             this.cellControl2_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_1.IsActive = false;
             this.cellControl2_1.Location = new System.Drawing.Point(274, 63);
-            this.cellControl2_1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_1.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_1.Name = "cellControl2_1";
             this.cellControl2_1.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_1.Subject = "Matematyka";
@@ -1004,7 +1005,7 @@
             this.cellControl1_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_1.IsActive = false;
             this.cellControl1_1.Location = new System.Drawing.Point(140, 63);
-            this.cellControl1_1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_1.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_1.Name = "cellControl1_1";
             this.cellControl1_1.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_1.Subject = "Matematyka";
@@ -1018,7 +1019,7 @@
             this.cellControl5_0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl5_0.IsActive = false;
             this.cellControl5_0.Location = new System.Drawing.Point(675, 5);
-            this.cellControl5_0.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl5_0.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl5_0.Name = "cellControl5_0";
             this.cellControl5_0.Size = new System.Drawing.Size(129, 55);
             this.cellControl5_0.Subject = "Matematyka";
@@ -1032,7 +1033,7 @@
             this.cellControl4_0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl4_0.IsActive = false;
             this.cellControl4_0.Location = new System.Drawing.Point(542, 4);
-            this.cellControl4_0.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl4_0.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl4_0.Name = "cellControl4_0";
             this.cellControl4_0.Size = new System.Drawing.Size(129, 55);
             this.cellControl4_0.Subject = "Matematyka";
@@ -1046,7 +1047,7 @@
             this.cellControl3_0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl3_0.IsActive = false;
             this.cellControl3_0.Location = new System.Drawing.Point(408, 4);
-            this.cellControl3_0.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl3_0.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl3_0.Name = "cellControl3_0";
             this.cellControl3_0.Size = new System.Drawing.Size(129, 55);
             this.cellControl3_0.Subject = "Matematyka";
@@ -1060,7 +1061,7 @@
             this.cellControl2_0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl2_0.IsActive = false;
             this.cellControl2_0.Location = new System.Drawing.Point(274, 4);
-            this.cellControl2_0.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl2_0.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl2_0.Name = "cellControl2_0";
             this.cellControl2_0.Size = new System.Drawing.Size(129, 55);
             this.cellControl2_0.Subject = "Matematyka";
@@ -1074,7 +1075,7 @@
             this.cellControl1_0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cellControl1_0.IsActive = false;
             this.cellControl1_0.Location = new System.Drawing.Point(140, 4);
-            this.cellControl1_0.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cellControl1_0.Margin = new System.Windows.Forms.Padding(5);
             this.cellControl1_0.Name = "cellControl1_0";
             this.cellControl1_0.Size = new System.Drawing.Size(129, 55);
             this.cellControl1_0.Subject = "Matematyka";
@@ -1208,6 +1209,10 @@
             // 
             this.teachersTableAdapter.ClearBeforeFill = true;
             // 
+            // lessonsTableAdapter
+            // 
+            this.lessonsTableAdapter.ClearBeforeFill = true;
+            // 
             // ScheduleCreationFormExt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1225,7 +1230,7 @@
             this.Controls.Add(this.labelWednesday);
             this.Controls.Add(this.labelTuesday);
             this.Controls.Add(this.labelMonday);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ScheduleCreationFormExt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ułóż plan dla klasy";
@@ -1340,5 +1345,6 @@
 		private System.Windows.Forms.ToolStripMenuItem itemViewSchedules;
         private System.Windows.Forms.Button buttonSet;
         private DataSetTableAdapters.teachersTableAdapter teachersTableAdapter;
+        private DataSetTableAdapters.lessonsTableAdapter lessonsTableAdapter;
 	}
 }

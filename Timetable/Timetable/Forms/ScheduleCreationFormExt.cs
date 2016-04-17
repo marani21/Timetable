@@ -51,6 +51,7 @@ namespace Timetable.Forms
             // TODO: This line of code loads data into the 'dataSet.database_view' table. You can move, or remove it, as needed.
             this.database_viewTableAdapter.Fill(this.dataSet.database_view);
             this.teachersTableAdapter.Fill(this.dataSet.teachers);
+            this.lessonsTableAdapter.Fill(this.dataSet.lessons);
 
             ClearCellControls();
             FillSchedule();
@@ -87,7 +88,24 @@ namespace Timetable.Forms
                         string teacherId = teacherIdRows[0]["teacher"].ToString();
                         DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
                         string teacher = teacherRows[0]["name"].ToString().Trim() + " " + teacherRows[0]["surname"].ToString().Trim();
+                        string cellName = c.Name;
+                        string weekday = cellName[(cellName.Length - 3)].ToString();
+                        string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
+                        
+                        
+                        if (((CellControl)c).Teacher != "" && ((CellControl)c).Classroom != "" && ((CellControl)c).Subject != "")
+                        {
+                           // MessageBox.Show("Nie puste");
+                            deleteLessonInDataset(className, subjectId, classroom, lessonPeriod, weekday);
+                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
+
+                        }
+                        else
+                        {
+                            addLessonToDataset(className, subjectId, classroom, lessonPeriod, weekday);
+                        }
                         ((CellControl)c).SetData(subject, teacher, classroom);
+                        FillSubjects();
                     }
                     catch(Exception exc)
                     {
@@ -100,6 +118,58 @@ namespace Timetable.Forms
 
 
         }
+
+        //metoda dodaje do tabeli lessons nowy wpis
+        private void addLessonToDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
+        {
+            //TODO: sprawdzić, czy nauczyciel, sala są już zajęci
+            try
+            {
+                DataRow newLessonsRow = dataSet.lessons.NewRow();
+                newLessonsRow["lesson_number"] = lessonNumber;
+                newLessonsRow["class"] = className;
+                newLessonsRow["subject"] = subjectId;
+                newLessonsRow["weekday"] = weekday;
+                newLessonsRow["classroom"] = classroom;
+
+                dataSet.lessons.Rows.Add(newLessonsRow);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        //metoda usuwa dany wpis
+        private void deleteLessonInDataset(string className, string subjectId, string classroom, string lessonNumber, string weekday)
+        {
+            //sprawdzić czy nauczyciel/sala są już zajęci
+            try
+            {
+                dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        //metoda, która sprawdza ile jeszcze dostępnych jest przedniotów dla danej klasy
+        private int howMany(string className, string subjectId)
+        {
+            try
+            {
+                DataRow[] amountRow = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
+                string amount = amountRow[0]["amount"].ToString();
+                DataRow[] lessonsAdded = dataSet.lessons.Select("class = '" + className + "' and subject =" + subjectId);
+                return int.Parse(amount) - lessonsAdded.Length;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return -1;
+         }
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
@@ -148,9 +218,27 @@ namespace Timetable.Forms
             }
         }
 
+
         private void FillSchedule()
         {
-            foreach (DataRow dataRow in dataSet.database_view)
+            //foreach (DataRow dataRow in dataSet.database_view)
+            //{
+            //    if (dataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
+            //    {
+            //        string name = "cellControl";
+            //        name += dataRow["weekday"];
+            //        name += "_";
+            //        name += dataRow["lesson_number"];
+
+            //        string subject = dataRow["subject_name"].ToString().Trim();
+            //        string teacher = dataRow["teacher_name"].ToString().Trim() + " " + dataRow["teacher_surname"].ToString().Trim();
+            //        string classroom = dataRow["classroom"].ToString().Trim();
+
+            //        CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
+            //        cellControl.SetData(subject, teacher, classroom);
+            //    }
+            //}
+            foreach (DataRow dataRow in dataSet.lessons)
             {
                 if (dataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
                 {
@@ -159,14 +247,23 @@ namespace Timetable.Forms
                     name += "_";
                     name += dataRow["lesson_number"];
 
-                    string subject = dataRow["subject_name"].ToString().Trim();
-                    string teacher = dataRow["teacher_name"].ToString().Trim() + " " + dataRow["teacher_surname"].ToString().Trim();
+                    string subjectId = dataRow["subject"].ToString().Trim();
+                    DataRow[] subjectRow = dataSet.subjects.Select("id=" + subjectId);
+                    string subject = subjectRow[0]["name"].ToString().Trim();
+
+
                     string classroom = dataRow["classroom"].ToString().Trim();
+
+                    DataRow[] teacherIdRows = dataSet.teaching.Select("class = '" + dataRow["class"].ToString().Trim() + "' and subject=" + subjectId);
+                    string teacherId = teacherIdRows[0]["teacher"].ToString();
+                    DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
+                    string teacher = teacherRows[0]["name"].ToString().Trim() + " " + teacherRows[0]["surname"].ToString().Trim();
 
                     CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
                     cellControl.SetData(subject, teacher, classroom);
                 }
             }
+
         }
 
         private void FillSubjects()
@@ -176,8 +273,10 @@ namespace Timetable.Forms
             {
                 if (teachingDataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
                 {
-                    int amount = Int32.Parse(teachingDataRow["amount"].ToString());
+                    //int amount = Int32.Parse(teachingDataRow["amount"].ToString());
                     int id = Int32.Parse(teachingDataRow["subject"].ToString());
+                    //zamiast amount bierzemy liczbę przedmiotów, jaka jeszcze została do przydzielenia
+                    int amount = howMany(teachingDataRow["class"].ToString(), id.ToString());
                     for (int i = 0; i < amount; i++)
                     {
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
@@ -193,5 +292,6 @@ namespace Timetable.Forms
             comboBoxSubject.DisplayMember = "Value";
             comboBoxSubject.ValueMember = "Key";
         }
+
 	}
 }
