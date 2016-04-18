@@ -100,7 +100,14 @@ namespace Timetable.Forms
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            // wywołanie TableAdapter.Update() 
+            try
+            {
+                lessonsTableAdapter.Update(dataSet.lessons);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
