@@ -120,6 +120,7 @@
             this.database_viewTableAdapter = new Timetable.DataSetTableAdapters.database_viewTableAdapter();
             this.teachersTableAdapter = new Timetable.DataSetTableAdapters.teachersTableAdapter();
             this.lessonsTableAdapter = new Timetable.DataSetTableAdapters.lessonsTableAdapter();
+            this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.classroomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             this.panelSet.SuspendLayout();
@@ -231,7 +232,7 @@
             this.comboBoxSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSubject.FormattingEnabled = true;
             this.comboBoxSubject.Location = new System.Drawing.Point(16, 50);
-            this.comboBoxSubject.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxSubject.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxSubject.Name = "comboBoxSubject";
             this.comboBoxSubject.Size = new System.Drawing.Size(201, 24);
             this.comboBoxSubject.TabIndex = 34;
@@ -244,7 +245,7 @@
             this.comboBoxClassroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClassroom.FormattingEnabled = true;
             this.comboBoxClassroom.Location = new System.Drawing.Point(16, 124);
-            this.comboBoxClassroom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxClassroom.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxClassroom.Name = "comboBoxClassroom";
             this.comboBoxClassroom.Size = new System.Drawing.Size(201, 24);
             this.comboBoxClassroom.TabIndex = 35;
@@ -263,6 +264,7 @@
             // panelSet
             // 
             this.panelSet.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.panelSet.Controls.Add(this.buttonDelete);
             this.panelSet.Controls.Add(this.buttonSet);
             this.panelSet.Controls.Add(this.buttonCleanClassroom);
             this.panelSet.Controls.Add(this.buttonPutSubject);
@@ -271,7 +273,7 @@
             this.panelSet.Controls.Add(this.comboBoxSubject);
             this.panelSet.Controls.Add(this.comboBoxClassroom);
             this.panelSet.Location = new System.Drawing.Point(1101, 108);
-            this.panelSet.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelSet.Margin = new System.Windows.Forms.Padding(5);
             this.panelSet.Name = "panelSet";
             this.panelSet.Size = new System.Drawing.Size(299, 223);
             this.panelSet.TabIndex = 36;
@@ -290,7 +292,7 @@
             // buttonCleanClassroom
             // 
             this.buttonCleanClassroom.Location = new System.Drawing.Point(227, 121);
-            this.buttonCleanClassroom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCleanClassroom.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCleanClassroom.Name = "buttonCleanClassroom";
             this.buttonCleanClassroom.Size = new System.Drawing.Size(47, 28);
             this.buttonCleanClassroom.TabIndex = 39;
@@ -300,7 +302,7 @@
             // buttonPutSubject
             // 
             this.buttonPutSubject.Location = new System.Drawing.Point(227, 47);
-            this.buttonPutSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPutSubject.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPutSubject.Name = "buttonPutSubject";
             this.buttonPutSubject.Size = new System.Drawing.Size(47, 28);
             this.buttonPutSubject.TabIndex = 38;
@@ -387,7 +389,7 @@
             this.panelCells.Controls.Add(this.labelZeroLesson);
             this.panelCells.Controls.Add(this.label0);
             this.panelCells.Location = new System.Drawing.Point(15, 70);
-            this.panelCells.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelCells.Margin = new System.Windows.Forms.Padding(5);
             this.panelCells.Name = "panelCells";
             this.panelCells.Size = new System.Drawing.Size(1080, 587);
             this.panelCells.TabIndex = 37;
@@ -1092,7 +1094,7 @@
             this.comboBoxClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClass.FormattingEnabled = true;
             this.comboBoxClass.Location = new System.Drawing.Point(1105, 73);
-            this.comboBoxClass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxClass.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxClass.Name = "comboBoxClass";
             this.comboBoxClass.Size = new System.Drawing.Size(221, 24);
             this.comboBoxClass.TabIndex = 38;
@@ -1144,7 +1146,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(1105, 674);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(140, 41);
             this.buttonCancel.TabIndex = 40;
@@ -1155,7 +1157,7 @@
             // buttonOK
             // 
             this.buttonOK.Location = new System.Drawing.Point(1260, 674);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(140, 41);
             this.buttonOK.TabIndex = 41;
@@ -1219,6 +1221,17 @@
             // 
             this.lessonsTableAdapter.ClearBeforeFill = true;
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(97, 171);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 28);
+            this.buttonDelete.TabIndex = 41;
+            this.buttonDelete.Text = "Usuń";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // ScheduleCreationFormExt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1236,7 +1249,7 @@
             this.Controls.Add(this.labelWednesday);
             this.Controls.Add(this.labelTuesday);
             this.Controls.Add(this.labelMonday);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ScheduleCreationFormExt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ułóż plan dla klasy";
@@ -1352,5 +1365,6 @@
         private System.Windows.Forms.Button buttonSet;
         private DataSetTableAdapters.teachersTableAdapter teachersTableAdapter;
         private DataSetTableAdapters.lessonsTableAdapter lessonsTableAdapter;
+        private System.Windows.Forms.Button buttonDelete;
 	}
 }

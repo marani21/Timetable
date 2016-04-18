@@ -83,9 +83,41 @@ namespace Timetable.Forms
                         string weekday = cellName[(cellName.Length - 3)].ToString();
                         string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
 
+                        if (isPossibleToAdd(className, teacherId, classroom, weekday, lessonPeriod))
+                        {
+                            DeleteLessonFromDataSet(className, lessonPeriod, weekday);
+                            AddLessonToDataSet(className, subjectId, classroom, lessonPeriod, weekday);
+                            ((CellControl)c).SetData(subject, teacher, classroom);
+                            FillSubjects();
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show(exc.Message);
+                    }
+                }
+            }
+            if (!isAnyChosen)
+                MessageBox.Show("Nie wybrano żadnej komórki");
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            bool isAnyChosen = false;
+            foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
+            {
+                if (c is CellControl && ((CellControl)c).IsActive == true)
+                {
+                    isAnyChosen = true;
+                    try
+                    {
+                        string cellName = c.Name;
+                        string className = comboBoxClass.Text;
+                        string weekday = cellName[(cellName.Length - 3)].ToString();
+                        string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
+
                         DeleteLessonFromDataSet(className, lessonPeriod, weekday);
-                        AddLessonToDataSet(className, subjectId, classroom, lessonPeriod, weekday);
-                        ((CellControl)c).SetData(subject, teacher, classroom);
+                        ((CellControl)c).Clear();
                         FillSubjects();
                     }
                     catch (Exception exc)
@@ -167,7 +199,7 @@ namespace Timetable.Forms
                     try
                     {
                         string subjectId = dataRow["subject"].ToString().Trim();
-                        string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString();
+                        string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString().Trim();
                         string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0]["teacher"].ToString();
                         string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
                             dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
@@ -262,6 +294,20 @@ namespace Timetable.Forms
                 MessageBox.Show(e.Message);
             }
             return -1;
+        }
+
+        private bool isPossibleToAdd(string className, string teacherId, string classroom, string weekday, string lessonNumber)
+        {
+            DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
+            if (findClassrooms.Length > 0)
+            {
+                MessageBox.Show("Sala jest zajęta.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
