@@ -192,30 +192,33 @@ namespace Timetable.Forms
         {
             foreach (DataRow dataRow in dataSet.lessons)
             {
-                string className = comboBoxClass.Text;
-                if (dataRow["class"].ToString() == className)
+                if (dataRow.RowState != DataRowState.Deleted)
                 {
-                    string name = "cellControl";
-                    name += dataRow["weekday"];
-                    name += "_";
-                    name += dataRow["lesson_number"];
-
-                    try
+                    string className = comboBoxClass.Text;
+                    if (dataRow["class"].ToString() == className)
                     {
-                        string subjectId = dataRow["subject"].ToString().Trim();
-                        string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString().Trim();
-                        string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0]["teacher"].ToString();
-                        string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
-                            dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
+                        string name = "cellControl";
+                        name += dataRow["weekday"];
+                        name += "_";
+                        name += dataRow["lesson_number"];
 
-                        string classroom = dataRow["classroom"].ToString().Trim();
+                        try
+                        {
+                            string subjectId = dataRow["subject"].ToString().Trim();
+                            string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString().Trim();
+                            string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0]["teacher"].ToString();
+                            string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
+                                dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
 
-                        CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
-                        cellControl.SetData(subject, teacher, classroom);
-                    }
-                    catch (Exception e)
-                    {
+                            string classroom = dataRow["classroom"].ToString().Trim();
 
+                            CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
+                            cellControl.SetData(subject, teacher, classroom);
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
                     }
                 }
             }
