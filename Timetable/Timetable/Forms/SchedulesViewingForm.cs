@@ -154,40 +154,43 @@ namespace Timetable
         private void listView_objectsToView_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearAllCellControls();
-            switch(objectToView)
+            if (this.listView_objectsToView.SelectedItems.Count > 0)
             {
-                case ObjectsToView.CLASS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["class"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                switch (objectToView)
+                {
+                    case ObjectsToView.CLASS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            SetDataInCell(dataRow);
-                        }
-                       
-                    }
-                    break;
+                            if (dataRow["class"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
 
-                case ObjectsToView.TEACHERS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["teacher_pesel"].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
-                        {
-                            SetDataInCell(dataRow);
                         }
-                       
-                    }
-                    break;
+                        break;
 
-                case ObjectsToView.CLASSROOMS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["classroom"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                    case ObjectsToView.TEACHERS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            SetDataInCell(dataRow);
+                            if (dataRow["teacher_pesel"].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
+
                         }
-                       
-                    }
-                    break;
+                        break;
+
+                    case ObjectsToView.CLASSROOMS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
+                        {
+                            if (dataRow["classroom"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
+
+                        }
+                        break;
+                }
             }
         }
 
