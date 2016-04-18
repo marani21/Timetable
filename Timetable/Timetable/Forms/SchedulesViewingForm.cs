@@ -81,9 +81,9 @@ namespace Timetable
                     button_setClassromsView.Enabled = true;
 
 
-                    listView_objectsToView.Columns.Add("name");
-                    listView_objectsToView.Columns.Add("surname");
-                    listView_objectsToView.Columns.Add("ID");
+                    listView_objectsToView.Columns.Add("Imię");
+                    listView_objectsToView.Columns.Add("Nazwisko");
+                    listView_objectsToView.Columns.Add("Pesel");
 
                     listView_objectsToView.Columns[0].Width = 60;
                     listView_objectsToView.Columns[1].Width = 60;
@@ -103,7 +103,7 @@ namespace Timetable
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = false;
 
-                    listView_objectsToView.Columns.Add("classrooms");
+                    listView_objectsToView.Columns.Add("Sale");
                     listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                     foreach (DataRow dataRow in dataSet1.classrooms)
@@ -200,7 +200,7 @@ namespace Timetable
             cellControlName += dataRow["lesson_number"];
 
             //okreslenie danych
-            string subject = dataRow["subject_name"].ToString();
+            string subject = dataRow["subject_name"].ToString().Trim();
             string teacher = dataRow["teacher_surname"].ToString().Trim() + " " + dataRow["teacher_name"].ToString().Trim();
             string classroom = dataRow["classroom"].ToString();
 
