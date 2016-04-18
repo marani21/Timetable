@@ -91,6 +91,10 @@ namespace Timetable.Forms
                             FillSubjects();
                         }
                     }
+                    catch (IndexOutOfRangeException outexc)
+                    {
+
+                    }
                     catch (Exception exc)
                     {
                         MessageBox.Show(exc.Message);
@@ -247,7 +251,6 @@ namespace Timetable.Forms
         //metoda dodaje do tabeli lessons nowy wpis
         private void AddLessonToDataSet(string className, string subjectId, string classroom, string lessonNumber, string weekday)
         {
-            //TODO: sprawdzić, czy nauczyciel, sala są już zajęci
             try
             {
                 DataRow newLessonsRow = dataSet.lessons.NewRow();
@@ -268,7 +271,6 @@ namespace Timetable.Forms
         //metoda usuwa dany wpis
         private void DeleteLessonFromDataSet(string className, string lessonNumber, string weekday)
         {
-            //sprawdzić czy nauczyciel/sala są już zajęci
             try
             {
                 dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
@@ -298,15 +300,41 @@ namespace Timetable.Forms
 
         private bool isPossibleToAdd(string className, string teacherId, string classroom, string weekday, string lessonNumber)
         {
+            bool flagClassroom;
+            bool flagTeacher = true;
+
+            // Sprawdzanie czy sala jest zajęta przez inną klasę.
             DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             if (findClassrooms.Length > 0)
             {
                 MessageBox.Show("Sala jest zajęta.");
-                return false;
+                flagClassroom = false;
             }
             else
             {
+                flagClassroom = true;
+            }
+
+            // Sprawdzanie czy nauczyciel jest zajęty przez inną klasę.
+            DataRow[] findTeachers = dataSet.lessons.Select("class <> '" + className + "' and weekday = " + weekday + " and lesson_number = " + lessonNumber);
+            foreach (DataRow dataRow in findTeachers)
+            {
+                string classTmp = dataRow["class"].ToString().Trim();
+                string subjectIdTmp = dataRow["subject"].ToString().Trim();
+                string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0]["teacher"].ToString();
+                if (teacherId == teacherPesel)
+                {
+                    MessageBox.Show("Nauczyciel jest zajęty.");
+                    flagTeacher = false;
+                }
+            }
+            if (flagClassroom && flagTeacher)
+            {
                 return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
