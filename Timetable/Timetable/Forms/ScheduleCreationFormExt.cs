@@ -147,7 +147,6 @@ namespace Timetable.Forms
 
         private void FillSchedule()
         {
-            //foreach (DataRow dataRow in dataSet.database_view)
             foreach (DataRow dataRow in dataSet.lessons)
             {
                 string className = comboBoxClass.Text;
@@ -158,16 +157,23 @@ namespace Timetable.Forms
                     name += "_";
                     name += dataRow["lesson_number"];
 
-                    string subjectId = dataRow["subject"].ToString().Trim();
-                    string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString();
-                    string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = 1")[0]["teacher"].ToString();
-                    string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
-                        dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
+                    try
+                    {
+                        string subjectId = dataRow["subject"].ToString().Trim();
+                        string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString();
+                        string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0]["teacher"].ToString();
+                        string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
+                            dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
 
-                    string classroom = dataRow["classroom"].ToString().Trim();
+                        string classroom = dataRow["classroom"].ToString().Trim();
 
-                    CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
-                    cellControl.SetData(subject, teacher, classroom);
+                        CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
+                        cellControl.SetData(subject, teacher, classroom);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
             }
         }
