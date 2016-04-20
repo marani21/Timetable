@@ -13,11 +13,11 @@ namespace Timetable
 {
 	public partial class SchedulesViewingForm : Form
 	{
-		public static event EventDelegate closeFormEvent;
+		public static event EventDelegate closeFormEvent;//event zamkniecia formy
 
-        enum ObjectsToView { CLASS, TEACHERS, CLASSROOMS}
+        enum ObjectsToView { CLASS, TEACHERS, CLASSROOMS} // enum pomagajacy w wyborze selekcji danych
 
-        private ObjectsToView objectToView;
+        private ObjectsToView objectToView;  //aktualnie wybrane kryterium do filtrowania
         
 
 		public SchedulesViewingForm()
@@ -36,6 +36,8 @@ namespace Timetable
 
 		private void SchedulesViewingForm_Load(object sender, EventArgs e)
 		{
+           try
+           { 
             // TODO: This line of code loads data into the 'dataSet1.lessons' table. You can move, or remove it, as needed.
             this.lessonsTableAdapter.Fill(this.dataSet1.lessons);
 			// TODO: This line of code loads data into the 'dataSet.students' table. You can move, or remove it, as needed.
@@ -47,26 +49,34 @@ namespace Timetable
             this.classroomsTableAdapter.Fill(this.dataSet1.classrooms);
 
             this.database_viewTableAdapter.Fill(this.dataSet1.database_view);
-            ClearAllCellControls();
+            }catch(Exception ex)
+           {
+               MessageBox.Show(ex.ToString());//message box zkodem bledu
+           }
+
+            ClearAllCellControls(); //na poczatku czyscimy wszystkie kontrolki z danymi
 		}
 
+
+        // metoda wywołana po wyborze kryterium do pokazania danych z planu
         private void ChangeGroupToView_Click()
         {
-            ClearAllCellControls();
+            ClearAllCellControls(); //czyscimy wszystkie kontrolki z danymi
 
-            listView_objectsToView.Clear();
+            listView_objectsToView.Clear(); // czyscimy liste z objektami do wyswietlania
 
             switch(objectToView)
             {
-                case ObjectsToView.CLASS:
-                    button_setClassesView.Enabled = false;
+                case ObjectsToView.CLASS:// jezeli wybrano jako filtr klase
+                    //ponizej blokowany jest button z wybranym kryterium, pozostale zostaja odblokowane
+                    button_setClassesView.Enabled = false; 
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = true;
 
-                    listView_objectsToView.Columns.Add("class");
-                    listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                    listView_objectsToView.Columns.Add("class"); //dodajemy kolumne dolisty
+                    listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// ustawiamy wielkosc kolumny-auto size
 
-                    foreach (DataRow dataRow in dataSet1.classes)
+                    foreach (DataRow dataRow in dataSet1.classes)//do listy z danymi wstawiamy wszystkie klasy
                     {
                         ListViewItem item = new ListViewItem();
                         item.Text = dataRow[0].ToString();
@@ -74,20 +84,21 @@ namespace Timetable
                     }
                     break;
 
-                case ObjectsToView.TEACHERS:
+                case ObjectsToView.TEACHERS: // jezeli wybrano jako filtr nauczyciela
+                    //ponizej blokowany jest button z wybranym kryterium, pozostale zostaja odblokowane
                     button_setClassesView.Enabled = true;
                     button_setTeacherView.Enabled = false;
                     button_setClassromsView.Enabled = true;
 
 
-                    listView_objectsToView.Columns.Add("Imię");
-                    listView_objectsToView.Columns.Add("Nazwisko");
-                    listView_objectsToView.Columns.Add("Pesel");
+                    listView_objectsToView.Columns.Add("Imię");//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add("Nazwisko");//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add("Pesel");//dodajemy kolumne dolisty
 
-                    listView_objectsToView.Columns[0].Width = 60;
-                    listView_objectsToView.Columns[1].Width = 60;
+                    listView_objectsToView.Columns[0].Width = 60;// ustawiamy wielkosc kolumny
+                    listView_objectsToView.Columns[1].Width = 60;// ustawiamy wielkosc kolumny
 
-                    foreach (DataRow dataRow in dataSet1.teachers)
+                    foreach (DataRow dataRow in dataSet1.teachers)//do listy z danymi wstawiamy wszystkich nauczycieli
                     {
                         ListViewItem item = new ListViewItem();
                         item.Text = dataRow["surname"].ToString();
@@ -97,17 +108,18 @@ namespace Timetable
                     }
                     break;
 
-                case ObjectsToView.CLASSROOMS:
+                case ObjectsToView.CLASSROOMS: //jezeli wybrano jako filtr sale lekcyjna
+                    //ponizej blokowany jest button z wybranym kryterium, pozostale zostaja odblokowane
                     button_setClassesView.Enabled = true;
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = false;
 
-                    listView_objectsToView.Columns.Add("Sale");
-                    listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                    listView_objectsToView.Columns.Add("Sale");//dodajemy kolumne dolisty
+                    listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// ustawiamy wielkosc kolumny-auto size
 
-                    foreach (DataRow dataRow in dataSet1.classrooms)
+                    foreach (DataRow dataRow in dataSet1.classrooms)//do listy z danymi wstawiamy wszystkie sale lekcyjne
                     {
-                        ListViewItem item = new ListViewItem();
+                        ListViewItem item = new ListViewItem(); 
                         item.Text = dataRow[0].ToString();
                         listView_objectsToView.Items.Add(item);
                     }
@@ -115,29 +127,29 @@ namespace Timetable
             }
         }
 
+        //button - filtr dla klas
         private void button_setClassesView_Click(object sender, EventArgs e)
         {
-            objectToView = ObjectsToView.CLASS;
+            objectToView = ObjectsToView.CLASS;//ustawienie jakoobecnego kryterium
             ChangeGroupToView_Click();
         }
 
+        //button - filtr dla nauczycieli
         private void button_setTeacherView_Click(object sender, EventArgs e)
         {
-            objectToView = ObjectsToView.TEACHERS;
+            objectToView = ObjectsToView.TEACHERS;//ustawienie jakoobecnego kryterium
             ChangeGroupToView_Click();
         }
 
+        //button - filtr dla sal lekcyjnych
         private void button_setClassromsView_Click(object sender, EventArgs e)
         {
-            objectToView = ObjectsToView.CLASSROOMS;
+            objectToView = ObjectsToView.CLASSROOMS; //ustawienie jakoobecnego kryterium 
             ChangeGroupToView_Click();
         }
 
-        private void comboBox_objectsToView_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
+        //czysci wszystkie kontrolki przedstawiajace zajecia
         private void ClearAllCellControls()
         {
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
@@ -150,14 +162,17 @@ namespace Timetable
             }
         }
 
+
+        //metoda reagujaca na zmiane itemu z listy przedtawiajacej dane (liste sal, nauczycieli, klas) dla ktorych przedstawiony zostanie plan
         private void listView_objectsToView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClearAllCellControls();
-            if (this.listView_objectsToView.SelectedItems.Count > 0)
+            ClearAllCellControls(); //czyscimy wszystkie komorki
+            if (this.listView_objectsToView.SelectedItems.Count > 0)// jezeli zaznaczono jakis item (zabezpieczenie)
             {
+                // dlakazdej grupy jest inna petla z uwagi na to ze dla kazdej grupy inacznej zbudowano liste przedstawiajaca wszystkich jej czlonkow
                 switch (objectToView)
                 {
-                    case ObjectsToView.CLASS:
+                    case ObjectsToView.CLASS: // loop dla klas
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
                             if (dataRow["class"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
@@ -168,7 +183,7 @@ namespace Timetable
                         }
                         break;
 
-                    case ObjectsToView.TEACHERS:
+                    case ObjectsToView.TEACHERS:// loop dla nauczycieli
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
                             if (dataRow["teacher_pesel"].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
@@ -179,7 +194,7 @@ namespace Timetable
                         }
                         break;
 
-                    case ObjectsToView.CLASSROOMS:
+                    case ObjectsToView.CLASSROOMS:// loop dla sal lekcyjnych
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
                             if (dataRow["classroom"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
@@ -193,6 +208,8 @@ namespace Timetable
             }
         }
 
+
+        //ustawia dane dla poszczegolnej kontrolki
         private void SetDataInCell(DataRow dataRow)
         {
             //okreslenie nazwy dla kontrolki
