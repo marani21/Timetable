@@ -20,6 +20,7 @@ namespace Timetable.Controls
         public string Teacher { get { return this.labelTeacher.Text; } set { this.labelTeacher.Text = value; } }
         public string Classroom { get { return this.labelClassroom.Text; } set { this.labelClassroom.Text = value; } }
 
+        public bool IsActive { get; set; }
 
 		public CellControl()
 		{

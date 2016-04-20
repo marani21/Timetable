@@ -80,9 +80,9 @@ namespace Timetable
                     button_setClassromsView.Enabled = true;
 
 
-                    listView_objectsToView.Columns.Add("name");
-                    listView_objectsToView.Columns.Add("surname");
-                    listView_objectsToView.Columns.Add("ID");
+                    listView_objectsToView.Columns.Add("Imię");
+                    listView_objectsToView.Columns.Add("Nazwisko");
+                    listView_objectsToView.Columns.Add("Pesel");
 
                     listView_objectsToView.Columns[0].Width = 60;
                     listView_objectsToView.Columns[1].Width = 60;
@@ -102,7 +102,7 @@ namespace Timetable
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = false;
 
-                    listView_objectsToView.Columns.Add("classrooms");
+                    listView_objectsToView.Columns.Add("Sale");
                     listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                     foreach (DataRow dataRow in dataSet1.classrooms)
@@ -153,40 +153,43 @@ namespace Timetable
         private void listView_objectsToView_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearAllCellControls();
-            switch(objectToView)
+            if (this.listView_objectsToView.SelectedItems.Count > 0)
             {
-                case ObjectsToView.CLASS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["class"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                switch (objectToView)
+                {
+                    case ObjectsToView.CLASS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            SetDataInCell(dataRow);
-                        }
-                       
-                    }
-                    break;
+                            if (dataRow["class"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
 
-                case ObjectsToView.TEACHERS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["teacher_pesel"].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
-                        {
-                            SetDataInCell(dataRow);
                         }
-                       
-                    }
-                    break;
+                        break;
 
-                case ObjectsToView.CLASSROOMS:
-                    foreach(DataRow dataRow in dataSet1.database_view)
-                    {
-                        if(dataRow["classroom"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                    case ObjectsToView.TEACHERS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            SetDataInCell(dataRow);
+                            if (dataRow["teacher_pesel"].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
+
                         }
-                       
-                    }
-                    break;
+                        break;
+
+                    case ObjectsToView.CLASSROOMS:
+                        foreach (DataRow dataRow in dataSet1.database_view)
+                        {
+                            if (dataRow["classroom"].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            {
+                                SetDataInCell(dataRow);
+                            }
+
+                        }
+                        break;
+                }
             }
         }
 
@@ -199,7 +202,7 @@ namespace Timetable
             cellControlName += dataRow["lesson_number"];
 
             //okreslenie danych
-            string subject = dataRow["subject_name"].ToString();
+            string subject = dataRow["subject_name"].ToString().Trim();
             string teacher = dataRow["teacher_surname"].ToString().Trim() + " " + dataRow["teacher_name"].ToString().Trim();
             string classroom = dataRow["classroom"].ToString();
 
