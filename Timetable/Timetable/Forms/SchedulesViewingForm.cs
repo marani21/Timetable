@@ -48,7 +48,6 @@ namespace Timetable
 
             this.database_viewTableAdapter.Fill(this.dataSet1.database_view);
             ClearAllCellControls();
-
 		}
 
         private void ChangeGroupToView_Click()
