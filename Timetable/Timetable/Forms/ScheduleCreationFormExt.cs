@@ -226,6 +226,7 @@ namespace Timetable.Forms
 
         private void FillSubjects()
         {
+			bool noSubjectsLeft = true;
             List<KeyValuePair<int, string>> classSubjects = new List<KeyValuePair<int, string>>();
             foreach (DataRow teachingDataRow in dataSet.teaching.Rows)
             {
@@ -235,6 +236,10 @@ namespace Timetable.Forms
                     int id = Int32.Parse(teachingDataRow["subject"].ToString());
                     //zamiast amount bierzemy liczbę przedmiotów, jaka jeszcze została do przydzielenia
                     int amount = HowMany(teachingDataRow["class"].ToString(), id.ToString());
+					if(amount>0)
+					{
+						noSubjectsLeft = false;
+					}
                     for (int i = 0; i < amount; i++)
                     {
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
@@ -249,6 +254,15 @@ namespace Timetable.Forms
             comboBoxSubject.DataSource = classSubjects;
             comboBoxSubject.DisplayMember = "Value";
             comboBoxSubject.ValueMember = "Key";
+
+			if(noSubjectsLeft)
+			{
+				buttonSet.Enabled = false;
+			}
+			else
+			{
+				buttonSet.Enabled = true;
+			}
         }
 
         //metoda dodaje do tabeli lessons nowy wpis
