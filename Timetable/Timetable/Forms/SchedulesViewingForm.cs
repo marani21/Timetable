@@ -251,7 +251,8 @@ namespace Timetable
                 //jezeli indeks mniejszy odilości labeli
                 if (i < lessonPeriodsLabelsList.Count)
                 {
-                    lessonPeriodsLabelsList[i].Text = dataRow[1].ToString().Remove(5) + " - " + dataRow[2].ToString().Remove(5);
+					int id = int.Parse(dataRow[0].ToString());
+                    lessonPeriodsLabelsList[id].Text = dataRow[1].ToString().Remove(5) + " - " + dataRow[2].ToString().Remove(5);
                     i++;
                 }               
                 else
