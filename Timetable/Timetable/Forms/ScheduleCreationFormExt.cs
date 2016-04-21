@@ -19,6 +19,7 @@ namespace Timetable.Forms
 
         private const string CLASSROOM_BUSY = "Sala jest zajęta przez ";
         private const string TEACHER_BUSY = "Nauczyciel jest zajęty ";
+        private const string CELL_NOT_CHOSEN = "Nie wybrano żadnej komórki";
 
         #endregion
 
@@ -115,7 +116,7 @@ namespace Timetable.Forms
                 }
             }
             if (!isAnyChosen)
-                MessageBox.Show("Nie wybrano żadnej komórki");
+                MessageBox.Show(CELL_NOT_CHOSEN);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -144,7 +145,7 @@ namespace Timetable.Forms
                 }
             }
             if (!isAnyChosen)
-                MessageBox.Show("Nie wybrano żadnej komórki");
+                MessageBox.Show(CELL_NOT_CHOSEN);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -351,7 +352,7 @@ namespace Timetable.Forms
             DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             if (findClassrooms.Length > 0)
             {
-                MessageBox.Show(CLASSROOM_BUSY);
+                MessageBox.Show(CLASSROOM_BUSY+findClassrooms[0]["class"].ToString());
                 flagClassroom = false;
             }
             else
@@ -368,7 +369,7 @@ namespace Timetable.Forms
                 string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0]["teacher"].ToString();
                 if (teacherId == teacherPesel)
                 {
-                    MessageBox.Show(TEACHER_BUSY);
+                    MessageBox.Show(TEACHER_BUSY+classTmp);
                     flagTeacher = false;
                 }
             }
