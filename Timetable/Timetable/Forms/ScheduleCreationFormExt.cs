@@ -15,11 +15,22 @@ namespace Timetable.Forms
     {
         public static event EventDelegate closeFormEvent;
 
+        #region Stałe
+
+        private const string CLASSROOM_BUSY = "Sala jest zajęta przez ";
+        private const string TEACHER_BUSY = "Nauczyciel jest zajęty ";
+
+        #endregion
+
+        #region Konstruktor
+
         public ScheduleCreationFormExt()
         {
             InitializeComponent();
             CellControl.CellClickEvent += CellControl_CellClickEvent;
         }
+
+        #endregion
 
         private void CellControl_CellClickEvent(string controlName)
         {
@@ -37,6 +48,8 @@ namespace Timetable.Forms
             cell.Activate();
             cell.IsActive = true;
         }
+
+        #region Metody elementów GUI
 
         private void ScheduleCreationFormExt_Load(object sender, EventArgs e)
         {
@@ -83,7 +96,7 @@ namespace Timetable.Forms
                         string weekday = cellName[(cellName.Length - 3)].ToString();
                         string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
 
-                        if (isPossibleToAdd(className, teacherId, classroom, weekday, lessonPeriod))
+                        if (IsPossibleToAdd(className, teacherId, classroom, weekday, lessonPeriod))
                         {
                             DeleteLessonFromDataSet(className, lessonPeriod, weekday);
                             AddLessonToDataSet(className, subjectId, classroom, lessonPeriod, weekday);
@@ -134,6 +147,16 @@ namespace Timetable.Forms
                 MessageBox.Show("Nie wybrano żadnej komórki");
         }
 
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+            if (closeFormEvent != null)
+            {
+                closeFormEvent();
+            }
+        }
+
         private void buttonOK_Click(object sender, EventArgs e)
         {
             try
@@ -153,16 +176,6 @@ namespace Timetable.Forms
             }
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-            if (closeFormEvent != null)
-            {
-                closeFormEvent();
-            }
-        }
-
         private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
         {
             // jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
@@ -175,6 +188,11 @@ namespace Timetable.Forms
             }
         }
 
+        #endregion
+
+        #region Metody pomocnicze przy GUI
+
+        // Czyszczenie zawartości kontrolek
         private void ClearCellControls()
         {
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
@@ -188,6 +206,7 @@ namespace Timetable.Forms
             }
         }
 
+        // Uzupełnianie kontrolek planem lekcji
         private void FillSchedule()
         {
             foreach (DataRow dataRow in dataSet.lessons)
@@ -224,22 +243,21 @@ namespace Timetable.Forms
             }
         }
 
+        // Wypełnianie comboBoxSubject odpowiednimi przedmiotami
         private void FillSubjects()
         {
-			bool noSubjectsLeft = true;
+            bool noSubjectsLeft = true;
             List<KeyValuePair<int, string>> classSubjects = new List<KeyValuePair<int, string>>();
             foreach (DataRow teachingDataRow in dataSet.teaching.Rows)
             {
                 if (teachingDataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
                 {
-                    //int amount = Int32.Parse(teachingDataRow["amount"].ToString());
                     int id = Int32.Parse(teachingDataRow["subject"].ToString());
-                    //zamiast amount bierzemy liczbę przedmiotów, jaka jeszcze została do przydzielenia
                     int amount = HowMany(teachingDataRow["class"].ToString(), id.ToString());
-					if(amount>0)
-					{
-						noSubjectsLeft = false;
-					}
+                    if (amount > 0)
+                    {
+                        noSubjectsLeft = false;
+                    }
                     for (int i = 0; i < amount; i++)
                     {
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
@@ -255,17 +273,21 @@ namespace Timetable.Forms
             comboBoxSubject.DisplayMember = "Value";
             comboBoxSubject.ValueMember = "Key";
 
-			if(noSubjectsLeft)
-			{
-				buttonSet.Enabled = false;
-			}
-			else
-			{
-				buttonSet.Enabled = true;
-			}
+            if (noSubjectsLeft)
+            {
+                buttonSet.Enabled = false;
+            }
+            else
+            {
+                buttonSet.Enabled = true;
+            }
         }
 
-        //metoda dodaje do tabeli lessons nowy wpis
+        #endregion
+
+        #region Metody operujące na DataSet
+
+        // Dodawanie do tabeli lessons
         private void AddLessonToDataSet(string className, string subjectId, string classroom, string lessonNumber, string weekday)
         {
             try
@@ -285,7 +307,7 @@ namespace Timetable.Forms
             }
         }
 
-        //metoda usuwa dany wpis
+        // Usuwanie z tabeli lessons
         private void DeleteLessonFromDataSet(string className, string lessonNumber, string weekday)
         {
             try
@@ -298,7 +320,11 @@ namespace Timetable.Forms
             }
         }
 
-        //metoda, która sprawdza ile jeszcze dostępnych jest przedniotów dla danej klasy
+        #endregion
+
+        #region Metody sprawdzające
+
+        // Sprawdzanie ilości dostępnych przedmiotów dla danej klasy
         private int HowMany(string className, string subjectId)
         {
             try
@@ -315,16 +341,17 @@ namespace Timetable.Forms
             return -1;
         }
 
-        private bool isPossibleToAdd(string className, string teacherId, string classroom, string weekday, string lessonNumber)
+        // Sprawdzanie czy lekcja jest możliwa do dodania w danym dniu tygodnia i bloku godzinowym
+        private bool IsPossibleToAdd(string className, string teacherId, string classroom, string weekday, string lessonNumber)
         {
             bool flagClassroom;
             bool flagTeacher = true;
 
-            // Sprawdzanie czy sala jest zajęta przez inną klasę.
+            // Sprawdzanie czy sala jest zajęta przez inną klasę
             DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             if (findClassrooms.Length > 0)
             {
-                MessageBox.Show("Sala jest zajęta.");
+                MessageBox.Show(CLASSROOM_BUSY);
                 flagClassroom = false;
             }
             else
@@ -332,7 +359,7 @@ namespace Timetable.Forms
                 flagClassroom = true;
             }
 
-            // Sprawdzanie czy nauczyciel jest zajęty przez inną klasę.
+            // Sprawdzanie czy nauczyciel jest zajęty przez inną klasę
             DataRow[] findTeachers = dataSet.lessons.Select("class <> '" + className + "' and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             foreach (DataRow dataRow in findTeachers)
             {
@@ -341,7 +368,7 @@ namespace Timetable.Forms
                 string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0]["teacher"].ToString();
                 if (teacherId == teacherPesel)
                 {
-                    MessageBox.Show("Nauczyciel jest zajęty.");
+                    MessageBox.Show(TEACHER_BUSY);
                     flagTeacher = false;
                 }
             }
@@ -354,5 +381,7 @@ namespace Timetable.Forms
                 return false;
             }
         }
+
+        #endregion
     }
 }
