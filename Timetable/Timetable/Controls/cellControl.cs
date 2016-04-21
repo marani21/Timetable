@@ -21,7 +21,7 @@ namespace Timetable.Controls
         public string Classroom { get { return this.labelClassroom.Text; } set { this.labelClassroom.Text = value; } }
 
         // Właściwości określające daną kontrolkę (dzień tygodnia, blok godzinowy)
-        public string Weekday { get; set; }
+        public int Weekday { get; set; }
         public int LessonPeriod { get; set; }
 
         public bool IsActive { get; set; }
