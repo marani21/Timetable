@@ -15,14 +15,6 @@ namespace Timetable.Forms
     {
         public static event EventDelegate closeFormEvent;
 
-        #region Stałe
-
-        private const string CLASSROOM_BUSY = "Sala jest zajęta przez ";
-        private const string TEACHER_BUSY = "Nauczyciel jest zajęty ";
-        private const string CELL_NOT_CHOSEN = "Nie wybrano żadnej komórki";
-
-        #endregion
-
         #region Konstruktor
 
         public ScheduleCreationFormExt()
@@ -90,9 +82,9 @@ namespace Timetable.Forms
                         string className = comboBoxClass.Text;
                         DataRow[] subjectIdRows = dataSet.subjects.Select("name='" + subject + "'");
                         DataRow[] teacherIdRows = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
-                        string teacherId = teacherIdRows[0]["teacher"].ToString();
+                        string teacherId = teacherIdRows[0][DBConstants.TEACHING_TEACHER_ID].ToString();
                         DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
-                        string teacher = teacherRows[0]["name"].ToString().Trim() + " " + teacherRows[0]["surname"].ToString().Trim();
+                        string teacher = teacherRows[0][DBConstants.TEACHER_NAME].ToString().Trim() + " " + teacherRows[0][DBConstants.TEACHER_SURNAME].ToString().Trim();
                         string cellName = c.Name;
                         string weekday = cellName[(cellName.Length - 3)].ToString();
                         string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
@@ -105,7 +97,7 @@ namespace Timetable.Forms
                             FillSubjects();
                         }
                     }
-                    catch (IndexOutOfRangeException outexc)
+                    catch (IndexOutOfRangeException)
                     {
 
                     }
@@ -116,7 +108,7 @@ namespace Timetable.Forms
                 }
             }
             if (!isAnyChosen)
-                MessageBox.Show(CELL_NOT_CHOSEN);
+                MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -145,7 +137,7 @@ namespace Timetable.Forms
                 }
             }
             if (!isAnyChosen)
-                MessageBox.Show(CELL_NOT_CHOSEN);
+                MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -215,27 +207,27 @@ namespace Timetable.Forms
                 if (dataRow.RowState != DataRowState.Deleted)
                 {
                     string className = comboBoxClass.Text;
-                    if (dataRow["class"].ToString() == className)
+                    if (dataRow[DBConstants.LESSON_CLASS].ToString() == className)
                     {
                         string name = "cellControl";
-                        name += dataRow["weekday"];
+                        name += dataRow[DBConstants.LESSON_WEEKDAY];
                         name += "_";
-                        name += dataRow["lesson_number"];
+                        name += dataRow[DBConstants.LESSON_LESSON_NUMBER];
 
                         try
                         {
-                            string subjectId = dataRow["subject"].ToString().Trim();
-                            string subject = dataSet.subjects.Select("id = " + subjectId)[0]["name"].ToString().Trim();
-                            string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0]["teacher"].ToString();
-                            string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["name"].ToString().Trim() + " " +
-                                dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0]["surname"].ToString().Trim();
+                            string subjectId = dataRow[DBConstants.LESSON_SUBJECT].ToString().Trim();
+                            string subject = dataSet.subjects.Select("id = " + subjectId)[0][DBConstants.SUBJECT_NAME].ToString().Trim();
+                            string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
+                            string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0][DBConstants.TEACHER_NAME].ToString().Trim() + " " +
+                                dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0][DBConstants.TEACHER_SURNAME].ToString().Trim();
 
-                            string classroom = dataRow["classroom"].ToString().Trim();
+                            string classroom = dataRow[DBConstants.LESSON_CLASSROOM].ToString().Trim();
 
                             CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
                             cellControl.SetData(subject, teacher, classroom);
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
 
                         }
@@ -251,10 +243,10 @@ namespace Timetable.Forms
             List<KeyValuePair<int, string>> classSubjects = new List<KeyValuePair<int, string>>();
             foreach (DataRow teachingDataRow in dataSet.teaching.Rows)
             {
-                if (teachingDataRow["class"].ToString() == comboBoxClass.SelectedValue.ToString())
+                if (teachingDataRow[DBConstants.TEACHING_CLASS_ID].ToString() == comboBoxClass.SelectedValue.ToString())
                 {
-                    int id = Int32.Parse(teachingDataRow["subject"].ToString());
-                    int amount = HowMany(teachingDataRow["class"].ToString(), id.ToString());
+                    int id = Int32.Parse(teachingDataRow[DBConstants.TEACHING_SUBJECT_ID].ToString());
+                    int amount = HowMany(teachingDataRow[DBConstants.TEACHING_CLASS_ID].ToString(), id.ToString());
                     if (amount > 0)
                     {
                         noSubjectsLeft = false;
@@ -264,7 +256,7 @@ namespace Timetable.Forms
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
                         foreach (DataRow subjectsDataRow in subjectsRows)
                         {
-                            string value = subjectsDataRow["name"].ToString().Trim();
+                            string value = subjectsDataRow[DBConstants.SUBJECT_NAME].ToString().Trim();
                             classSubjects.Add(new KeyValuePair<int, string>(id, value));
                         }
                     }
@@ -294,11 +286,11 @@ namespace Timetable.Forms
             try
             {
                 DataRow newLessonsRow = dataSet.lessons.NewRow();
-                newLessonsRow["lesson_number"] = lessonNumber;
-                newLessonsRow["class"] = className;
-                newLessonsRow["subject"] = subjectId;
-                newLessonsRow["weekday"] = weekday;
-                newLessonsRow["classroom"] = classroom;
+                newLessonsRow[DBConstants.LESSON_LESSON_NUMBER] = lessonNumber;
+                newLessonsRow[DBConstants.LESSON_CLASS] = className;
+                newLessonsRow[DBConstants.LESSON_SUBJECT] = subjectId;
+                newLessonsRow[DBConstants.LESSON_WEEKDAY] = weekday;
+                newLessonsRow[DBConstants.LESSON_CLASSROOM] = classroom;
 
                 dataSet.lessons.Rows.Add(newLessonsRow);
             }
@@ -315,7 +307,7 @@ namespace Timetable.Forms
             {
                 dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -331,7 +323,7 @@ namespace Timetable.Forms
             try
             {
                 DataRow[] amountRow = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
-                string amount = amountRow[0]["amount"].ToString();
+                string amount = amountRow[0][DBConstants.TEACHING_AMOUNT].ToString();
                 DataRow[] lessonsAdded = dataSet.lessons.Select("class = '" + className + "' and subject =" + subjectId);
                 return int.Parse(amount) - lessonsAdded.Length;
             }
@@ -352,7 +344,7 @@ namespace Timetable.Forms
             DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             if (findClassrooms.Length > 0)
             {
-                MessageBox.Show(CLASSROOM_BUSY+findClassrooms[0]["class"].ToString());
+                MessageBox.Show(ViewConstants.CLASSROOM_BUSY + findClassrooms[0][DBConstants.LESSON_CLASS].ToString());
                 flagClassroom = false;
             }
             else
@@ -364,12 +356,12 @@ namespace Timetable.Forms
             DataRow[] findTeachers = dataSet.lessons.Select("class <> '" + className + "' and weekday = " + weekday + " and lesson_number = " + lessonNumber);
             foreach (DataRow dataRow in findTeachers)
             {
-                string classTmp = dataRow["class"].ToString().Trim();
-                string subjectIdTmp = dataRow["subject"].ToString().Trim();
-                string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0]["teacher"].ToString();
+                string classTmp = dataRow[DBConstants.LESSON_CLASS].ToString().Trim();
+                string subjectIdTmp = dataRow[DBConstants.LESSON_SUBJECT].ToString().Trim();
+                string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
                 if (teacherId == teacherPesel)
                 {
-                    MessageBox.Show(TEACHER_BUSY+classTmp);
+                    MessageBox.Show(ViewConstants.TEACHER_BUSY + classTmp);
                     flagTeacher = false;
                 }
             }
