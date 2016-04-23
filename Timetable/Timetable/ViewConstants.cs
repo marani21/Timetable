@@ -38,6 +38,7 @@ namespace Timetable
 		public static readonly string CLASSROOM_BUSY = "Sala jest zajęta przez ";
 		public static readonly string SAVE_CHANGES_QUESTION = "Czy chcesz zapisać wszystkie dokonane zmiany?";
 		public static readonly string TEACHER_BUSY = "Nauczyciel jest zajęty ";
+        public static readonly string NO_DATABASE_CONNECTION = "Brak połączenia z bazą danych.";
 
 
 

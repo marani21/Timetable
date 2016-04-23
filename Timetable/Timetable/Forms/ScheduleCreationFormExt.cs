@@ -46,14 +46,21 @@ namespace Timetable.Forms
 
         private void ScheduleCreationFormExt_Load(object sender, EventArgs e)
         {
-            this.classesTableAdapter.Fill(this.dataSet.classes);
-            this.classroomsTableAdapter.Fill(this.dataSet.classrooms);
-            this.subjectsTableAdapter.Fill(this.dataSet.subjects);
-            this.teachingTableAdapter.Fill(this.dataSet.teaching);
-            this.database_viewTableAdapter.Fill(this.dataSet.database_view);
-            this.teachersTableAdapter.Fill(this.dataSet.teachers);
-            this.lessonsTableAdapter.Fill(this.dataSet.lessons);
-            this.lessons_periodsTableAdapter.Fill(this.dataSet.lessons_periods);
+            try
+            {
+                this.classesTableAdapter.Fill(this.dataSet.classes);
+                this.classroomsTableAdapter.Fill(this.dataSet.classrooms);
+                this.subjectsTableAdapter.Fill(this.dataSet.subjects);
+                this.teachingTableAdapter.Fill(this.dataSet.teaching);
+                this.database_viewTableAdapter.Fill(this.dataSet.database_view);
+                this.teachersTableAdapter.Fill(this.dataSet.teachers);
+                this.lessonsTableAdapter.Fill(this.dataSet.lessons);
+                this.lessons_periodsTableAdapter.Fill(this.dataSet.lessons_periods);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(ViewConstants.NO_DATABASE_CONNECTION);
+            }
 
             ClearCellControls();
             FillLabelLesson();
@@ -158,9 +165,9 @@ namespace Timetable.Forms
             {
                 lessonsTableAdapter.Update(dataSet.lessons);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show(ViewConstants.NO_DATABASE_CONNECTION);
             }
 
             this.DialogResult = DialogResult.OK;
