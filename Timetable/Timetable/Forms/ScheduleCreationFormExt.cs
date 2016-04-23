@@ -53,8 +53,10 @@ namespace Timetable.Forms
             this.database_viewTableAdapter.Fill(this.dataSet.database_view);
             this.teachersTableAdapter.Fill(this.dataSet.teachers);
             this.lessonsTableAdapter.Fill(this.dataSet.lessons);
+            this.lessons_periodsTableAdapter.Fill(this.dataSet.lessons_periods);
 
             ClearCellControls();
+            FillLabelLesson();
             FillSchedule();
             FillSubjects();
         }
@@ -195,6 +197,23 @@ namespace Timetable.Forms
                     ((CellControl)c).Clear();
                     ((CellControl)c).Enabled();
                     ((CellControl)c).IsActive = false;
+                }
+            }
+        }
+
+        // Uzupełnianie labelLesson odpowiednimi blokami godzinowymi
+        // w formacie: godzina_rozpoczęcia - godzina_zakończenia
+        private void FillLabelLesson()
+        {
+            int i = 7;
+            foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
+            {
+                if (c is Label && c.Name.Contains("Lesson"))
+                {
+                    ((Label)c).Text = dataSet.lessons_periods.Select("lesson_number=" + i)[0]["start_time"].ToString().Remove(5);
+                    ((Label)c).Text += " - ";
+                    ((Label)c).Text += dataSet.lessons_periods.Select("lesson_number=" + i)[0]["end_time"].ToString().Remove(5);
+                    i--;
                 }
             }
         }
