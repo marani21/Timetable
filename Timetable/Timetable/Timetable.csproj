@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConstants.cs" />
+    <Compile Include="ViewConstants.cs" />
     <Compile Include="Controls\cellControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
