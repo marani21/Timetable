@@ -38,10 +38,6 @@
 			this.subjectsAddingControl = new Timetable.SubjectsAddingControl();
 			this.subjectsAssigningTabPage = new System.Windows.Forms.TabPage();
 			this.subjectAssigningControl = new Timetable.SubjectAssigningControl();
-			this.menuStrip = new System.Windows.Forms.MenuStrip();
-			this.itemMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.itemCreateSchedule = new System.Windows.Forms.ToolStripMenuItem();
-			this.itemViewSchedules = new System.Windows.Forms.ToolStripMenuItem();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.subjectsTableAdapter1 = new Timetable.DataSetTableAdapters.subjectsTableAdapter();
 			this.buttonCancel = new System.Windows.Forms.Button();
@@ -59,7 +55,6 @@
 			this.teachersTabPage.SuspendLayout();
 			this.subjectsTabPage.SuspendLayout();
 			this.subjectsAssigningTabPage.SuspendLayout();
-			this.menuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataSet
@@ -97,7 +92,6 @@
 			this.studentsAddingControl.Name = "studentsAddingControl";
 			this.studentsAddingControl.Size = new System.Drawing.Size(558, 335);
 			this.studentsAddingControl.TabIndex = 0;
-
 			// 
 			// teachersTabPage
 			// 
@@ -155,45 +149,6 @@
 			this.subjectAssigningControl.TabIndex = 0;
 			this.subjectAssigningControl.Load += new System.EventHandler(this.subjectAssigningControl_Load);
 			// 
-			// menuStrip
-			// 
-			this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
-			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemMenu});
-			this.menuStrip.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-			this.menuStrip.Size = new System.Drawing.Size(497, 31);
-			this.menuStrip.TabIndex = 15;
-			this.menuStrip.Text = "menuStrip1";
-			// 
-			// itemMenu
-			// 
-			this.itemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemCreateSchedule,
-            this.itemViewSchedules});
-			this.itemMenu.Name = "itemMenu";
-			this.itemMenu.Padding = new System.Windows.Forms.Padding(30, 3, 30, 3);
-			this.itemMenu.Size = new System.Drawing.Size(105, 27);
-			this.itemMenu.Text = "Menu";
-			// 
-			// itemCreateSchedule
-			// 
-			this.itemCreateSchedule.Name = "itemCreateSchedule";
-			this.itemCreateSchedule.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-			this.itemCreateSchedule.Size = new System.Drawing.Size(172, 30);
-			this.itemCreateSchedule.Text = "Ułóż plan";
-
-			// 
-			// itemViewSchedules
-			// 
-			this.itemViewSchedules.Name = "itemViewSchedules";
-			this.itemViewSchedules.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-			this.itemViewSchedules.Size = new System.Drawing.Size(172, 30);
-			this.itemViewSchedules.Text = "Przegladaj plany";
-
-			// 
 			// buttonOK
 			// 
 			this.buttonOK.Location = new System.Drawing.Point(382, 404);
@@ -250,16 +205,15 @@
 			// 
 			this.weekdaysTableAdapter1.ClearBeforeFill = true;
 			// 
-			// SubjectsAssigningForm
+			// DataAddingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(497, 449);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOK);
-			this.Controls.Add(this.menuStrip);
 			this.Controls.Add(this.dataTabControl);
-			this.Name = "SubjectsAssigningForm";
+			this.Name = "DataAddingForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Dodaj dane do bazy";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SubjectsAssigningForm_FormClosing);
@@ -270,10 +224,7 @@
 			this.teachersTabPage.ResumeLayout(false);
 			this.subjectsTabPage.ResumeLayout(false);
 			this.subjectsAssigningTabPage.ResumeLayout(false);
-			this.menuStrip.ResumeLayout(false);
-			this.menuStrip.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -283,10 +234,6 @@
 		private System.Windows.Forms.TabPage studentsTabPage;
 		private System.Windows.Forms.TabPage teachersTabPage;
 		private System.Windows.Forms.TabPage subjectsTabPage;
-		private System.Windows.Forms.MenuStrip menuStrip;
-		private System.Windows.Forms.ToolStripMenuItem itemMenu;
-		private System.Windows.Forms.ToolStripMenuItem itemCreateSchedule;
-		private System.Windows.Forms.ToolStripMenuItem itemViewSchedules;
 		private StudentsAddingControl studentsAddingControl;
 		private TeachersAddingControl teachersAddingControl;
 		private SubjectsAddingControl subjectsAddingControl;
