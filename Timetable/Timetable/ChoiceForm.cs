@@ -15,51 +15,55 @@ namespace Timetable
 	public partial class ChoiceForm : Form
 	{
 		SchedulesViewingForm schedulesViewingForm;
-		ScheduleCreationForm scheduleCreationForm;
-		SubjectsAssigningForm subjectAssigningForm;
+		DataAddingForm subjectAssigningForm;
 		Forms.ScheduleCreationFormExt scheduleCreationFormExt;
 
-		
-
+		// Konstruktor
 		public ChoiceForm()
 		{
 			InitializeComponent();
 			SchedulesViewingForm.closeFormEvent += SchedulesViewingForm_closeFormEvent;
 			ScheduleCreationForm.closeFormEvent += ScheduleCreationForm_closeFormEvent;
-			SubjectsAssigningForm.closeFormEvent += SubjectsAssigningForm_closeFormEvent;
+			DataAddingForm.closeFormEvent += SubjectsAssigningForm_closeFormEvent;
 
 		}
 
 		private void SchedulesViewingForm_closeFormEvent()
 		{
-			this.Show();
+			
 		}
 
 		private void ScheduleCreationForm_closeFormEvent()
 		{
-			this.Show();
+		
 		}
 		
 		private void SubjectsAssigningForm_closeFormEvent()
 		{
-			this.Show();
+		
 		}
 
+		//Kliknięcie na button "Przeglądaj plany"
 		private void buttonViewSchedules_Click(object sender, EventArgs e)
 		{
+			// Otwarcie nowej formy w trybie "ShowDialog"
 			schedulesViewingForm = new SchedulesViewingForm();
 			schedulesViewingForm.ShowDialog();
 		}
 
+		//Kliknięcie na button "Ułóż plan"
 		private void buttonCreateSchedules_Click(object sender, EventArgs e)
 		{
+			// Otwarcie nowej formy w trybie "ShowDialog"
 			scheduleCreationFormExt = new Forms.ScheduleCreationFormExt();
 			scheduleCreationFormExt.ShowDialog();
 		}
 
+		//Kliknięcie na button "Dodaj dane do bazy"
 		private void buttonAssignSubjects_Click(object sender, EventArgs e)
 		{
-			subjectAssigningForm = new SubjectsAssigningForm();
+			// Otwarcie nowej formy w trybie "ShowDialog"
+			subjectAssigningForm = new DataAddingForm();
 			subjectAssigningForm.ShowDialog();
 		}
 	}

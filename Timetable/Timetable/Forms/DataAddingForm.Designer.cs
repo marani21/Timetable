@@ -1,6 +1,6 @@
 ﻿namespace Timetable
 {
-	partial class SubjectsAssigningForm
+	partial class DataAddingForm
 	{
 		/// <summary>
 		/// Required designer variable.
