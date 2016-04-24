@@ -29,37 +29,38 @@ namespace Timetable
             }
                        
         }
+        //Ustawianie źródeł danych dla dataGridView oraz combobox'a
 
         private void LoadData()
         {
             this.dataGridViewAssigning.DataSource = this.dataSet;
-            
             this.classesBindingSource.DataSource = this.dataSet.classes;
             this.teachingBindingSource.DataSource = this.dataSet.teaching;
             this.subjectsBindingSource.DataSource = this.dataSet.subjects;
             this.teachersBindingSource.DataSource = this.dataSet.teachers;
             this.dataGridViewAssigning.DataSource = this.teachingBindingSource;
-            this.comboBoxClasses.DataSource = this.classesBindingSource;                      
+            this.comboBoxClasses.DataSource = this.classesBindingSource;
+                    
            
         }
-
+        //filtrowanie wyświetlanych danych w DataGridView po zmianie klasy w combobox'ie
         private void comboBoxClasses_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.teachingBindingSource.Filter = "class ='" + comboBoxClasses.SelectedValue.ToString() + "'";
            
         }
 
-
+        //domyślna wartość klasy taka jak wybrana w comboboxie
         private void dataGridViewDefaultValues(object sender, DataGridViewRowEventArgs e)
         {
             e.Row.Cells["dataGridViewTextBoxColumn1"].Value = comboBoxClasses.SelectedValue.ToString();
         }
-
+        //usuwanie rekordów
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewAssigning.SelectedRows.Count == 0)
                 return;
-            if (MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone pola?", "Ostrzeżenie",
+            if (MessageBox.Show(ViewConstants.DELETE_SELECTED_ROWS_WARNING, ViewConstants.WARNING,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
                 return;
 
@@ -72,7 +73,7 @@ namespace Timetable
             
 
         }
-
+        //uniemożliwienie wpisania innych wartości niż naturalne dla liczby godzin
         private void dataGridViewAssigning_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             e.Control.KeyPress -= new KeyPressEventHandler(amount_KeyPressed);
@@ -92,12 +93,17 @@ namespace Timetable
                 e.Handled = true;
             }
         }
-
+        //usunięcie filtra i ponowne wczytanie danych; pomocne gdy zmieniamy zakładki
         public void clearFilter()
         {
             teachingBindingSource.RemoveFilter();
             LoadData();           
         }
 
+        private void dataGridViewAssigning_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            DataAddingForm.createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_EDITING_DATA, e.Exception.ToString());
+
+        }
     }
 }

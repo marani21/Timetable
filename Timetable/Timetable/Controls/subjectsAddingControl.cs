@@ -16,6 +16,7 @@ namespace Timetable
         {
             set { this.dataSet = value;
                   LoadData();
+
             }
         }
 
@@ -23,7 +24,7 @@ namespace Timetable
         {
             InitializeComponent();
         }
-
+        //Ustawianie źródeł danych dla dataGridView
         private void LoadData()
         {
             this.subjectsDataGridView.DataSource = this.dataSet;                   
@@ -31,27 +32,28 @@ namespace Timetable
             this.subjectsDataGridView.DataSource = this.subjectsBindingSource;
         }
 
-          
+        //Usuwanie rekordów  
         private void buttonDeleteSubject_Click(object sender, EventArgs e)
         {
             if (subjectsDataGridView.SelectedRows.Count == 0)
                 return;
 
-            if (MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone rekordy?", "Ostrzeżenie",
+            if (MessageBox.Show(ViewConstants.DELETE_SELECTED_ROWS_WARNING, ViewConstants.WARNING,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
                 return;
         
 
             foreach (DataGridViewRow row in subjectsDataGridView.SelectedRows)
             {
+                //sprawdzenie czy wybrany rekord nie zawiera żadnych powiązań
                 int subjectID = int.Parse(row.Cells[0].Value.ToString());
                 bool teachingRelation = checkIfTeachingRelationExists(subjectID.ToString(), 2);
                 bool lessonsRelation = checkIfLessonsRelationExists(subjectID.ToString(), 3);
-
+                //jeśli zawiera pytamy użytkownika czy chce je usunąć, jeśli tak to usuwamy
                 BindingSource bs = subjectsDataGridView.DataSource as BindingSource;
                 if (teachingRelation || lessonsRelation)
                 {
-                    if (MessageBox.Show("Jeden z rekordów zawiera powiązania, usunąc powiązania i przedmiot?", "Ostrzeżenie",
+                    if (MessageBox.Show(ViewConstants.RELATION_DETECTED_WARNING, ViewConstants.WARNING,
                         MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
                         if (teachingRelation)
@@ -65,6 +67,7 @@ namespace Timetable
                         bs.RemoveAt(row.Index);
                     }
                 }
+                //jeśli nie wykryto żandych relacji obiekt zostaje od razu usnięty
                 else
                 {
                     bs.RemoveAt(row.Index);
@@ -72,11 +75,11 @@ namespace Timetable
             }
 
         }
-
         private bool checkIfTeachingRelationExists(string pattern, int column)
         {
             for (int i = 0; i < dataSet.teaching.Rows.Count; i++)
             {
+                //sprawdzenie czy podany wiersz nie został wcześniej usunięty z lokalnego dataSet'a
                 if (dataSet.teaching.Rows[i].RowState != DataRowState.Deleted)
                 { 
                     if (dataSet.teaching.Rows[i][column].ToString() == pattern)
@@ -91,6 +94,7 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.lessons.Rows.Count; i++)
             {
+                //sprawdzenie czy podany wiersz nie został wcześniej usunięty z lokalnego dataSet'a
                 if (dataSet.lessons.Rows[i].RowState != DataRowState.Deleted)
                 {
                     if (dataSet.lessons.Rows[i][column].ToString() == pattern)
@@ -104,6 +108,7 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.teaching.Rows.Count; i++)
             {
+                //sprawdzenie czy podany wiersz nie został wcześniej usunięty z lokalnego dataSet'a
                 if (dataSet.teaching.Rows[i].RowState != DataRowState.Deleted)
                 {
                     if (dataSet.teaching.Rows[i][column].ToString() == pattern)
@@ -120,7 +125,7 @@ namespace Timetable
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString());
+                            DataAddingForm.createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_DELETING_DATA, ex.ToString());
                         }
                     }
                 }
@@ -131,6 +136,7 @@ namespace Timetable
         {
             for (int i = 0; i < dataSet.lessons.Rows.Count; i++)
             {
+                //sprawdzenie czy podany wiersz nie został wcześniej usunięty z lokalnego dataSet'a
                 if (dataSet.lessons.Rows[i].RowState != DataRowState.Deleted)
                 {
                     if (dataSet.lessons.Rows[i][column].ToString() == pattern)
@@ -148,14 +154,14 @@ namespace Timetable
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString());
+                            DataAddingForm.createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_DELETING_DATA, ex.ToString());
                         }
                     }
                 }
 
             }
         }
-
+        //pobiera najwyższe ID elementów z DataGridView i ustawia domyślną wartość dla id równą pobranej + 1
         private void subjectsDataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
             e.Row.Cells["idDataGridViewTextBoxColumn"].Value = getMaxId()+1;
@@ -164,6 +170,12 @@ namespace Timetable
         private int getMaxId()
         {
             return subjectsDataGridView.Rows.Cast<DataGridViewRow>().Max(r => Convert.ToInt32(r.Cells["idDataGridViewTextBoxColumn"].Value));
+        }
+
+        private void subjectsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            DataAddingForm.createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_EDITING_DATA, e.Exception.ToString());
+
         }
     }
 }

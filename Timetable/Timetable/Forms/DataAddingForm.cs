@@ -29,7 +29,7 @@ namespace Timetable
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Czy na pewno chcesz zapisać wszystkie dokonane zmiany w bazie?", "Ostrzeżenie",
+            if (MessageBox.Show(ViewConstants.CONFIRM_SAVING_TO_DB, ViewConstants.WARNING,
                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
                 return;
 
@@ -72,11 +72,18 @@ namespace Timetable
 
         private void SubjectsAssigningForm_Load(object sender, EventArgs e)
         {
-            this.subjectsTableAdapter1.Fill(this.dataSet.subjects);
-            this.studentsTableAdapter1.Fill(this.dataSet.students);
-            this.teachersTableAdapter1.Fill(this.dataSet.teachers);
-            this.teachingTableAdapter1.Fill(this.dataSet.teaching);
-            this.classesTableAdapter1.Fill(this.dataSet.classes);
+            try {
+                this.subjectsTableAdapter1.Fill(this.dataSet.subjects);
+                this.studentsTableAdapter1.Fill(this.dataSet.students);
+                this.teachersTableAdapter1.Fill(this.dataSet.teachers);
+                this.teachingTableAdapter1.Fill(this.dataSet.teaching);
+                this.classesTableAdapter1.Fill(this.dataSet.classes);
+            }
+            catch(Exception ex)
+            {
+                createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_GETTING_DATA_FROM_DB, ex.ToString());
+
+            }
         }
 
         private void updateData(object sender, EventArgs e)
@@ -116,13 +123,13 @@ namespace Timetable
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.ToString());
+                createDialogWithExceptionMessage(ViewConstants.ERROR, ViewConstants.ERROR_WHILE_UPDATING_DATA_TO_DB, ex.ToString());
 			}
 		}
 
 		private void switchToAnotherForm()
 		{
-			if (MessageBox.Show("Czy chcesz zapisać wszystkie dokonane zmiany w bazie?", "Ostrzeżenie",
+			if (MessageBox.Show(ViewConstants.CONFIRM_SAVING_TO_DB, ViewConstants.WARNING,
 			MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
 			{
 				this.DialogResult = DialogResult.Cancel;
@@ -145,5 +152,18 @@ namespace Timetable
 		{
 
 		}
+
+        public static void createDialogWithExceptionMessage(String tittle, String error, String exeptionDetails)
+        {
+            var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
+            var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
+            var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
+
+            dialog.Text = tittle;
+            dialogType.GetProperty("Details").SetValue(dialog, exeptionDetails, null);
+            dialogType.GetProperty("Message").SetValue(dialog, error, null);
+
+            var result = dialog.ShowDialog();
+        }
 	}
 }
