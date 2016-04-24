@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace Timetable
 {
 	public delegate void EventDelegate();
+	public delegate void EventFormDelegate(Form newForm, Form oldForm);
 
 	public partial class ChoiceForm : Form
 	{
@@ -22,26 +23,9 @@ namespace Timetable
 		public ChoiceForm()
 		{
 			InitializeComponent();
-			SchedulesViewingForm.closeFormEvent += SchedulesViewingForm_closeFormEvent;
-			ScheduleCreationForm.closeFormEvent += ScheduleCreationForm_closeFormEvent;
-			DataAddingForm.closeFormEvent += SubjectsAssigningForm_closeFormEvent;
-
 		}
 
-		private void SchedulesViewingForm_closeFormEvent()
-		{
-			
-		}
 
-		private void ScheduleCreationForm_closeFormEvent()
-		{
-		
-		}
-		
-		private void SubjectsAssigningForm_closeFormEvent()
-		{
-		
-		}
 
 		//Kliknięcie na button "Przeglądaj plany"
 		private void buttonViewSchedules_Click(object sender, EventArgs e)
