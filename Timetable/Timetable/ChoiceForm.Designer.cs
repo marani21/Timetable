@@ -40,7 +40,7 @@
 			this.buttonViewSchedules.Name = "buttonViewSchedules";
 			this.buttonViewSchedules.Size = new System.Drawing.Size(260, 64);
 			this.buttonViewSchedules.TabIndex = 0;
-			this.buttonViewSchedules.Text = "Przeglądaj plany";
+			this.buttonViewSchedules.Text = ViewConstants.VIEW_SCHEDULES;
 			this.buttonViewSchedules.UseVisualStyleBackColor = true;
 			this.buttonViewSchedules.Click += new System.EventHandler(this.buttonViewSchedules_Click);
 			// 
@@ -51,7 +51,7 @@
 			this.buttonCreateSchedules.Name = "buttonCreateSchedules";
 			this.buttonCreateSchedules.Size = new System.Drawing.Size(260, 64);
 			this.buttonCreateSchedules.TabIndex = 1;
-			this.buttonCreateSchedules.Text = "Ułóż plan dla klasy";
+			this.buttonCreateSchedules.Text = ViewConstants.CREATE_SCHEDULE;
 			this.buttonCreateSchedules.UseVisualStyleBackColor = true;
 			this.buttonCreateSchedules.Click += new System.EventHandler(this.buttonCreateSchedules_Click);
 			// 
@@ -62,7 +62,7 @@
 			this.buttonAssignSubjects.Name = "buttonAssignSubjects";
 			this.buttonAssignSubjects.Size = new System.Drawing.Size(260, 64);
 			this.buttonAssignSubjects.TabIndex = 2;
-			this.buttonAssignSubjects.Text = "Dodaj dane do bazy";
+			this.buttonAssignSubjects.Text = ViewConstants.ADD_DATA_TO_DATABASE;
 			this.buttonAssignSubjects.UseVisualStyleBackColor = true;
 			this.buttonAssignSubjects.Click += new System.EventHandler(this.buttonAssignSubjects_Click);
 			// 
@@ -79,7 +79,7 @@
 			this.MaximizeBox = false;
 			this.Name = "ChoiceForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = " Manager planów lekcji";
+			this.Text = ViewConstants.SCHEDULES_MANAGER;
 			this.ResumeLayout(false);
 
 		}

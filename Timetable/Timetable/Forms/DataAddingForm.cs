@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Timetable
 {
-	public partial class SubjectsAssigningForm : Form
+	public partial class DataAddingForm : Form
 	{
         public static event EventDelegate closeFormEvent;
 
-		public SubjectsAssigningForm()
+		public DataAddingForm()
 		{
 			InitializeComponent();
 		}
