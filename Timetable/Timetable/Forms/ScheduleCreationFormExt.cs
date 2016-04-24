@@ -27,8 +27,10 @@ namespace Timetable.Forms
 
         private void CellControl_CellClickEvent(string controlName)
         {
+            // Szukanie zaznaczonej kontrolki
             CellControl cell = this.Controls.Find(controlName, true).FirstOrDefault() as CellControl;
 
+            // Ustawienie wszystkich kontrolek na widoczne oraz ustawienie właściwości IsActive na false
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
                 if (c is CellControl)
@@ -38,14 +40,15 @@ namespace Timetable.Forms
                 }
             }
 
-            cell.Activate();
-            cell.IsActive = true;
+            cell.Activate(); // Ustawienie zaznaczonej kontrolki na podświetloną
+            cell.IsActive = true; // Ustawienie właściwości IsActive, zaznaczonej kontrolki, na true
         }
 
         #region Metody elementów GUI
 
         private void ScheduleCreationFormExt_Load(object sender, EventArgs e)
         {
+            // Pobieranie z bazy odpowiednich tabel
             try
             {
                 this.classesTableAdapter.Fill(this.dataSet.classes);
@@ -78,8 +81,11 @@ namespace Timetable.Forms
         private void buttonSet_Click(object sender, EventArgs e)
         {
             bool isAnyChosen = false;
+
+            // Przechodzenie po wszystkich kontrolkach z panelCells
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
+                // Jeśli kontrolka jest CellControl oraz jest zaznaczona
                 if (c is CellControl && ((CellControl)c).IsActive == true)
                 {
                     isAnyChosen = true;
@@ -98,11 +104,12 @@ namespace Timetable.Forms
                         string weekday = cellName[(cellName.Length - 3)].ToString();
                         string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
 
+                        // Jeżeli możliwe jest wstawienie danego przedmiotu do planu w danym czasie
                         if (IsPossibleToAdd(className, teacherId, classroom, weekday, lessonPeriod))
                         {
-                            DeleteLessonFromDataSet(className, lessonPeriod, weekday);
-                            AddLessonToDataSet(className, subjectId, classroom, lessonPeriod, weekday);
-                            ((CellControl)c).SetData(subject, teacher, classroom);
+                            DeleteLessonFromDataSet(className, lessonPeriod, weekday); // Usuwanie lekcji z danego czasu (możliwe że chcemy nadpisać)
+                            AddLessonToDataSet(className, subjectId, classroom, lessonPeriod, weekday); // Wstawianie nowej lekcji w tym czasie
+                            ((CellControl)c).SetData(subject, teacher, classroom); // Wpisanie odpowiednich wartości do kontrolki
                             FillSubjects();
                         }
                     }
@@ -116,6 +123,7 @@ namespace Timetable.Forms
                     }
                 }
             }
+            // Wyświetlanie odpowiedniego monitu jeśli żadna kontrolka nie została zaznaczona
             if (!isAnyChosen)
                 MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
@@ -123,8 +131,10 @@ namespace Timetable.Forms
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             bool isAnyChosen = false;
+            // Przechodzenie po wszystkich kontrolkach z panelCells
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
+                // Jeśli kontrolka jest CellControl oraz jest zaznaczona
                 if (c is CellControl && ((CellControl)c).IsActive == true)
                 {
                     isAnyChosen = true;
@@ -135,8 +145,8 @@ namespace Timetable.Forms
                         string weekday = cellName[(cellName.Length - 3)].ToString();
                         string lessonPeriod = cellName[(cellName.Length - 1)].ToString();
 
-                        DeleteLessonFromDataSet(className, lessonPeriod, weekday);
-                        ((CellControl)c).Clear();
+                        DeleteLessonFromDataSet(className, lessonPeriod, weekday); // Usuwanie lekcji z danego czasu
+                        ((CellControl)c).Clear(); // Czyszczenie zawartości danej kontrolki
                         FillSubjects();
                     }
                     catch (Exception exc)
@@ -145,6 +155,7 @@ namespace Timetable.Forms
                     }
                 }
             }
+            // Wyświetlanie odpowiedniego monitu jeśli żadna kontrolka nie została zaznaczona
             if (!isAnyChosen)
                 MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
@@ -161,6 +172,7 @@ namespace Timetable.Forms
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            // Zapisanie do bazy tabeli lessons
             try
             {
                 lessonsTableAdapter.Update(dataSet.lessons);
@@ -212,11 +224,15 @@ namespace Timetable.Forms
         // w formacie: godzina_rozpoczęcia - godzina_zakończenia
         private void FillLabelLesson()
         {
+            // Zmienna i będzie od 7 do 0, ponieważ w ScheduleCreationFormExt.Designer.cs
+            // Label'e są wstawiane do Controls w kolejności od rosnącej do malejącej
             int i = 7;
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
+                // Jeśli kontrolka jest Label oraz zawiera w nazwie słowo "Lesson"
                 if (c is Label && c.Name.Contains("Lesson"))
                 {
+                    // Ustawienie do tekstu godziny rozpoczęcia i zakończenia dla i-tego bloku godzinowego
                     ((Label)c).Text = dataSet.lessons_periods.Select("lesson_number=" + i)[0]["start_time"].ToString().Remove(5);
                     ((Label)c).Text += " - ";
                     ((Label)c).Text += dataSet.lessons_periods.Select("lesson_number=" + i)[0]["end_time"].ToString().Remove(5);
@@ -228,13 +244,17 @@ namespace Timetable.Forms
         // Uzupełnianie kontrolek planem lekcji
         private void FillSchedule()
         {
+            // Przechodzenie po wszystkich wierszach tabeli lessons
             foreach (DataRow dataRow in dataSet.lessons)
             {
+                // Jeśli RowState danego wiersza nie jest ustawiony na Deleted
                 if (dataRow.RowState != DataRowState.Deleted)
                 {
                     string className = comboBoxClass.Text;
+                    // Jeśli class z tego wiersza zgadza się z klasą wybraną w comboBoxClass
                     if (dataRow[DBConstants.LESSON_CLASS].ToString() == className)
                     {
+                        // Generowanie odpowiedniej nazwy, aby móc wyszukać odpowiednią kontrolkę
                         string name = "cellControl";
                         name += dataRow[DBConstants.LESSON_WEEKDAY];
                         name += "_";
@@ -250,7 +270,10 @@ namespace Timetable.Forms
 
                             string classroom = dataRow[DBConstants.LESSON_CLASSROOM].ToString().Trim();
 
+                            // Szukanie kontrolki o takiej nazwie jaka została wygenerowana
                             CellControl cellControl = (CellControl)Controls.Find(name, true)[0];
+
+                            // Wpisanie do kontrolki odpowiednich danych z tabeli lessons
                             cellControl.SetData(subject, teacher, classroom);
                         }
                         catch (Exception)
@@ -266,17 +289,26 @@ namespace Timetable.Forms
         private void FillSubjects()
         {
             bool noSubjectsLeft = true;
+
+            // Lista, która posłuży jako DataSource dla comboBoxSubject
             List<KeyValuePair<int, string>> classSubjects = new List<KeyValuePair<int, string>>();
+
+            // Przechodzenie po wszystkich wierszach tabeli teaching
             foreach (DataRow teachingDataRow in dataSet.teaching.Rows)
             {
-                if (teachingDataRow[DBConstants.TEACHING_CLASS_ID].ToString() == comboBoxClass.SelectedValue.ToString())
+                // Jeśli class z tego wiersza zgadza się z klasą wybraną w comboBoxClass
+                if (teachingDataRow[DBConstants.TEACHING_CLASS_ID].ToString() == comboBoxClass.Text)
                 {
+                    // Szukanie id wiersza tabeli teaching
                     int id = Int32.Parse(teachingDataRow[DBConstants.TEACHING_SUBJECT_ID].ToString());
+
+                    // Określenie liczby danego przedmiotu jaka została jeszcze do przydzielenia
                     int amount = HowMany(teachingDataRow[DBConstants.TEACHING_CLASS_ID].ToString(), id.ToString());
                     if (amount > 0)
                     {
                         noSubjectsLeft = false;
                     }
+                    // Wstawienie odpowiedniej ilości danego przedmiotu do classSubjects
                     for (int i = 0; i < amount; i++)
                     {
                         DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
@@ -288,9 +320,9 @@ namespace Timetable.Forms
                     }
                 }
             }
-            comboBoxSubject.DataSource = classSubjects;
-            comboBoxSubject.DisplayMember = "Value";
-            comboBoxSubject.ValueMember = "Key";
+            comboBoxSubject.DataSource = classSubjects; // Ustawienie classSubjects jako DataSource comboBoxSubject
+            comboBoxSubject.DisplayMember = "Value"; // Ustawienie wartości do wyświetlania (nazwa przedmiotu)
+            comboBoxSubject.ValueMember = "Key"; // Ustawienie wartości (id)
 
             if (noSubjectsLeft)
             {
@@ -391,6 +423,7 @@ namespace Timetable.Forms
                     flagTeacher = false;
                 }
             }
+            // Jeśli sala oraz nauczyciel nie są zajęci to zwracamy true, w przeciwnym wypadku zwracamy false
             if (flagClassroom && flagTeacher)
             {
                 return true;
