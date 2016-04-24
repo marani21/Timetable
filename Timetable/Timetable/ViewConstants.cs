@@ -38,7 +38,7 @@ namespace Timetable
 		public static readonly string CLASSROOM_BUSY = "Sala jest zajęta przez ";
 		public static readonly string SAVE_CHANGES_QUESTION = "Czy chcesz zapisać wszystkie dokonane zmiany?";
 		public static readonly string TEACHER_BUSY = "Nauczyciel jest zajęty ";
-        public static readonly string WARNING = "Ostrzeżenie";
+        public static readonly string WARNING = "Ostrzeżenie ";
         public static readonly string DELETE_SELECTED_ROWS_WARNING = "Czy na pewno chcesz usunąć zaznaczone pola?";
         public static readonly string RELATION_DETECTED_WARNING = "Jeden z rekordów zawiera powiązania, usunąc powiązania i rekord?";
         public static readonly string ERROR = "Błąd";

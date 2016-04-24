@@ -55,7 +55,7 @@ namespace Timetable
 
 		private void SubjectsAssigningForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
+			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj".
 			if(this.DialogResult == DialogResult.Cancel)
             {
 				//MessageBox.Show("X lub Anuluj");

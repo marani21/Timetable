@@ -24,7 +24,7 @@ namespace Timetable
         {
             InitializeComponent();
         }
-        //Ustawianie źródeł danych dla dataGridView
+        //Ustawianie źródeł danych dla dataGridView.
         private void LoadData()
         {
             this.subjectsDataGridView.DataSource = this.dataSet;                   

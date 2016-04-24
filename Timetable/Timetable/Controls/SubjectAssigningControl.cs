@@ -29,7 +29,7 @@ namespace Timetable
             }
                        
         }
-        //Ustawianie źródeł danych dla dataGridView oraz combobox'a
+        //Ustawianie źródeł danych dla dataGridView oraz combobox'a.
 
         private void LoadData()
         {
