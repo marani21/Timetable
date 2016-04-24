@@ -158,7 +158,7 @@ namespace Timetable
             var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
             var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
             var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
-
+            //
             dialog.Text = tittle;
             dialogType.GetProperty("Details").SetValue(dialog, exeptionDetails, null);
             dialogType.GetProperty("Message").SetValue(dialog, error, null);
