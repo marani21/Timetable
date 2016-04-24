@@ -59,6 +59,13 @@ namespace Timetable
 				// Zapisanie do bazy tabeli lessons
 				upadateDataToDataBase();
 			}
+
+			// W przypadku nieoczekiwanego zamknięcia formy (całej aplikacji, nie przez użytkownika)
+			if (e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.None)
+			{
+				// Zapisanie do bazy tabeli lessons
+				upadateDataToDataBase();
+			}
 		}
 
         private void subjectAssigningControl_Load(object sender, EventArgs e)

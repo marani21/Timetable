@@ -198,6 +198,13 @@ namespace Timetable.Forms
 				// Zapisanie do bazy tabeli lessons
 				UpdateToDataBase();
 			}
+
+			// W przypadku nieoczekiwanego zamknięcia formy (całej aplikacji, nie przez użytkownika)
+			if(e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.None)
+			{
+				// Zapisanie do bazy tabeli lessons
+				UpdateToDataBase();
+			}
 		}
 
 		#endregion
