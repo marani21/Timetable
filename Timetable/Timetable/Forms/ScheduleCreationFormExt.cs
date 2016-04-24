@@ -13,7 +13,7 @@ namespace Timetable.Forms
 {
     public partial class ScheduleCreationFormExt : Form
     {
-        public static event EventFormDelegate switchFormEvent;
+        public static event EventDelegate closeFormEvent;
 
         #region Konstruktor
 
@@ -73,7 +73,6 @@ namespace Timetable.Forms
             FillSubjects();
         }
 
-		// Zmiana indexu comboBoxa z wyborem klas
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearCellControls();
@@ -131,7 +130,6 @@ namespace Timetable.Forms
                 MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
 
-		// Kliknięcie button "Usuń"
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             bool isAnyChosen = false;
@@ -164,49 +162,54 @@ namespace Timetable.Forms
                 MessageBox.Show(ViewConstants.CELL_NOT_CHOSEN);
         }
 
-		// Kliknięcie buttona "Anuluj"
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-			this.Close();
+            this.Close();
+            if (closeFormEvent != null)
+            {
+                closeFormEvent();
+            }
         }
 
-		// Kliknięcie buttona "OK"
         private void buttonOK_Click(object sender, EventArgs e)
         {
-			
+            // Zapisanie do bazy tabeli lessons
+            try
+            {
+                lessonsTableAdapter.Update(dataSet.lessons);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(ViewConstants.NO_DATABASE_CONNECTION);
+            }
+
             this.DialogResult = DialogResult.OK;
-			this.Close();
+            this.Close();
+            if (closeFormEvent != null)
+            {
+                closeFormEvent();
+            }
         }
 
-		// Zamknięcie formy
-		private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			// jeśli zostało kliknięte "X", "Anuluj" lub przełączenie na inną formę
-			if (this.DialogResult == DialogResult.Cancel && dataSet.GetChanges()!=null)
-			{
-				// Ostrzeżenie - pytanie, czy zapisać zmiany w bazie
-				// Jeśli tak
-				if (MessageBox.Show(ViewConstants.SAVE_CHANGES_QUESTION, "Ostrzeżenie", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.Yes)
-				{
-					// Zapisanie do bazy tabeli lessons
-					UpdateToDataBase();
-				}
-			}
-			else if (this.DialogResult == DialogResult.OK)
-			{
-				// Zapisanie do bazy tabeli lessons
-				UpdateToDataBase();
-			}
-		}
+        private void ScheduleCreationFormExt_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj"
+            if (this.DialogResult == DialogResult.Cancel)
+            {
+                //MessageBox.Show("X lub Anuluj");
 
+                // przywróć DataSet sprzed zmian (np. utwórz nowy) - brak jakiegokolwiek połączenia z bazą, bo wszystkie zmiany, 
+                //których właśnie dokonaliśmy w DataSecie chcemy cofnąć
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Metody pomocnicze przy GUI
+        #region Metody pomocnicze przy GUI
 
-		// Czyszczenie zawartości kontrolek
-		private void ClearCellControls()
+        // Czyszczenie zawartości kontrolek
+        private void ClearCellControls()
         {
             foreach (Control c in this.Controls.Find("panelCells", true).FirstOrDefault().Controls)
             {
@@ -333,27 +336,12 @@ namespace Timetable.Forms
             }
         }
 
+        #endregion
 
-		#endregion
+        #region Metody operujące na DataSet
 
-		#region Metody operujące na DataSet
-
-		// Uaktualnienie bazy na podstawie DataSeta
-		private void UpdateToDataBase()
-		{
-			try
-			{
-				lessonsTableAdapter.Update(dataSet.lessons);
-			}
-			catch (Exception)
-			{
-				MessageBox.Show(ViewConstants.NO_DATABASE_CONNECTION);
-			}
-
-		}
-
-		// Dodawanie do tabeli lessons
-		private void AddLessonToDataSet(string className, string subjectId, string classroom, string lessonNumber, string weekday)
+        // Dodawanie do tabeli lessons
+        private void AddLessonToDataSet(string className, string subjectId, string classroom, string lessonNumber, string weekday)
         {
             try
             {
@@ -448,8 +436,6 @@ namespace Timetable.Forms
             }
         }
 
-		#endregion
-
-		
-	}
+        #endregion
+    }
 }
