@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Timetable
 {
 	// Klasa posiadająca stałe z nazwami elementów bazy danych (tabele, kolumny...)
-	class DBConstants
+	static class DBConstants
 	{
 		// Tabele
 		public static readonly string CLASSES = "classes";
@@ -56,5 +56,14 @@ namespace Timetable
 
 		public static readonly string WEEKDAY_ID = "id";
 		public static readonly string WEEKDAY_NAME = "name";
+
+        public static readonly string DATABASE_VIEW_SUBJECT_NAME = "subject_name";
+        public static readonly string DATABASE_VIEW_TEACHER_NAME = "teacher_name";
+        public static readonly string DATABASE_VIEW_TEACHER_SURNAME = "teacher_surname";
+        public static readonly string DATABASE_VIEW_TEACHER_PESEL = "teacher_pesel";
+        public static readonly string DATABASE_VIEW_CLASSROOM = "classroom";
+        public static readonly string DATABASE_VIEW_CLASS = "class";
+        public static readonly string DATABASE_VIEW_WEEKDAY = "weekday";
+        public static readonly string DATABASE_VIEW_LESSON_NUMBER = "lesson_number";
 	}
 }

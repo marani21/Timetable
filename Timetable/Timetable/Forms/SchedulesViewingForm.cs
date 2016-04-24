@@ -18,27 +18,12 @@ namespace Timetable
         enum ObjectsToView { CLASS, TEACHERS, CLASSROOMS} // enum pomagajacy w wyborze selekcji danych
 
         private ObjectsToView objectToView;  //aktualnie wybrane kryterium do filtrowania
-
         //nazwy kontrolek 
         private string cellControlName = "cellControl_";
         private string parentOfCellControlName = "panelCells";
 
-        //nazwy uzywane do nazw kolumn w listView
-        private string listView_objectsToView_classColumnName_0 = "klasa";
-        private string listView_objectsToView_teacherColumnName_0 = "imię";
-        private string listView_objectsToView_teacherColumnName_1 = "nazwisko";
-        private string listView_objectsToView_teacherColumnName_2 = "pesel";
-        private string listView_objectsToView_classroomColumnName_0 = "sala";
-
-        //nazwy uzywanych pol z bazy danych
-        private string dbField_teacherName = "teacher_name";
-        private string dbField_teacherSurname = "teacher_surname";
-        private string dbField_teacherPesel = "teacher_pesel";
-        private string dbField_classroom = "classroom";
-        private string dbField_class = "class";
-        private string dbField_subjectName = "subject_name";
-        private string dbField_weekday = "weekday";
-        private string dbField_lessonNumber = "lesson_number";
+        
+            
 
 
         private List<Label> lessonPeriodsLabelsList = new List<Label>();
@@ -106,7 +91,7 @@ namespace Timetable
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = true;
 
-                    listView_objectsToView.Columns.Add(listView_objectsToView_classColumnName_0); //dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add(ViewConstants.CLASS); //dodajemy kolumne dolisty
                     listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// ustawiamy wielkosc kolumny-auto size
 
                     foreach (DataRow dataRow in dataSet1.classes)//do listy z danymi wstawiamy wszystkie klasy
@@ -124,9 +109,9 @@ namespace Timetable
                     button_setClassromsView.Enabled = true;
 
 
-                    listView_objectsToView.Columns.Add(listView_objectsToView_teacherColumnName_0);//dodajemy kolumne dolisty
-                    listView_objectsToView.Columns.Add(listView_objectsToView_teacherColumnName_1);//dodajemy kolumne dolisty
-                    listView_objectsToView.Columns.Add(listView_objectsToView_teacherColumnName_2);//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add(ViewConstants.NAME);//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add(ViewConstants.SURNAME);//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add(ViewConstants.PERSONAL_IDENTITY_NUMBER);//dodajemy kolumne dolisty
 
                     listView_objectsToView.Columns[0].Width = 60;// ustawiamy wielkosc kolumny
                     listView_objectsToView.Columns[1].Width = 60;// ustawiamy wielkosc kolumny
@@ -147,7 +132,7 @@ namespace Timetable
                     button_setTeacherView.Enabled = true;
                     button_setClassromsView.Enabled = false;
 
-                    listView_objectsToView.Columns.Add(listView_objectsToView_classroomColumnName_0);//dodajemy kolumne dolisty
+                    listView_objectsToView.Columns.Add(ViewConstants.CLASSROOM);//dodajemy kolumne dolisty
                     listView_objectsToView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// ustawiamy wielkosc kolumny-auto size
 
                     foreach (DataRow dataRow in dataSet1.classrooms)//do listy z danymi wstawiamy wszystkie sale lekcyjne
@@ -208,7 +193,7 @@ namespace Timetable
                     case ObjectsToView.CLASS: // loop dla klas
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            if (dataRow[dbField_class].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            if (dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
                             {
                                 SetDataInCell(dataRow);
                             }
@@ -219,7 +204,7 @@ namespace Timetable
                     case ObjectsToView.TEACHERS:// loop dla nauczycieli
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            if (dataRow[dbField_teacherPesel].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
+                            if (dataRow[DBConstants.DATABASE_VIEW_TEACHER_PESEL].ToString() == this.listView_objectsToView.SelectedItems[0].SubItems[2].Text)
                             {
                                 SetDataInCell(dataRow);
                             }
@@ -230,7 +215,7 @@ namespace Timetable
                     case ObjectsToView.CLASSROOMS:// loop dla sal lekcyjnych
                         foreach (DataRow dataRow in dataSet1.database_view)
                         {
-                            if (dataRow[dbField_classroom].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
+                            if (dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString() == this.listView_objectsToView.SelectedItems[0].Text)
                             {
                                 SetDataInCell(dataRow);
                             }
@@ -265,14 +250,23 @@ namespace Timetable
         {
             //okreslenie nazwy dla kontrolki
             string itmName = cellControlName;
-            itmName += dataRow[dbField_weekday];
+            itmName += dataRow[DBConstants.DATABASE_VIEW_WEEKDAY];
             itmName += "_";
-            itmName += dataRow[dbField_lessonNumber];
-
+            itmName += dataRow[DBConstants.DATABASE_VIEW_LESSON_NUMBER];
+            
             //okreslenie danych
-            string subject = dataRow[dbField_subjectName].ToString().Trim();
-            string teacher = dataRow[dbField_teacherSurname].ToString().Trim() + " " + dataRow[dbField_teacherName].ToString().Trim();
-            string classroom = dataRow[dbField_classroom].ToString();
+            string subject = dataRow[DBConstants.DATABASE_VIEW_SUBJECT_NAME].ToString().Trim();
+            string teacher = dataRow[DBConstants.DATABASE_VIEW_TEACHER_SURNAME].ToString().Trim() + " " + dataRow[DBConstants.DATABASE_VIEW_TEACHER_NAME].ToString().Trim();
+            string classroom;
+            if (this.objectToView == ObjectsToView.CLASSROOMS)
+            {
+                classroom = dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString();          
+            }
+            else 
+            { 
+
+                classroom = dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString();
+            }
 
             //znalezienie kontrolki i wywolanie metodyprzypisujacej dane oraz odblokowanie kontrolki 
             CellControl cellControl = (CellControl)this.Controls.Find(itmName, true)[0];

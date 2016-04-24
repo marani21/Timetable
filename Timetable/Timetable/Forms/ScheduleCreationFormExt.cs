@@ -39,9 +39,11 @@ namespace Timetable.Forms
                     ((CellControl)c).IsActive = false;
                 }
             }
-
-            cell.Activate(); // Ustawienie zaznaczonej kontrolki na podświetloną
-            cell.IsActive = true; // Ustawienie właściwości IsActive, zaznaczonej kontrolki, na true
+            if(cell != null)
+            { 
+                cell.Activate(); // Ustawienie zaznaczonej kontrolki na podświetloną
+                cell.IsActive = true; // Ustawienie właściwości IsActive, zaznaczonej kontrolki, na true
+            }
         }
 
         #region Metody elementów GUI

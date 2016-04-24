@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Timetable
 {
 	// Klasa posiadająca stałe, które wyświetlamy w widoku
-	class ViewConstants
+	static class ViewConstants
 	{
 		public static readonly string CLASS = "klasa";
 		public static readonly string CLASSROOM = "sala";
