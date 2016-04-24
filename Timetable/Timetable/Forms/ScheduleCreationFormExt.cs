@@ -95,10 +95,10 @@ namespace Timetable.Forms
                         string subjectId = comboBoxSubject.SelectedValue.ToString();
                         string classroom = comboBoxClassroom.Text;
                         string className = comboBoxClass.Text;
-                        DataRow[] subjectIdRows = dataSet.subjects.Select("name='" + subject + "'");
-                        DataRow[] teacherIdRows = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
+                        DataRow[] subjectIdRows = dataSet.subjects.Select(DBConstants.SUBJECT_NAME + "='" + subject + "'");
+                        DataRow[] teacherIdRows = dataSet.teaching.Select(DBConstants.TEACHING_CLASS_ID + "='" + className + "' and " + DBConstants.TEACHING_SUBJECT_ID + "=" + subjectId);
                         string teacherId = teacherIdRows[0][DBConstants.TEACHING_TEACHER_ID].ToString();
-                        DataRow[] teacherRows = dataSet.teachers.Select("pesel = '" + teacherId.Trim() + "'");
+                        DataRow[] teacherRows = dataSet.teachers.Select(DBConstants.TEACHER_PESEL + "='" + teacherId.Trim() + "'");
                         string teacher = teacherRows[0][DBConstants.TEACHER_NAME].ToString().Trim() + " " + teacherRows[0][DBConstants.TEACHER_SURNAME].ToString().Trim();
                         string cellName = c.Name;
                         string weekday = cellName[(cellName.Length - 3)].ToString();
@@ -233,9 +233,9 @@ namespace Timetable.Forms
                 if (c is Label && c.Name.Contains("Lesson"))
                 {
                     // Ustawienie do tekstu godziny rozpoczęcia i zakończenia dla i-tego bloku godzinowego
-                    ((Label)c).Text = dataSet.lessons_periods.Select("lesson_number=" + i)[0]["start_time"].ToString().Remove(5);
+                    ((Label)c).Text = dataSet.lessons_periods.Select(DBConstants.LESSON_LESSON_NUMBER + "=" + i)[0][DBConstants.LESSON_PERIOD_START_TIME].ToString().Remove(5);
                     ((Label)c).Text += " - ";
-                    ((Label)c).Text += dataSet.lessons_periods.Select("lesson_number=" + i)[0]["end_time"].ToString().Remove(5);
+                    ((Label)c).Text += dataSet.lessons_periods.Select(DBConstants.LESSON_LESSON_NUMBER + "=" + i)[0][DBConstants.LESSON_PERIOD_END_TIME].ToString().Remove(5);
                     i--;
                 }
             }
@@ -263,10 +263,10 @@ namespace Timetable.Forms
                         try
                         {
                             string subjectId = dataRow[DBConstants.LESSON_SUBJECT].ToString().Trim();
-                            string subject = dataSet.subjects.Select("id = " + subjectId)[0][DBConstants.SUBJECT_NAME].ToString().Trim();
-                            string teacherPesel = dataSet.teaching.Select("class = '" + className + "' and subject = " + subjectId)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
-                            string teacher = dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0][DBConstants.TEACHER_NAME].ToString().Trim() + " " +
-                                dataSet.teachers.Select("pesel = '" + teacherPesel + "'")[0][DBConstants.TEACHER_SURNAME].ToString().Trim();
+                            string subject = dataSet.subjects.Select(DBConstants.SUBJECT_ID + "=" + subjectId)[0][DBConstants.SUBJECT_NAME].ToString().Trim();
+                            string teacherPesel = dataSet.teaching.Select(DBConstants.TEACHING_CLASS_ID + "='" + className + "' and " + DBConstants.TEACHING_SUBJECT_ID + "=" + subjectId)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
+                            string teacher = dataSet.teachers.Select(DBConstants.TEACHER_PESEL + "='" + teacherPesel + "'")[0][DBConstants.TEACHER_NAME].ToString().Trim() + " " +
+                                dataSet.teachers.Select(DBConstants.TEACHER_PESEL + "='" + teacherPesel + "'")[0][DBConstants.TEACHER_SURNAME].ToString().Trim();
 
                             string classroom = dataRow[DBConstants.LESSON_CLASSROOM].ToString().Trim();
 
@@ -311,7 +311,7 @@ namespace Timetable.Forms
                     // Wstawienie odpowiedniej ilości danego przedmiotu do classSubjects
                     for (int i = 0; i < amount; i++)
                     {
-                        DataRow[] subjectsRows = dataSet.subjects.Select("id = " + id);
+                        DataRow[] subjectsRows = dataSet.subjects.Select(DBConstants.SUBJECT_ID + "=" + id);
                         foreach (DataRow subjectsDataRow in subjectsRows)
                         {
                             string value = subjectsDataRow[DBConstants.SUBJECT_NAME].ToString().Trim();
@@ -363,7 +363,7 @@ namespace Timetable.Forms
         {
             try
             {
-                dataSet.lessons.Select("lesson_number=" + lessonNumber + " and class = '" + className + "' and weekday = " + weekday)[0].Delete();
+                dataSet.lessons.Select(DBConstants.LESSON_PERIOD_NUMBER + "=" + lessonNumber + " and " + DBConstants.LESSON_CLASS + "='" + className + "' and " + DBConstants.LESSON_WEEKDAY + "=" + weekday)[0].Delete();
             }
             catch (Exception)
             {
@@ -380,9 +380,9 @@ namespace Timetable.Forms
         {
             try
             {
-                DataRow[] amountRow = dataSet.teaching.Select("class = '" + className + "' and subject=" + subjectId);
+                DataRow[] amountRow = dataSet.teaching.Select(DBConstants.TEACHING_CLASS_ID + "='" + className + "' and " + DBConstants.TEACHING_SUBJECT_ID + "=" + subjectId);
                 string amount = amountRow[0][DBConstants.TEACHING_AMOUNT].ToString();
-                DataRow[] lessonsAdded = dataSet.lessons.Select("class = '" + className + "' and subject =" + subjectId);
+                DataRow[] lessonsAdded = dataSet.lessons.Select(DBConstants.LESSON_CLASS + "='" + className + "' and " + DBConstants.LESSON_SUBJECT + "=" + subjectId);
                 return int.Parse(amount) - lessonsAdded.Length;
             }
             catch (Exception e)
@@ -399,7 +399,7 @@ namespace Timetable.Forms
             bool flagTeacher = true;
 
             // Sprawdzanie czy sala jest zajęta przez inną klasę
-            DataRow[] findClassrooms = dataSet.lessons.Select("class <> '" + className + "' and classroom = " + classroom + " and weekday = " + weekday + " and lesson_number = " + lessonNumber);
+            DataRow[] findClassrooms = dataSet.lessons.Select(DBConstants.LESSON_CLASS + "<>'" + className + "' and " + DBConstants.LESSON_CLASSROOM + "=" + classroom + " and " + DBConstants.LESSON_WEEKDAY + "=" + weekday + " and " + DBConstants.LESSON_LESSON_NUMBER + "=" + lessonNumber);
             if (findClassrooms.Length > 0)
             {
                 MessageBox.Show(ViewConstants.CLASSROOM_BUSY + findClassrooms[0][DBConstants.LESSON_CLASS].ToString());
@@ -411,12 +411,12 @@ namespace Timetable.Forms
             }
 
             // Sprawdzanie czy nauczyciel jest zajęty przez inną klasę
-            DataRow[] findTeachers = dataSet.lessons.Select("class <> '" + className + "' and weekday = " + weekday + " and lesson_number = " + lessonNumber);
+            DataRow[] findTeachers = dataSet.lessons.Select(DBConstants.LESSON_CLASS + "<>'" + className + "' and " + DBConstants.LESSON_WEEKDAY + "=" + weekday + " and " + DBConstants.LESSON_LESSON_NUMBER + "=" + lessonNumber);
             foreach (DataRow dataRow in findTeachers)
             {
                 string classTmp = dataRow[DBConstants.LESSON_CLASS].ToString().Trim();
                 string subjectIdTmp = dataRow[DBConstants.LESSON_SUBJECT].ToString().Trim();
-                string teacherPesel = dataSet.teaching.Select("class = '" + classTmp + "' and subject = " + subjectIdTmp)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
+                string teacherPesel = dataSet.teaching.Select(DBConstants.TEACHING_CLASS_ID + "='" + classTmp + "' and " + DBConstants.TEACHING_SUBJECT_ID + "=" + subjectIdTmp)[0][DBConstants.TEACHING_TEACHER_ID].ToString();
                 if (teacherId == teacherPesel)
                 {
                     MessageBox.Show(ViewConstants.TEACHER_BUSY + classTmp);
