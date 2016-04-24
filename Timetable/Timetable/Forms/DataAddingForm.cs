@@ -26,42 +26,38 @@ namespace Timetable
             subjectsAddingControl.setDataSet = this.dataSet;
         }
 
-
+		// Kliknięcie buttona "Anuluj"
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(ViewConstants.CONFIRM_SAVING_TO_DB, ViewConstants.WARNING,
-               MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
-                return;
-
-			upadateDataToDataBase();
-        
 			this.DialogResult = DialogResult.OK;
 			this.Close();
-			if (closeFormEvent != null)
-			{
-				closeFormEvent();
-			}
 		}
-
+		
+		// Kliknięcie buttona "OK"
 		private void buttonCancel_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
-			if (closeFormEvent != null)
-			{
-				closeFormEvent();
-			}
 		}
 
+		// Zamykanie formy (event)
 		private void SubjectsAssigningForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			// jeśli forma nie została zamknięta poprzez "OK" , czyli zostało kliknięte "X" lub "Anuluj".
-			if(this.DialogResult == DialogResult.Cancel)
-            {
-				//MessageBox.Show("X lub Anuluj");
-
-				// przywróć DataSet sprzed zmian (np. utwórz nowy) - brak jakiegokolwiek połączenia z bazą, bo wszystkie zmiany, 
-				//których właśnie dokonaliśmy w DataSecie chcemy cofnąć
+			// jeśli zostało kliknięte "X", "Anuluj" lub przełączenie na inną formę
+			if (this.DialogResult == DialogResult.Cancel && dataSet.GetChanges() != null)
+			{
+				// Ostrzeżenie - pytanie, czy zapisać zmiany w bazie
+				// Jeśli tak
+				if (MessageBox.Show(ViewConstants.SAVE_CHANGES_QUESTION, "Ostrzeżenie", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.Yes)
+				{
+					// Zapisanie do bazy tabeli lessons
+					upadateDataToDataBase();
+				}
+			}
+			else if (this.DialogResult == DialogResult.OK)
+			{
+				// Zapisanie do bazy tabeli lessons
+				upadateDataToDataBase();
 			}
 		}
 
@@ -91,21 +87,6 @@ namespace Timetable
             subjectAssigningControl.clearFilter();
         }
 
-		private void studentsAddingControl_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void itemAssignSubjects_Click(object sender, EventArgs e)
-		{
-			switchToAnotherForm();
-		}
-
-		private void itemCreateSchedule_Click(object sender, EventArgs e)
-		{
-			switchToAnotherForm();
-		}
-
 		private void upadateDataToDataBase()
 		{
 			try
@@ -127,32 +108,7 @@ namespace Timetable
 			}
 		}
 
-		private void switchToAnotherForm()
-		{
-			if (MessageBox.Show(ViewConstants.CONFIRM_SAVING_TO_DB, ViewConstants.WARNING,
-			MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
-			{
-				this.DialogResult = DialogResult.Cancel;
-			}
-			else
-			{
-				upadateDataToDataBase();
-
-				this.DialogResult = DialogResult.OK;
-			}
-
-			this.Close();
-			if (closeFormEvent != null)
-			{
-				closeFormEvent();
-			}
-		}
-
-		private void itemMenu_Click(object sender, EventArgs e)
-		{
-
-		}
-
+		// Pokazanie okna dialogowego w przypadku wystąpienia błędu (np. nie wszystkie pola rekordu zostały wypełnione)
         public static void createDialogWithExceptionMessage(String tittle, String error, String exeptionDetails)
         {
             var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";

@@ -97,7 +97,7 @@
 			this.studentsAddingControl.Name = "studentsAddingControl";
 			this.studentsAddingControl.Size = new System.Drawing.Size(558, 335);
 			this.studentsAddingControl.TabIndex = 0;
-			this.studentsAddingControl.Load += new System.EventHandler(this.studentsAddingControl_Load);
+
 			// 
 			// teachersTabPage
 			// 
@@ -177,7 +177,6 @@
 			this.itemMenu.Padding = new System.Windows.Forms.Padding(30, 3, 30, 3);
 			this.itemMenu.Size = new System.Drawing.Size(105, 27);
 			this.itemMenu.Text = "Menu";
-			this.itemMenu.Click += new System.EventHandler(this.itemMenu_Click);
 			// 
 			// itemCreateSchedule
 			// 
@@ -185,7 +184,7 @@
 			this.itemCreateSchedule.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
 			this.itemCreateSchedule.Size = new System.Drawing.Size(172, 30);
 			this.itemCreateSchedule.Text = "Ułóż plan";
-			this.itemCreateSchedule.Click += new System.EventHandler(this.itemCreateSchedule_Click);
+
 			// 
 			// itemViewSchedules
 			// 
@@ -193,7 +192,7 @@
 			this.itemViewSchedules.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
 			this.itemViewSchedules.Size = new System.Drawing.Size(172, 30);
 			this.itemViewSchedules.Text = "Przegladaj plany";
-			this.itemViewSchedules.Click += new System.EventHandler(this.itemAssignSubjects_Click);
+
 			// 
 			// buttonOK
 			// 
