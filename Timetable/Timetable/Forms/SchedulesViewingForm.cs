@@ -256,18 +256,32 @@ namespace Timetable
             
             //okreslenie danych
             string subject = dataRow[DBConstants.DATABASE_VIEW_SUBJECT_NAME].ToString().Trim();
-            string teacher = dataRow[DBConstants.DATABASE_VIEW_TEACHER_SURNAME].ToString().Trim() + " " + dataRow[DBConstants.DATABASE_VIEW_TEACHER_NAME].ToString().Trim();
+            string teacher;
             string classroom;
-            if (this.objectToView == ObjectsToView.CLASSROOMS)
+
+            switch(this.objectToView)
             {
-                classroom = dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString();          
-            }
-            else 
-            { 
+                case ObjectsToView.CLASSROOMS:
+                    classroom = dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString();
+                    teacher = dataRow[DBConstants.DATABASE_VIEW_TEACHER_SURNAME].ToString().Trim() + " " + dataRow[DBConstants.DATABASE_VIEW_TEACHER_NAME].ToString().Trim();
+                    break;
 
-                classroom = dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString();
-            }
+                case ObjectsToView.CLASS:
+                    classroom = dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString();
+                    teacher = dataRow[DBConstants.DATABASE_VIEW_TEACHER_SURNAME].ToString().Trim() + " " + dataRow[DBConstants.DATABASE_VIEW_TEACHER_NAME].ToString().Trim();
+                    break;
 
+                case ObjectsToView.TEACHERS:
+                    classroom = dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString();
+                    teacher = dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString();
+                    break;
+
+                default:
+                    classroom = dataRow[DBConstants.DATABASE_VIEW_CLASSROOM].ToString();
+                    teacher = dataRow[DBConstants.DATABASE_VIEW_CLASS].ToString();
+                    break;
+
+            }
             //znalezienie kontrolki i wywolanie metodyprzypisujacej dane oraz odblokowanie kontrolki 
             CellControl cellControl = (CellControl)this.Controls.Find(itmName, true)[0];
             cellControl.SetData(subject, teacher, classroom);
