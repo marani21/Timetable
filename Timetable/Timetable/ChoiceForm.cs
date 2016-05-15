@@ -22,25 +22,7 @@ namespace Timetable
 		public ChoiceForm()
 		{
 			InitializeComponent();
-			SchedulesViewingForm.closeFormEvent += SchedulesViewingForm_closeFormEvent;
-			ScheduleCreationForm.closeFormEvent += ScheduleCreationForm_closeFormEvent;
-			DataAddingForm.closeFormEvent += SubjectsAssigningForm_closeFormEvent;
 
-		}
-
-		private void SchedulesViewingForm_closeFormEvent()
-		{
-			
-		}
-
-		private void ScheduleCreationForm_closeFormEvent()
-		{
-		
-		}
-		
-		private void SubjectsAssigningForm_closeFormEvent()
-		{
-		
 		}
 
 		//Kliknięcie na button "Przeglądaj plany"
