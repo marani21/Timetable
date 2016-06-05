@@ -19,7 +19,15 @@ namespace Timetable
 			InitializeComponent();
 		}
 
+        private void teachersAddingControl_Load(object sender, EventArgs e)
+        {
+            teachersAddingControl.setDataSet = this.dataSet;
+        }
 
+        private void studentsAddingControl_Load(object sender, EventArgs e)
+        {
+            studentsAddingControl.setDataSet = this.dataSet;
+        }
 
         private void subjectsAddingControl_Load(object sender, EventArgs e)
         {
@@ -128,5 +136,7 @@ namespace Timetable
 
             var result = dialog.ShowDialog();
         }
-	}
+
+       
+    }
 }

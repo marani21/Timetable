@@ -126,6 +126,9 @@
     <EmbeddedResource Include="Controls\cellControl.resx">
       <DependentUpon>cellControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\studentsAddingControl.resx">
+      <DependentUpon>studentsAddingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\subjectAssigningControl.resx">
       <DependentUpon>subjectAssigningControl.cs</DependentUpon>
     </EmbeddedResource>
