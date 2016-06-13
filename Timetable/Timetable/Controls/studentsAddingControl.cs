@@ -17,7 +17,7 @@ namespace Timetable
             set
             {
                 this.dataSet = value;
-                LoadData();
+                LoadData();//
             }
         }
 
